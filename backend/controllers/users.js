@@ -8,7 +8,7 @@ const mysql = require('mysql');
 const config = require('../config');
 const connection = mysql.createConnection(config);
 
-exports.signup = (req, res, next) => {
+exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
 
     bcrypt.hash(req.body.password, salt)
     .then(hash => {
