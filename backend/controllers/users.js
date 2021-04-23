@@ -31,32 +31,33 @@ exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
 
 
 
-/* exports.login = (req, res, next) => {
-    
-    var buffer = Buffer.from(req.body.email, process.env.BUFF_ENC);
-    
-    User.findOne({email: buffer})
-    .then(user => {
-        if(!user){
-            return res.status(401).json({message: "Cet email n'est pas valide"})
+exports.login = (req, res, next) => { 
+   
+    const sql = `SELECT * FROM Users WHERE pseudo="${req.body.pseudo}"`;
+        connection.query(sql, (error, results, fields) => {
+        if (error) {
+            res.status(400).json({message: "Ce pseudo n'existe pas"})
         }
         
-        bcrypt.compare(req.body.password, user.password)
+        bcrypt.compare(req.body.password, results[0].password)
         .then(valid => {
             if (!valid){
                 return res.status(401).json({message: "Ce mot de passe n'est pas valide"})
-            }     
-            res.status(200).json({
+            }
+            console.log("password decrypt ok") 
+            res.status(401).json({message: 'password decrypt ok'})    
+            /* res.status(200).json({
                 userId: user._id,
                 token: jwt.sign(
                 {userId: user._id}, `${process.env.TOKEN_USERS}`,
                 { expiresIn: '24h'})  
+            }) */
             })
-        })
-        .catch(() => res.status(500).json({message: "erreur login"}))   
-    })
-    .catch(() => res.status(500).json({message: "login impossible"}))   
-} */
+            .catch(() => res.status(500).json({message: "erreur login"})) 
+        
+        });
+        connection.end(); 
+}
 
 
 
