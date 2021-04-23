@@ -28,9 +28,8 @@ exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
     .catch(() => res.status(400).json({message: 'Echec'}))
 }
 
-
-
-
+/* CRASH DE APP A RESOUDRE TRY CATCH ?? */
+/* BUG lors d'une nouvelle requete apres erreur */
 exports.login = (req, res, next) => { 
    
     const sql = `SELECT * FROM Users WHERE pseudo="${req.body.pseudo}"`;
