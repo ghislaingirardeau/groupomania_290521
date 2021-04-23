@@ -1,24 +1,8 @@
 const express = require('express')
-const mysql = require('mysql');
 
 const usersRoute = require('./routes/users')
 /* const saucesRoutes = require('./routes/sauces') */
 
-/* CONNECTION MYSQL */
-let connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'olivieratone',
-    database: 'elevage'
-});
-
-connection.connect(function(err) {
-    if (err) {
-      return console.error('error: ' + err.message);
-    }
-  
-    console.log('Connected to the MySQL server.');
-  });
 
 
 const app = express()
