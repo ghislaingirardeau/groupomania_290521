@@ -5,13 +5,29 @@ const jwt = require('jsonwebtoken')
 
 const salt = 10
 
+/* CONNECTION MYSQL */
+const mysql = require('mysql');
+const config = require('../config');
+const connection = mysql.createConnection(config);
 
 
-/* exports.signup = (req, res, next) => {
 
-    var buffer = Buffer.from(req.body.email, process.env.BUFF_ENC);
 
-    bcrypt.hash(req.body.password, salt)
+exports.signup = (req, res, next) => {
+
+
+    const sql = `INSERT INTO Users VALUES (2, "${req.body.pseudo}", "${req.body.email}", "${req.body.password}");`;
+    connection.query(sql, (error, results, fields) => {
+        if (error) {
+            res.status(400).json({message: 'Echec'})
+        }
+        console.log(results)
+        return res.status(401).json({message: 'user créé'})
+        
+      });
+    connection.end();
+
+    /* bcrypt.hash(req.body.password, salt)
     .then(hash => {
         const utilisateur = new User ({ 
             email: buffer,
@@ -19,8 +35,10 @@ const salt = 10
         })  
                     
     })
-    .catch(() => res.status(400).json({message: 'Echec'}))
-} */
+    .catch(() => res.status(400).json({message: 'Echec'})) */
+}
+
+
 
 /* exports.login = (req, res, next) => {
     
