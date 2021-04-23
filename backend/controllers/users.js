@@ -1,25 +1,13 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const User = require('../schemas/users')
+/* const User = require('../schemas/users') */
 
 const salt = 10
 
-/* CONNECTION MYSQL */
-const mysql = require('mysql');
-const config = require('./config.js');
-const connection = mysql.createConnection(config);
 
-const sql = `SELECT COUNT(*)+1 FROM users;`;
-connection.query(sql, (error, results, fields) => {
-  if (error) {
-    return console.error(error.message);
-  }
-  console.log(results);
-});
-connection.end();
 
-exports.signup = (req, res, next) => {
+/* exports.signup = (req, res, next) => {
 
     var buffer = Buffer.from(req.body.email, process.env.BUFF_ENC);
 
@@ -32,7 +20,7 @@ exports.signup = (req, res, next) => {
                     
     })
     .catch(() => res.status(400).json({message: 'Echec'}))
-}
+} */
 
 /* exports.login = (req, res, next) => {
     

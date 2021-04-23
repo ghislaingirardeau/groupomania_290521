@@ -3,7 +3,19 @@ const express = require('express')
 const usersRoute = require('./routes/users')
 /* const saucesRoutes = require('./routes/sauces') */
 
+/* CONNECTION MYSQL */
+const mysql = require('mysql');
+const config = require('./config.js');
+const connection = mysql.createConnection(config);
 
+const sql = `SELECT COUNT(*)+1 FROM users;`;
+connection.query(sql, (error, results, fields) => {
+  if (error) {
+    return console.error(error.message);
+  }
+  console.log(results);
+});
+connection.end();
 
 const app = express()
 
@@ -17,7 +29,7 @@ app.use((req, res, next) => {
 
 app.use(express.json())
 
-app.use('/api/auth', usersRoute)
+/* app.use('/api/auth', usersRoute) */
 /* app.use('/api/sauces', saucesRoutes) */
 
 module.exports = app
