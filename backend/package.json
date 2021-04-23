@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/ghislaingirardeau/GirardeauGhislain_7_23042021/issues"
   },
-  "homepage": "https://github.com/ghislaingirardeau/GirardeauGhislain_7_23042021#readme"
+  "homepage": "https://github.com/ghislaingirardeau/GirardeauGhislain_7_23042021#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
