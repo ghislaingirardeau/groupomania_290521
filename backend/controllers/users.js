@@ -20,9 +20,7 @@ exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
         }
         console.log(results)
         return res.status(201).json({message: 'user créé'})
-        
         });
-        connection.end(); 
                     
     })
     .catch(() => res.status(400).json({message: 'Echec'}))
@@ -53,7 +51,6 @@ exports.login = (req, res, next) => {
             })
             .catch(() => res.status(500).json({message: "erreur login"}))         
         });
-        connection.end(); 
 }
 
 /* LOGIN

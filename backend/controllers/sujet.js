@@ -11,7 +11,7 @@ exports.listeSujet = (req, res, next) => {
             res.status(400).json({message: "Impossible d'afficher les sujets"})
         }
         console.log(results)
-        /* res.status(200).json(results) */
+        res.status(200).json(results)
     });
 }
 
