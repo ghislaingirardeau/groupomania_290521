@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
             res.status(400).json({message: 'Echec'})
         }
         console.log(results)
-        return res.status(401).json({message: 'user créé'})
+        return res.status(201).json({message: 'user créé'})
         
         });
         connection.end(); 
@@ -30,6 +30,7 @@ exports.signup = (req, res, next) => { /* EMAIL UNIQUE ??? */
 
 /* CRASH DE APP A RESOUDRE TRY CATCH ?? */
 /* BUG lors d'une nouvelle requete apres erreur */
+/* CLE TOKEN A MASQUER */
 exports.login = (req, res, next) => { 
    
     const sql = `SELECT * FROM Users WHERE pseudo="${req.body.pseudo}"`;
@@ -55,5 +56,10 @@ exports.login = (req, res, next) => {
         connection.end(); 
 }
 
+/* LOGIN
+Le post front attendue{ "pseudo": "Paul", "password": "qwerty"} 
+*/
 
-
+/* SIGNUP
+Le post front attendue{ "pseudo": "Paul", "email":"toto@mail.com" , "password": "qwerty"} 
+*/

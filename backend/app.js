@@ -1,9 +1,7 @@
 const express = require('express')
 
 const usersRoute = require('./routes/users')
-/* const saucesRoutes = require('./routes/sauces') */
-
-
+const sujetRoutes = require('./routes/sujet')
 
 const app = express()
 
@@ -18,6 +16,6 @@ app.use((req, res, next) => {
 app.use(express.json())
 
 app.use('/api/auth', usersRoute)
-/* app.use('/api/sauces', saucesRoutes) */
+app.use('/api/sujet', sujetRoutes)
 
 module.exports = app
