@@ -13,7 +13,6 @@ exports.listeSujet = (req, res, next) => {
         console.log(results)
         /* res.status(200).json(results) */
     });
-    connection.end();
 }
 
 exports.creerSujet = (req, res, next) => { /* recup de user.id ??? */
@@ -27,7 +26,6 @@ exports.creerSujet = (req, res, next) => { /* recup de user.id ??? */
         console.log(results)
         res.status(200).json(results)
     });
-    connection.end();
 }
 
 exports.listeCommentaires = (req, res, next) => {
@@ -41,7 +39,6 @@ exports.listeCommentaires = (req, res, next) => {
         console.log(results)
         res.status(200).json(results)
     });
-    connection.end();    
 }
 
 exports.ajoutCommentaire = (req, res, next) => {
@@ -56,7 +53,6 @@ exports.ajoutCommentaire = (req, res, next) => {
         console.log(results)
         res.status(200).json({message: "Insertion ok"})
     });
-    connection.end();  
 }
 
 exports.suppressionCommentaire = (req, res, next) => {
