@@ -7,11 +7,12 @@ const router = express.Router()
 router.get('/', /* authentification */ sujet.listeSujet)
 router.post('/', sujet.creerSujet)
 
-/* router.post('/', sujet)
+router.get('/:sujet_id', sujet.listeCommentaires)
+router.post('/:sujet_id', sujet.ajoutCommentaire)
 
-router.get('/:id',  sujet)
-router.put('/:id', sujet)
-router.delete('/:id', sujet) */
+/* 
+
+router.delete('/:sujet_id', sujet.suppressionCommentaire) */
 
 
 module.exports = router

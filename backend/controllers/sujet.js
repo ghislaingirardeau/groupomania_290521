@@ -16,7 +16,7 @@ exports.listeSujet = (req, res, next) => {
     connection.end();
 }
 
-exports.creerSujet = (req, res, next) => {
+exports.creerSujet = (req, res, next) => { /* recup de user.id ??? */
     
     const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
     VALUES ("${req.body.sujet}", "1", (SELECT NOW()));`
@@ -30,8 +30,34 @@ exports.creerSujet = (req, res, next) => {
     connection.end();
 }
 
-let date = Date.now().toString()
-console.log(date)
+exports.listeCommentaires = (req, res, next) => {
 
+    console.log(req.params.sujet_id)
+    const sql = `SELECT commentaire_user FROM commentaire WHERE sujet_id=${req.params.sujet_id}`
+    connection.query(sql, (error, results, fields) => {
+        if (error) {
+            res.status(400).json({message: "Impossible d'afficher les commentaires"})
+        }
+        console.log(results)
+        res.status(200).json(results)
+    });
+    connection.end();    
+}
 
+exports.ajoutCommentaire = (req, res, next) => {
+    
+    const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
+        VALUES (${req.params.sujet_id}, '1', (SELECT NOW()), ${req.body.comment})`
+    connection.query(sql, (error, results, fields) => {
+        if (error) {
+            res.status(400).json({message: "Impossible d'ajouter les commentaires"})
+        }
+        console.log(results)
+        res.status(200).json(results)
+    });
+    connection.end();  
+}
 
+exports.suppressionCommentaire = (req, res, next) => {
+
+}
