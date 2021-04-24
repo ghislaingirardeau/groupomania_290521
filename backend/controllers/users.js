@@ -34,26 +34,23 @@ exports.login = (req, res, next) => {
    
     const sql = `SELECT * FROM Users WHERE pseudo="${req.body.pseudo}"`;
         connection.query(sql, (error, results, fields) => {
-        if (error) {
-            res.status(400).json({message: "Ce pseudo n'existe pas"})
-        }
-        
-        bcrypt.compare(req.body.password, results[0].password)
-        .then(valid => {
-            if (!valid){
-                return res.status(401).json({message: "Ce mot de passe n'est pas valide"})
+            if (results.length == 0 || error) {
+                res.status(400).json({message: "Ce pseudo n'existe pas"})
             }
-            console.log("password decrypt ok") 
-            res.status(401).json({message: 'password decrypt ok'})    
-            /* res.status(200).json({
-                userId: user._id,
-                token: jwt.sign(
-                {userId: user._id}, `${process.env.TOKEN_USERS}`,
-                { expiresIn: '24h'})  
-            }) */
-            })
-            .catch(() => res.status(500).json({message: "erreur login"})) 
         
+            bcrypt.compare(req.body.password, results[0].password)
+            .then(valid => {
+                if (!valid){
+                return res.status(401).json({message: "Ce mot de passe n'est pas valide"})
+                }
+                res.status(200).json({
+                userId: results[0].id,
+                token: jwt.sign(
+                {userId: results[0].id}, `CLE TOKEN`,
+                { expiresIn: '24h'})  
+                })
+            })
+            .catch(() => res.status(500).json({message: "erreur login"}))         
         });
         connection.end(); 
 }
