@@ -45,15 +45,16 @@ exports.listeCommentaires = (req, res, next) => {
 }
 
 exports.ajoutCommentaire = (req, res, next) => {
-    
+    let id = req.params.sujet_id
+    let comment = req.body.comment
     const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
-        VALUES (${req.params.sujet_id}, '1', (SELECT NOW()), ${req.body.comment})`
+        VALUES ("${id}", '1', (SELECT NOW()), "${comment}");`
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'ajouter les commentaires"})
         }
         console.log(results)
-        res.status(200).json(results)
+        res.status(200).json({message: "Insertion ok"})
     });
     connection.end();  
 }
