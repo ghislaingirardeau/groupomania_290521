@@ -54,9 +54,9 @@ exports.login = (req, res, next) => {
 }
 
 /* LOGIN
-Le post front attendue{ "pseudo": "Paul", "password": "qwerty"} 
+Le post front attendu { "pseudo": "Paul", "password": "qwerty"} 
 */
 
 /* SIGNUP
-Le post front attendue{ "pseudo": "Paul", "email":"toto@mail.com" , "password": "qwerty"} 
+Le post front attendu { "pseudo": "Paul", "email":"toto@mail.com" , "password": "qwerty"} 
 */

@@ -15,7 +15,7 @@ exports.listeSujet = (req, res, next) => {
     });
 }
 
-exports.creerSujet = (req, res, next) => { /* recup de user.id ??? */
+exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
     
     const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
     VALUES ("${req.body.sujet}", "1", (SELECT NOW()));`
@@ -41,7 +41,7 @@ exports.listeCommentaires = (req, res, next) => {
     });
 }
 
-exports.ajoutCommentaire = (req, res, next) => {
+exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
     let id = req.params.sujet_id
     let comment = req.body.comment
     const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
