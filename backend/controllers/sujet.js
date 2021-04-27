@@ -5,6 +5,7 @@ const connection = mysql.createConnection(config);
 
 
 exports.listeSujet = (req, res, next) => {
+    
     const sql = `SELECT * FROM Sujet`;
     connection.query(sql, (error, results, fields) => {
         if (error) {
@@ -16,16 +17,17 @@ exports.listeSujet = (req, res, next) => {
 }
 
 exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
-    
+   
     const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
-    VALUES ("${req.body.sujet}", "1", (SELECT NOW()));`
+    VALUES ("${req.body.sujet}", "${req.body.pseudo_id}", (SELECT NOW()));`
     connection.query(sql, (error, results, fields) => {
-        if (error) {
-            res.status(400).json({message: "Impossible d'afficher les sujets"})
+        if (error || req.body.sujet === undefined || req.body.sujet === '') {
+            res.status(401).json({message: "Erreur de creation du sujet"})
+        } else if (results) {
+            console.log(results)
+            res.status(201).json(results)
         }
-        console.log(results)
-        res.status(200).json(results)
-    });
+    })
 }
 
 exports.listeCommentaires = (req, res, next) => {
@@ -42,19 +44,34 @@ exports.listeCommentaires = (req, res, next) => {
 }
 
 exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
-    let id = req.params.sujet_id
-    let comment = req.body.comment
-    const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
-        VALUES ("${id}", '1', (SELECT NOW()), "${comment}");`
-    connection.query(sql, (error, results, fields) => {
-        if (error) {
-            res.status(400).json({message: "Impossible d'ajouter les commentaires"})
-        }
-        console.log(results)
-        res.status(200).json({message: "Insertion ok"})
-    });
+    
+    if (req.body.comment != undefined) {
+        const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
+        VALUES ("${req.params.sujet_id}", '${req.body.pseudo_id}', (SELECT NOW()), "${req.body.comment}");`
+
+        connection.query(sql, (error, results, fields) => {
+            if (error) {
+                res.status(400).json({message: "Impossible d'ajouter les commentaires"})
+            } else if (results) {
+                console.log(results)
+                res.status(200).json({message: "Insertion ok"})
+            }
+        });
+    } else {
+        res.status(400).json({message: "Champs non valide"})
+    }
 }
 
 exports.suppressionCommentaire = (req, res, next) => {
+    
+    const sql = `DELETE FROM commentaire WHERE id=${req.params.commentaire_id};`
 
+    connection.query(sql, (error, results, fields) => {
+        if (error) {
+            res.status(400).json({message: "Echec suppression"})
+        } else if (results) {
+            console.log(results)
+            res.status(200).json({message: "Commentaire supprimé"})
+        }
+    });
 }
