@@ -6,8 +6,9 @@ const connection = mysql.createConnection(config);
 
 exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉÉER ET LE DERNIER SUJET COMMENTÉ */
     
-    const sql = `(SELECT id, sujet, Date_creation FROM sujet ORDER BY Date_creation DESC LIMIT 3) UNION ALL 
-    SELECT id, sujet, Date_creation FROM sujet WHERE id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1);`;
+    const sql = `(SELECT sujet.id AS id_sujet, sujet, Pseudo, Date_creation FROM sujet INNER JOIN users ON sujet.pseudo_id=users.id ORDER BY Date_creation DESC LIMIT 3) 
+                UNION ALL 
+                (SELECT sujet.id AS id_sujet, sujet, Pseudo, Date_creation FROM sujet INNER JOIN users ON sujet.pseudo_id=users.id WHERE sujet.id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1));`
     
     connection.query(sql, (error, results, fields) => {
         if (error) {
@@ -19,6 +20,9 @@ exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉ
         }
     })
 }
+
+/*sans le pseudo: (SELECT id, sujet, Date_creation FROM sujet ORDER BY Date_creation DESC LIMIT 3) UNION ALL 
+    SELECT id, sujet, Date_creation FROM sujet WHERE id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1);*/
 
 exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
    
