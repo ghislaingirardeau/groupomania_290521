@@ -4,31 +4,40 @@ const config = require('../config');
 const connection = mysql.createConnection(config);
 
 
-exports.listeSujet = (req, res, next) => {
+exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉÉER ET LE DERNIER SUJET COMMENTÉ */
     
-    const sql = `SELECT * FROM Sujet`;
+    const sql = `(SELECT id, sujet, Date_creation FROM sujet ORDER BY Date_creation DESC LIMIT 3) UNION ALL 
+    SELECT id, sujet, Date_creation FROM sujet WHERE id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1);`;
+    
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les sujets"})
+        } else if (results) {
+            const dernierSujetCommenté = results.pop()
+            const sujetsRecents = results
+            res.status(200).json({sujetsRecents, dernierSujetCommenté})
         }
-        console.log(results)
-        res.status(200).json(results)
-    });
+    })
 }
 
 exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
    
-    const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
-    VALUES ("${req.body.sujet}", "${req.body.pseudo_id}", (SELECT NOW()));`
-
-    connection.query(sql, (error, results, fields) => {
-        if (error || req.body.sujet === undefined || req.body.sujet === '') {
-            res.status(401).json({message: "Erreur de creation du sujet"})
-        } else if (results) {
-            console.log(results)
-            res.status(201).json(results)
-        }
-    })
+    if (req.body.sujet != undefined) {
+        const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
+        VALUES ("${req.body.sujet}", "${req.body.pseudo_id}", (SELECT NOW()));`
+    
+        connection.query(sql, (error, results, fields) => {
+            if (error) {
+                res.status(401).json({message: "Erreur de creation du sujet"})
+            } else if (results) {
+                console.log(results)
+                res.status(201).json({message: "Le sujet est bien créé"})
+            }
+        })
+    } else {
+        res.status(400).json({message: "Champs non valide"})
+    }
+    
 }
 
 exports.listeCommentaires = (req, res, next) => {
@@ -38,10 +47,11 @@ exports.listeCommentaires = (req, res, next) => {
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les commentaires"})
+        } else if (results) {
+            console.log(results)
+            res.status(200).json(results)
         }
-        console.log(results)
-        res.status(200).json(results)
-    });
+    })
 }
 
 exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
@@ -57,7 +67,7 @@ exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
                 console.log(results)
                 res.status(201).json({message: "Commentaire ajouté"})
             }
-        });
+        })
     } else {
         res.status(400).json({message: "Champs non valide"})
     }
@@ -74,7 +84,7 @@ exports.suppressionCommentaire = (req, res, next) => {
             console.log(results)
             res.status(200).json({message: "Commentaire supprimé"})
         }
-    });
+    })
 }
 
 exports.modifCommentaire = (req, res, next) => {
@@ -90,7 +100,7 @@ exports.modifCommentaire = (req, res, next) => {
                 console.log(results)
                 res.status(201).json({message: "Commentaire modifié"})
             }
-        });
+        })
     } else {
         res.status(400).json({message: "Champs non valide"})
     }
