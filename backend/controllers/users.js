@@ -53,10 +53,25 @@ exports.login = (req, res, next) => {
     });
 }
 
-/* LOGIN
-Le post front attendu { "pseudo": "Paul", "password": "qwerty"} 
-*/
+exports.deleteAccount= (req, res, next) => { 
+   
+    const sql = `DELETE FROM Users WHERE email="${req.body.email}"`;
+    connection.query(sql, (error, results, fields) => {
+        console.log(results)
+        if (results.length == 0 || error) {
+            res.status(400).json({message: "Ce pseudo n'existe pas"})
+        }
+        else if(results.length > 0){
+            bcrypt.compare(req.body.password, results[0].password)
+            .then(valid => {
+                if (!valid){
+                return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+                }
+                return res.status(200).json({message: "Votre compte est supprimé"})
+            })
+            .catch(() => res.status(500).json({message: "erreur login"}))
+        }           
+    });
+}
 
-/* SIGNUP
-Le post front attendu { "pseudo": "Paul", "email":"toto@mail.com" , "password": "qwerty"} 
-*/
+

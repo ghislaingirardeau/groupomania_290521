@@ -4,7 +4,7 @@ const config = require('../config');
 const connection = mysql.createConnection(config);
 
 
-exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉÉER ET LE DERNIER SUJET COMMENTÉ */
+exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉÉS ET LE DERNIER SUJET COMMENTÉ */
     
     const sql = `(SELECT sujet.id AS id_sujet, sujet, Pseudo, Date_creation FROM sujet INNER JOIN users ON sujet.pseudo_id=users.id ORDER BY Date_creation DESC LIMIT 3) 
                 UNION ALL 
@@ -21,8 +21,6 @@ exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉ
     })
 }
 
-/*sans le pseudo: (SELECT id, sujet, Date_creation FROM sujet ORDER BY Date_creation DESC LIMIT 3) UNION ALL 
-    SELECT id, sujet, Date_creation FROM sujet WHERE id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1);*/
 
 exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
    
@@ -80,8 +78,8 @@ exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
 
 exports.suppressionCommentaire = (req, res, next) => {
     
-    const sql = `CALL remove_comment(${req.params.commentaire_id});`
-
+    const sql = `CALL remove_comment(${req.params.commentaire_id});` 
+/* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.commentaire_id */
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Echec suppression"})
@@ -97,7 +95,7 @@ exports.modifCommentaire = (req, res, next) => {
     if (req.body.comment != undefined) {
 
         const sql = `CALL modif_comment(${req.params.commentaire_id}, "${req.body.comment}")`
-        
+/* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.commentaire_id */
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(401).json({message: "Impossible de modifier les commentaires"})
