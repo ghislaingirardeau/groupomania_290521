@@ -55,7 +55,7 @@ exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
                 res.status(401).json({message: "Impossible d'ajouter les commentaires"})
             } else if (results) {
                 console.log(results)
-                res.status(201).json({message: "Insertion ok"})
+                res.status(201).json({message: "Commentaire ajouté"})
             }
         });
     } else {
@@ -80,8 +80,9 @@ exports.suppressionCommentaire = (req, res, next) => {
 exports.modifCommentaire = (req, res, next) => {
     
     if (req.body.comment != undefined) {
-        const sql = `UPDATE commentaire SET commentaire_user="${req.body.comment}" WHERE id=${req.params.commentaire_id} ;`
 
+        const sql = `CALL modif_comment(${req.params.commentaire_id}, "${req.body.comment}")`
+        
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(401).json({message: "Impossible de modifier les commentaires"})
