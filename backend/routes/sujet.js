@@ -11,6 +11,7 @@ router.get('/:sujet_id', authentification, sujet.listeCommentaires)   /* AU CLIC
 router.post('/:sujet_id', authentification, sujet.ajoutCommentaire)   /* REQUETE ATTENDU { pseudo_id:XXX ,comment: XXXX} */
 
 router.delete('/:sujet_id/:commentaire_id', authentification, sujet.suppressionCommentaire)
+router.put('/:sujet_id/:commentaire_id', authentification, sujet.modifCommentaire)
 
 
 module.exports = router
