@@ -46,7 +46,8 @@ exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
 
 exports.listeCommentaires = (req, res, next) => {
 
-    const sql = `SELECT commentaire_user FROM commentaire WHERE sujet_id=${req.params.sujet_id}`
+    const sql = `SELECT commentaire_user, Date_commentaire, pseudo FROM commentaire INNER JOIN users 
+                ON users.id=commentaire.pseudo_id WHERE sujet_id=${req.params.sujet_id} ORDER BY Date_commentaire ASC;`
 
     connection.query(sql, (error, results, fields) => {
         if (error) {
