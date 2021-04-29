@@ -53,24 +53,28 @@ exports.login = (req, res, next) => {
     });
 }
 
-exports.deleteAccount= (req, res, next) => { 
+exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lie au compte */
    
-    const sql = `DELETE FROM Users WHERE email="${req.body.email}"`;
+    const sql = `SELECT password FROM Users WHERE email="${req.body.email}" AND pseudo="${req.body.pseudo}"`;
     connection.query(sql, (error, results, fields) => {
-        console.log(results)
+        
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo n'existe pas"})
         }
         else if(results.length > 0){
+            
             bcrypt.compare(req.body.password, results[0].password)
             .then(valid => {
                 if (!valid){
                 return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                 }
-                return res.status(200).json({message: "Votre compte est supprimé"})
+                const sql = `DELETE FROM users WHERE email="${req.body.email}" AND pseudo="${req.body.pseudo}"`;
+                connection.query(sql, () => {
+                    return res.status(200).json({message: "Votre compte est supprimé"})   
+                });
             })
             .catch(() => res.status(500).json({message: "erreur login"}))
-        }           
+        }      
     });
 }
 

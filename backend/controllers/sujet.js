@@ -59,7 +59,7 @@ exports.listeCommentaires = (req, res, next) => {
 
 exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
     
-    if (req.body.comment != undefined) {
+    if (req.body.comment != undefined) { /* TRIGGER after_insert_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
         const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
         VALUES ("${req.params.sujet_id}", '${req.body.pseudo_id}', (SELECT NOW()), "${req.body.comment}");`
 
@@ -92,7 +92,7 @@ exports.suppressionCommentaire = (req, res, next) => {
 
 exports.modifCommentaire = (req, res, next) => {
     
-    if (req.body.comment != undefined) {
+    if (req.body.comment != undefined) {/* TRIGGER after_update_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
 
         const sql = `CALL modif_comment(${req.params.commentaire_id}, "${req.body.comment}")`
 /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.commentaire_id */
