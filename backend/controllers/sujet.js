@@ -17,7 +17,6 @@ exports.allTopics = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE
     })
 }
 
-
 exports.createTopic = (req, res, next) => { 
    
     if (req.body.theme != undefined) {
@@ -38,7 +37,7 @@ exports.createTopic = (req, res, next) => {
 
 exports.allComments = (req, res, next) => {
 
-    const sql = `CALL afficher_commentaires(${req.params.sujet_id});`
+    const sql = `CALL afficher_commentaires(${req.params.topic_id});`
 
     connection.query(sql, (error, results, fields) => {
         if (error) {
@@ -55,7 +54,7 @@ exports.addComment = (req, res, next) => {  /* recup de pseudo_id ??? */
     
     if (req.body.comment != undefined) { /* TRIGGER after_insert_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
         const sql = `INSERT INTO Commentaire (sujet_id, user_id, Date_commentaire, user_commentaire) 
-        VALUES ("${req.params.sujet_id}", '${req.body.user_id}', (SELECT NOW()), "${req.body.comment}");`
+        VALUES ("${req.params.topic_id}", '${req.body.user_id}', (SELECT NOW()), "${req.body.comment}");`
 
         connection.query(sql, (error, results, fields) => {
             if (error) {
