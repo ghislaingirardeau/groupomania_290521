@@ -61,7 +61,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo ou cet email ne sont pas valides"})
         }
-        else if(results.length > 0){ /* Demande une auth du mot de passe pour valider la suppression */
+        else if(results.length == 1){ /* Demande une auth du mot de passe pour valider la suppression */
             
             bcrypt.compare(req.body.password, results[0].password)
             .then(valid => {

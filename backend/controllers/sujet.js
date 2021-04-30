@@ -12,7 +12,7 @@ exports.listeSujet = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE D
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les sujets"})
         } else if (results) {
-            res.status(200).json({Sujets: results[0], dernierSujetCommenté: results[1]})
+            res.status(200).json({Sujets: results[0], dernierSujetCommente: results[1]})
         }
     })
 }
