@@ -5,7 +5,7 @@ const authentification = require('../Middleware/auth')
 const router = express.Router()
 
 router.get('/', authentification, sujet.listeSujet)
-router.post('/', authentification, sujet.creerSujet)  /* REQUETE ATTENDU { pseudo_id:XXX ,sujet: XXXX} */
+router.post('/', authentification, sujet.creerSujet)  /* REQUETE ATTENDU { user_id:XXX ,theme: XXXX} */
 
 router.get('/:sujet_id', authentification, sujet.listeCommentaires)   /* AU CLIC, ENVOIE sujet_id EN URL PARAMS */
 router.post('/:sujet_id', authentification, sujet.ajoutCommentaire)   /* REQUETE ATTENDU { pseudo_id:XXX ,comment: XXXX} */

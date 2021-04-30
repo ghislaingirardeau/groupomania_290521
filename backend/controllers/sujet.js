@@ -18,17 +18,16 @@ exports.listeSujet = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE D
 }
 
 
-exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
+exports.creerSujet = (req, res, next) => { 
    
-    if (req.body.sujet != undefined) {
-        const sql = `INSERT INTO Sujet (sujet, pseudo_id, Date_creation) 
-        VALUES ("${req.body.sujet}", "${req.body.pseudo_id}", (SELECT NOW()));`
+    if (req.body.theme != undefined) {
+        const sql = `INSERT INTO Sujet (theme, user_id, Date_creation) 
+        VALUES ("${req.body.theme}", "${req.body.user_id}", (SELECT NOW()));`
     
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(401).json({message: "Erreur de creation du sujet"})
             } else if (results) {
-                console.log(results)
                 res.status(201).json({message: "Le sujet est bien créé"})
             }
         })
@@ -56,14 +55,13 @@ exports.listeCommentaires = (req, res, next) => {
 exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
     
     if (req.body.comment != undefined) { /* TRIGGER after_insert_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
-        const sql = `INSERT INTO Commentaire (sujet_id, pseudo_id, Date_commentaire, commentaire_user) 
-        VALUES ("${req.params.sujet_id}", '${req.body.pseudo_id}', (SELECT NOW()), "${req.body.comment}");`
+        const sql = `INSERT INTO Commentaire (sujet_id, user_id, Date_commentaire, user_commentaire) 
+        VALUES ("${req.params.sujet_id}", '${req.body.user_id}', (SELECT NOW()), "${req.body.comment}");`
 
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(401).json({message: "Impossible d'ajouter les commentaires"})
             } else if (results) {
-                console.log(results)
                 res.status(201).json({message: "Commentaire ajouté"})
             }
         })
@@ -80,7 +78,6 @@ exports.suppressionCommentaire = (req, res, next) => {
         if (error) {
             res.status(400).json({message: "Echec suppression"})
         } else if (results) {
-            console.log(results)
             res.status(200).json({message: "Commentaire supprimé"})
         }
     })
@@ -90,13 +87,12 @@ exports.modifCommentaire = (req, res, next) => {
     
     if (req.body.comment != undefined) {/* TRIGGER after_update_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
 
-        const sql = `CALL modif_comment(${req.params.commentaire_id}, "${req.body.comment}")`
+        const sql = `CALL modify_comment(${req.params.commentaire_id}, "${req.body.comment}")`
 /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.commentaire_id */
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(401).json({message: "Impossible de modifier les commentaires"})
             } else if (results) {
-                console.log(results)
                 res.status(201).json({message: "Commentaire modifié"})
             }
         })
