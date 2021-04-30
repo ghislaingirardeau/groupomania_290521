@@ -22,7 +22,7 @@ exports.signup = (req, res, next) => {
                 res.status(400).json({message: 'Ce pseudo existe deja'})
             }
             else if(results){
-                res.status(201).json({message: 'user créé'})
+                res.status(201).json({message: 'utilisateur créé'})
             }
         });
     })
@@ -37,7 +37,7 @@ exports.login = (req, res, next) => {
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo n'existe pas"})
         }
-        else if(results.length > 0){
+        else if(results.length == 1){
                 bcrypt.compare(req.body.password, results[0].password)
             .then(valid => {
                 if (!valid){
