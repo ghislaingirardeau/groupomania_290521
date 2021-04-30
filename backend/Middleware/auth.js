@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const authentification = (req, res, next) => {
     try {
         const token = req.headers.authorization.split(' ')[1] 
-        const decodedToken = jwt.verify(token, `CLE TOKEN`)
+        const decodedToken = jwt.verify(token, `CLE TOKEN SECRET GROUPOMANIA`)
         const tokenUserId = decodedToken.userId
         if (req.body.userId && req.body.userId != tokenUserId) {
             res.status(404).json({error :"Cet Id n'existe pas !"})

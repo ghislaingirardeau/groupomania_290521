@@ -34,7 +34,6 @@ exports.creerSujet = (req, res, next) => {
     } else {
         res.status(400).json({message: "Champs non valide"})
     }
-    
 }
 
 exports.listeCommentaires = (req, res, next) => {

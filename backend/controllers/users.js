@@ -1,12 +1,12 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
-const salt = 10
-
 /* CONNECTION MYSQL */
 const mysql = require('mysql');
 const config = require('../config');
 const connection = mysql.createConnection(config);
+
+const salt = 10
 
 exports.signup = (req, res, next) => { 
 
@@ -44,7 +44,7 @@ exports.login = (req, res, next) => {
                 res.status(200).json({
                 userId: results[0].id,
                     token: jwt.sign(
-                    {userId: results[0].id}, `CLE TOKEN`,
+                    {userId: results[0].id}, `CLE TOKEN SECRET GROUPOMANIA`,
                     { expiresIn: '24h'})  
                 })
             })
@@ -53,7 +53,7 @@ exports.login = (req, res, next) => {
     });
 }
 
-exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lie au compte */
+exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lies au compte */
    
     const sql = `SELECT password FROM Users WHERE email="${req.body.email}" AND pseudo="${req.body.pseudo}"`;
     connection.query(sql, (error, results, fields) => {
@@ -61,7 +61,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo n'existe pas"})
         }
-        else if(results.length > 0){
+        else if(results.length > 0){ /* Demande une auth du mot de passe pour valider la suppression */
             
             bcrypt.compare(req.body.password, results[0].password)
             .then(valid => {
