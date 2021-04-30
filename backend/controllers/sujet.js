@@ -44,15 +44,14 @@ exports.creerSujet = (req, res, next) => { /* recup de pseudo_id ??? */
 
 exports.listeCommentaires = (req, res, next) => {
 
-    const sql = `SELECT commentaire_user, Date_commentaire, pseudo FROM commentaire INNER JOIN users 
-                ON users.id=commentaire.pseudo_id WHERE sujet_id=${req.params.sujet_id} ORDER BY Date_commentaire ASC;`
+    const sql = `CALL afficher_commentaires(${req.params.sujet_id});`
 
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les commentaires"})
         } else if (results) {
-            console.log(results)
-            res.status(200).json(results)
+            
+            res.status(200).json({commentaires: results[0], sujet: results[1]})
         }
     })
 }

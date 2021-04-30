@@ -4,5 +4,5 @@ mysql:
 
 A VOIR
 
-Finaliser le delete account
-recup des 3 derniers sujets modifié ??
+
+recup des 3 derniers sujets modifié + total sujet
