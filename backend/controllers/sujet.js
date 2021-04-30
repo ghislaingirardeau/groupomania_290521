@@ -26,7 +26,7 @@ exports.creerSujet = (req, res, next) => {
     
         connection.query(sql, (error, results, fields) => {
             if (error) {
-                res.status(401).json({message: "Erreur de creation du sujet"})
+                res.status(400).json({message: "Erreur de creation du sujet"})
             } else if (results) {
                 res.status(201).json({message: "Le sujet est bien créé"})
             }
@@ -59,7 +59,7 @@ exports.ajoutCommentaire = (req, res, next) => {  /* recup de pseudo_id ??? */
 
         connection.query(sql, (error, results, fields) => {
             if (error) {
-                res.status(401).json({message: "Impossible d'ajouter les commentaires"})
+                res.status(400).json({message: "Impossible d'ajouter les commentaires"})
             } else if (results) {
                 res.status(201).json({message: "Commentaire ajouté"})
             }
@@ -90,7 +90,7 @@ exports.modifCommentaire = (req, res, next) => {
 /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.commentaire_id */
         connection.query(sql, (error, results, fields) => {
             if (error) {
-                res.status(401).json({message: "Impossible de modifier les commentaires"})
+                res.status(400).json({message: "Impossible de modifier les commentaires"})
             } else if (results) {
                 res.status(201).json({message: "Commentaire modifié"})
             }

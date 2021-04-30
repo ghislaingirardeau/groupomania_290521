@@ -39,7 +39,7 @@ exports.login = (req, res, next) => {
                 bcrypt.compare(req.body.password, results[0].password)
             .then(valid => {
                 if (!valid){
-                return res.status(401).json({message: "Ce mot de passe n'est pas valide"})
+                return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                 }
                 res.status(200).json({
                 userId: results[0].id,
@@ -59,7 +59,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
     connection.query(sql, (error, results, fields) => {
         
         if (results.length == 0 || error) {
-            res.status(400).json({message: "Ce pseudo n'existe pas"})
+            res.status(400).json({message: "Ce pseudo ou cet email ne sont pas valides"})
         }
         else if(results.length > 0){ /* Demande une auth du mot de passe pour valider la suppression */
             
