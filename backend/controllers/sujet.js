@@ -45,8 +45,9 @@ exports.listeCommentaires = (req, res, next) => {
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les commentaires"})
-        } else if (results) {
-            
+        } else if (results[1].length == 0) {
+            res.status(400).json({message: "Ce sujet n'existe pas"})
+        } else if (results.length > 0) {
             res.status(200).json({commentaires: results[0], sujet: results[1]})
         }
     })
