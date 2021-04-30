@@ -4,19 +4,15 @@ const config = require('../config');
 const connection = mysql.createConnection(config);
 
 
-exports.listeSujet = (req, res, next) => { /* AFFICHE LES 3 DERNIERS SUJETS CRÉÉS ET LE DERNIER SUJET COMMENTÉ */
+exports.listeSujet = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE CREATION ET LES 3 DERNIERS SUJETS COMMENTÉS */
     
-    const sql = `(SELECT sujet.id AS id_sujet, sujet, Pseudo, Date_creation FROM sujet INNER JOIN users ON sujet.pseudo_id=users.id ORDER BY Date_creation DESC LIMIT 3) 
-                UNION ALL 
-                (SELECT sujet.id AS id_sujet, sujet, Pseudo, Date_creation FROM sujet INNER JOIN users ON sujet.pseudo_id=users.id WHERE sujet.id=(SELECT sujet_id FROM commentaire ORDER BY Date_commentaire DESC LIMIT 1));`
+    const sql = `CALL afficher_sujets;`
     
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les sujets"})
         } else if (results) {
-            const dernierSujetCommenté = results.pop()
-            const sujetsRecents = results
-            res.status(200).json({sujetsRecents, dernierSujetCommenté})
+            res.status(200).json({Sujets: results[0], dernierSujetCommenté: results[1]})
         }
     })
 }

@@ -13,5 +13,4 @@ router.post('/:sujet_id', authentification, sujet.ajoutCommentaire)   /* REQUETE
 router.delete('/:sujet_id/:commentaire_id', authentification, sujet.suppressionCommentaire)
 router.put('/:sujet_id/:commentaire_id', authentification, sujet.modifCommentaire)
 
-
 module.exports = router
