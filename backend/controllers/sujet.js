@@ -6,7 +6,7 @@ const connection = mysql.createConnection(config);
 
 exports.allTopics = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE CREATION ET LES 3 DERNIERS SUJETS COMMENTÉS */
     
-    const sql = `CALL afficher_sujets;`
+    const sql = `CALL show_topics();`
     
     connection.query(sql, (error, results, fields) => {
         if (error) {
@@ -19,9 +19,9 @@ exports.allTopics = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE
 
 exports.createTopic = (req, res, next) => { 
    
-    if (req.body.theme != undefined) {
-        const sql = `INSERT INTO Sujet (theme, user_id, Date_creation) 
-        VALUES ("${req.body.theme}", "${req.body.user_id}", (SELECT NOW()));`
+    if (req.body.topic != undefined) {
+        const sql = `INSERT INTO Subject (topic, user_id, Date_creation) 
+        VALUES ("${req.body.topic}", "${req.body.user_id}", (SELECT NOW()));`
     
         connection.query(sql, (error, results, fields) => {
             if (error) {
@@ -37,7 +37,7 @@ exports.createTopic = (req, res, next) => {
 
 exports.allComments = (req, res, next) => {
 
-    const sql = `CALL afficher_commentaires(${req.params.topic_id});`
+    const sql = `CALL show_comment(${req.params.topic_id});`
 
     connection.query(sql, (error, results, fields) => {
         if (error) {
@@ -53,7 +53,7 @@ exports.allComments = (req, res, next) => {
 exports.addComment = (req, res, next) => {  /* recup de pseudo_id ??? */
     
     if (req.body.comment != undefined) { /* TRIGGER after_insert_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
-        const sql = `INSERT INTO Commentaire (sujet_id, user_id, Date_commentaire, user_commentaire) 
+        const sql = `INSERT INTO Comment (topic_id, user_id, date_comment, user_comment) 
         VALUES ("${req.params.topic_id}", '${req.body.user_id}', (SELECT NOW()), "${req.body.comment}");`
 
         connection.query(sql, (error, results, fields) => {
