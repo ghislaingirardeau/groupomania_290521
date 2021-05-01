@@ -10,7 +10,7 @@ router.post('/', authentification, sujet.createTopic)  /* REQUETE ATTENDU { user
 router.get('/:topic_id', authentification, sujet.allComments)   /* AU CLIC, ENVOIE sujet_id EN URL PARAMS */
 router.post('/:topic_id', authentification, sujet.addComment)   /* REQUETE ATTENDU { user_id:XXX ,comment: XXXX} */
 
-router.delete('/:topic_id/:comment_id', authentification, sujet.removeComment) /*Si userId = comment user ID envoie commentId en URL parametre */
-router.put('/:topic_id/:comment_id', authentification, sujet.modifyComment)
+router.delete('/:topic_id/:comment_id', authentification, sujet.removeComment) /*REQUETE ATTENDU { user_id:XXX } */
+router.put('/:topic_id/:comment_id', authentification, sujet.modifyComment) /*REQUETE ATTENDU { user_id:XXX ,comment: XXXX} */
 
 module.exports = router
