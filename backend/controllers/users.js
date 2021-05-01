@@ -8,14 +8,14 @@ const connection = mysql.createConnection(config);
 
 const salt = 10
 
-exports.signup = (req, res, next) => { 
+exports.signup = (req, res, next) => {
 
     var buffer = Buffer.from(req.body.email, "base64");
 
     bcrypt.hash(req.body.password, salt)
     .then(hash => {
 
-        const sql = `INSERT INTO Users (pseudo, email, password) 
+        const sql = `INSERT INTO Users (username, email, password) 
             VALUES ("${req.body.username}", "${buffer}", "${hash}");`;
         connection.query(sql, (error, results, fields) => {
             if (error) {
@@ -32,7 +32,7 @@ exports.signup = (req, res, next) => {
 /* CLE TOKEN A MASQUER */
 exports.login = (req, res, next) => { 
    
-    const sql = `SELECT * FROM Users WHERE pseudo="${req.body.username}"`;
+    const sql = `SELECT * FROM Users WHERE username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo n'existe pas"})
@@ -59,7 +59,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
    
     var buffer = Buffer.from(req.body.email, "base64");
     
-    const sql = `SELECT password FROM Users WHERE email="${buffer}" AND pseudo="${req.body.username}"`;
+    const sql = `SELECT password FROM Users WHERE email="${buffer}" AND username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
         
         if (results.length == 0 || error) {
@@ -72,7 +72,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
                 if (!valid){
                 return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                 }
-                const sql = `DELETE FROM users WHERE email="${buffer}" AND pseudo="${req.body.username}"`;
+                const sql = `DELETE FROM users WHERE email="${buffer}" AND username="${req.body.username}"`;
                 connection.query(sql, () => {
                     return res.status(200).json({message: "Votre compte est supprimé"})   
                 });
