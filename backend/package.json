@@ -5,10 +5,12 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server.js",
+    "server": "env-cmd -f ./.env.dev nodemon server.js",
     "hmr": "nodemon server.js",
     "nodemon": "npm run hmr",
-    "start": "node server.js"
+    "start": "node server.js",
+    "dev": "env-cmd -f ./.env.dev node server.js",
+    "prod": "env-cmd -f ./.env.prod node server.js"
   },
   "repository": {
     "type": "git",
@@ -26,5 +28,8 @@
     "jsonwebtoken": "^8.5.1",
     "mongoose-unique-validator": "^2.0.3",
     "mysql": "^2.18.1"
+  },
+  "devDependencies": {
+    "env-cmd": "^10.1.0"
   }
 }

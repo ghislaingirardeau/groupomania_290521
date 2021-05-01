@@ -10,7 +10,7 @@ const salt = 10
 
 exports.signup = (req, res, next) => {
 
-    var buffer = Buffer.from(req.body.email, "base64");
+    var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
 
     bcrypt.hash(req.body.password, salt)
     .then(hash => {
@@ -29,7 +29,6 @@ exports.signup = (req, res, next) => {
     .catch(() => res.status(400).json({message: 'Echec'}))
 }
 
-/* CLE TOKEN A MASQUER */
 exports.login = (req, res, next) => { 
    
     const sql = `SELECT * FROM Users WHERE username="${req.body.username}"`;
@@ -46,7 +45,7 @@ exports.login = (req, res, next) => {
                 res.status(200).json({
                 userId: results[0].id,
                     token: jwt.sign(
-                    {userId: results[0].id}, `CLE TOKEN SECRET GROUPOMANIA`,
+                    {userId: results[0].id}, `${process.env.CLE}`,
                     { expiresIn: '24h'})  
                 })
             })
@@ -57,7 +56,7 @@ exports.login = (req, res, next) => {
 
 exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lies au compte */
    
-    var buffer = Buffer.from(req.body.email, "base64");
+    var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
     
     const sql = `SELECT password FROM Users WHERE email="${buffer}" AND username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
