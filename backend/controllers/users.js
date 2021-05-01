@@ -16,7 +16,7 @@ exports.signup = (req, res, next) => {
     .then(hash => {
 
         const sql = `INSERT INTO Users (pseudo, email, password) 
-            VALUES ("${req.body.pseudo}", "${buffer}", "${hash}");`;
+            VALUES ("${req.body.username}", "${buffer}", "${hash}");`;
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(400).json({message: 'Ce pseudo existe deja'})
@@ -32,7 +32,7 @@ exports.signup = (req, res, next) => {
 /* CLE TOKEN A MASQUER */
 exports.login = (req, res, next) => { 
    
-    const sql = `SELECT * FROM Users WHERE pseudo="${req.body.pseudo}"`;
+    const sql = `SELECT * FROM Users WHERE pseudo="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
         if (results.length == 0 || error) {
             res.status(400).json({message: "Ce pseudo n'existe pas"})
@@ -59,7 +59,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
    
     var buffer = Buffer.from(req.body.email, "base64");
     
-    const sql = `SELECT password FROM Users WHERE email="${buffer}" AND pseudo="${req.body.pseudo}"`;
+    const sql = `SELECT password FROM Users WHERE email="${buffer}" AND pseudo="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
         
         if (results.length == 0 || error) {
@@ -72,7 +72,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
                 if (!valid){
                 return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                 }
-                const sql = `DELETE FROM users WHERE email="${buffer}" AND pseudo="${req.body.pseudo}"`;
+                const sql = `DELETE FROM users WHERE email="${buffer}" AND pseudo="${req.body.username}"`;
                 connection.query(sql, () => {
                     return res.status(200).json({message: "Votre compte est supprimé"})   
                 });
