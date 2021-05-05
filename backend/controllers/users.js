@@ -41,7 +41,7 @@ exports.login = (req, res, next) => {
     const sql = `SET @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
         if (error) {
-            res.status(500).json({message: 'erreur connection DB'})
+            res.status(500).json({message: 'erreur database'})
         }
         else if(results){
 
