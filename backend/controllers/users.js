@@ -37,27 +37,36 @@ exports.signup = (req, res, next) => {
 }
 
 exports.login = (req, res, next) => { 
-   
-    const sql = `SELECT * FROM Users WHERE username="${req.body.username}"`;
+
+    const sql = `SET @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
-        if (results.length == 0 || error) {
-            res.status(400).json({message: "Ce pseudo n'existe pas"})
+        if (error) {
+            res.status(500).json({message: 'erreur connection DB'})
         }
-        else if(results.length == 1){
-                bcrypt.compare(req.body.password, results[0].password)
-            .then(valid => {
-                if (!valid){
-                return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+        else if(results){
+
+            const sql = `SELECT * FROM Users WHERE username=@username`;
+            connection.query(sql, (error, results, fields) => {
+                if (results.length == 0 || error) {
+                    res.status(400).json({message: "Ce pseudo n'existe pas"})
                 }
-                res.status(200).json({
-                userId: results[0].id,
-                    token: jwt.sign(
-                    {userId: results[0].id}, `${process.env.CLE}`,
-                    { expiresIn: '24h'})  
-                })
-            })
-            .catch(() => res.status(500).json({message: "erreur login"}))
-        }           
+                else if(results.length == 1){
+                    bcrypt.compare(req.body.password, results[0].password)
+                    .then(valid => {
+                    if (!valid){
+                    return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+                    }
+                    res.status(200).json({
+                    userId: results[0].id,
+                        token: jwt.sign(
+                        {userId: results[0].id}, `${process.env.CLE}`,
+                        { expiresIn: '24h'})  
+                    })
+                    })
+                    .catch(() => res.status(500).json({message: "erreur login"}))
+                }           
+            });
+        }
     });
 }
 
