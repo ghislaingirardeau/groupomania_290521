@@ -11,6 +11,6 @@ router.get('/:topic_id', authentification, subject.allComments)   /* AU CLIC, EN
 router.post('/:topic_id', authentification, subject.addComment)   /* REQUETE ATTENDU {"user_id":"XXX" ,"comment": "XXXX"} */
 
 router.delete('/:topic_id/:comment_id', authentification, subject.removeComment) /*REQUETE ATTENDU { user_id:XXX } */
-router.put('/:topic_id/:comment_id', authentification, subject.modifyComment) /*REQUETE ATTENDU { user_id:XXX ,comment: XXXX} */
+router.put('/:topic_id/:comment_id', authentification, subject.modifyComment) /*REQUETE ATTENDU { user_id:XXX ,"comment": "XXXX"} */
 
 module.exports = router

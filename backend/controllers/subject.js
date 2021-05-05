@@ -103,17 +103,23 @@ exports.removeComment = (req, res, next) => {
 exports.modifyComment = (req, res, next) => {
     
     if (req.body.comment != undefined) {/* TRIGGER after_update_comment pour mettre a jour la date de modification du commentaire dans la table sujet */
-
-        const sql = `CALL modify_comment(${req.params.comment_id}, "${req.body.user_id}", "${req.body.comment}")`
-/* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
+        const sql = `SET @user_id="${req.body.user_id}", @commentId="${req.params.comment_id}", @commentUpdated="${req.body.comment}"`
         connection.query(sql, (error, results, fields) => {
-            if (error || results.length == 2 || results.affectedRows == 0) {
-                res.status(400).json({message: "Impossible de modifier les commentaires"})
-               
+            if (error) {
+                res.status(500).json({message: 'erreur database'})
             } else if (results) {
-                res.status(201).json({message: "Commentaire modifié"})
+                const sql = `CALL update_comment(@commentId, @user_id, @commentUpdated)`
+                /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
+                connection.query(sql, (error, results, fields) => {
+                    if (error || results.length == 2 || results.affectedRows == 0) {
+                        res.status(400).json({message: "Impossible de modifier les commentaires"})
+                       
+                    } else if (results) {
+                        res.status(201).json({message: "Commentaire modifié"})
+                    }
+                })
             }
-        })
+        })     
     } else {
         res.status(400).json({message: "Champs non valide"})
     }
