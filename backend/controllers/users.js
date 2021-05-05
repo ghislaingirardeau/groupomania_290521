@@ -15,14 +15,21 @@ exports.signup = (req, res, next) => {
     bcrypt.hash(req.body.password, salt)
     .then(hash => {
 
-        const sql = `INSERT INTO Users (username, email, password) 
-            VALUES ("${req.body.username}", "${buffer}", "${hash}");`;
+        const sql = `SET @username="${req.body.username}", @email="${buffer}", @password="${hash}";`
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(400).json({message: 'Ce pseudo existe deja'})
             }
             else if(results){
-                res.status(201).json({message: 'utilisateur créé'})
+                const sql = `CALL signup_user(@username, @email, @password);`;
+                connection.query(sql, (error, results, fields) => {
+                    if (error) {
+                        res.status(400).json({message: 'Ce pseudo existe deja'})
+                    }
+                    else if(results){
+                        res.status(201).json({message: 'utilisateur créé'})
+                    }
+                });
             }
         });
     })
