@@ -20,16 +20,22 @@ exports.allTopics = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE
 exports.createTopic = (req, res, next) => { 
    
     if (req.body.topic != undefined) {
-        const sql = `INSERT INTO Subject (topic, user_id, Date_creation) 
-        VALUES ("${req.body.topic}", "${req.body.user_id}", (SELECT NOW()));`
-    
+        const sql = `SET @user_id="${req.body.user_id}", @topic="${req.body.topic}"`
         connection.query(sql, (error, results, fields) => {
             if (error) {
                 res.status(400).json({message: "Erreur de creation du sujet"})
             } else if (results) {
-                res.status(201).json({message: "Le sujet est bien créé"})
+
+                const sql = `CALL post_topic(@user_id, @topic);`
+                connection.query(sql, (error, results, fields) => {
+                if (error) {
+                    res.status(400).json({message: "Erreur de creation du sujet"})
+                } else if (results) {
+                    res.status(201).json({message: "Le sujet est bien créé"})
+                }
+                })
             }
-        })
+        })  
     } else {
         res.status(400).json({message: "Champs non valide"})
     }
