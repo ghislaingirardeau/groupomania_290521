@@ -4,7 +4,7 @@ const authentification = require('../Middleware/auth')
 
 const router = express.Router()
 
-router.get('/', authentification, subject.allTopics)
+router.get('/', /* authentification, */ subject.allTopics)
 router.post('/', authentification, subject.createTopic)  /* expect { "user_id":"XXX" ,"topic": "XXXX"} */
 
 router.get('/:topic_id', authentification, subject.allComments)   /* send tpoicId IN URL PARAMS */
