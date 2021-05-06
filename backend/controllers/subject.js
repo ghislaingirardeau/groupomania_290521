@@ -26,7 +26,7 @@ exports.createTopic = (req, res, next) => {
                 res.status(500).json({message: 'erreur database'})
             } else if (results) {
 
-                const sql = `CALL post_topic(@user_id, @topic);`
+                const sql = `CALL post_topic(@user_id, @topic);` /* parametre user id INT unsigned pour chaque requete */
                 connection.query(sql, (error, results, fields) => {
                 if (error) {
                     res.status(400).json({message: "Erreur de creation du sujet"})
