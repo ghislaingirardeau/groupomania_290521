@@ -7,7 +7,7 @@
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
 
       <div v-for="item in Topics.lastTopicComment" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
-        <a :href="'sujet/' + item.topicId">
+        <a :href="'sujet?topicId=' + item.topicId">
         <h3>{{item.topic}}</h3>
         <p>Sujet créé par {{item.username}}</p>
         <p>Dernier commentaire fait le {{item.date_modification}}</p>
@@ -20,7 +20,7 @@
       <h2>Retrouver tous les sujets</h2>
 
       <div v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
-        <a :href="'sujet/' + item.topicId">
+        <a :href="'sujet?topicId=' + item.topicId">
         <h3>{{item.topic}}</h3>
         <p>Sujet créé par {{item.username}}</p>
         <p>Dernier commentaire fait le {{item.date_creation}}</p>
