@@ -7,9 +7,11 @@
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
 
       <div v-for="item in Topics.lastTopicComment" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
+        <a :href="'sujet/' + item.topicId">
         <h3>{{item.topic}}</h3>
         <p>Sujet créé par {{item.username}}</p>
         <p>Dernier commentaire fait le {{item.date_modification}}</p>
+        </a>
       </div>
 
     </article>
@@ -18,11 +20,13 @@
       <h2>Retrouver tous les sujets</h2>
 
       <div v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
+        <a :href="'sujet/' + item.topicId">
         <h3>{{item.topic}}</h3>
         <p>Sujet créé par {{item.username}}</p>
         <p>Dernier commentaire fait le {{item.date_creation}}</p>
+        </a>
       </div>
-      
+
     </article>
   </section>
 </template>
@@ -42,7 +46,7 @@ export default {
             date_creation: "2021-05-05T16:24:44.000Z"
         },
         {
-            topicId: 24,
+            topicId: 11,
             topic: "autre groupomania",
             username: "jean",
             user_id: 17,
@@ -51,7 +55,7 @@ export default {
         ],
         lastTopicComment: [
         {
-            topicId: 12,
+            topicId: 56,
             topic: "noel",
             username: "todos",
             user_id: 14,
@@ -68,6 +72,7 @@ export default {
       },
     }
   },
+ 
   /* mounted (){
     fetch("http://localhost:3000/api/sujet")
     .then (res => res.json())

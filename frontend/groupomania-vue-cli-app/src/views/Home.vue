@@ -1,6 +1,6 @@
 <template>
   <header class="home">
-    
+    page accueil
   </header>
 </template>
 

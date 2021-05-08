@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Compte from '../views/Home.vue'
+import Sujet from '../views/sujet.vue'
 
 const routes = [
   {
@@ -10,7 +11,7 @@ const routes = [
   {
     path: '/sujet',
     name: 'sujet',
-    component: () => import('../views/sujet.vue')
+    component: Sujet
   }
 ]
 
