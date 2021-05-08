@@ -1,12 +1,16 @@
 <template>
-  <div v-for="item in Topics.AllTopic" :key="item.topicId">
-    <article v-if="item.topicId == showid">
-        <h1>{{item.topic}}</h1>
-        <p>Sujet créé par {{item.username}}</p>
-        
-    </article>
-        
-  </div>
+  <section>
+      <div>
+        <h1>{{Topics.subject[0].topic}}</h1>
+        <p>Sujet créé par {{Topics.subject[0].username}}</p>
+      </div>
+      
+      <article v-for="item in Topics.comments" :key="item.commentId">
+        <h2>{{item.user_comment}}</h2>
+        <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
+
+      </article>
+  </section>
 </template>
 
 <script>
@@ -15,49 +19,40 @@ export default {
   data () {
     return {
       Topics: {
-        AllTopic: [
+        comments: [
         {
-            topicId: 24,
-            topic: "new forum groupomania",
+            commentId: 53,
+            user_comment: "pas tres cool",
+            date_comment: "2021-05-01T15:35:25.000Z",
             username: "jean",
-            user_id: 17,
-            date_creation: "2021-05-05T16:24:44.000Z"
+            user_id: 17
         },
         {
-            topicId: 11,
-            topic: "autre groupomania",
-            username: "paul",
-            user_id: 17,
-            date_creation: "2021-05-05T16:24:44.000Z"
+            commentId: 55,
+            user_comment: "j'aime aussi ce sujet",
+            date_comment: "2021-05-03T14:48:35.000Z",
+            username: "jean",
+            user_id: 17
         }
         ],
-        lastTopicComment: [
+        subject: [
         {
-            topicId: 56,
             topic: "noel",
-            username: "todos",
             user_id: 14,
-            date_modification: "2021-05-05T17:14:19.000Z"
-        },
-        {
-            topicId: 24,
-            topic: "new forum groupomania",
-            username: "jean",
-            user_id: 17,
-            date_modification: "2021-05-05T16:43:34.000Z"
+            username: "todos"
         }
         ]
       },
     }
   },
   computed: {
-    showid() {
+    showid() { /* Peut utiliser en v-if="item.topicId == showid" */
       let idtopic = window.location.search
       let getid = new URLSearchParams(idtopic)
       let topic = getid.get("topicId")
       console.log(topic)
       return topic
     }
-  } 
+  }
 }
 </script>

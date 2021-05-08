@@ -50,7 +50,7 @@ exports.allComments = (req, res, next) => {
         } else if (results[1].length == 0) {
             res.status(400).json({message: "Ce sujet n'existe pas"})
         } else if (results.length > 0) {
-            res.status(200).json({comments: results[0], sujet: results[1]})
+            res.status(200).json({comments: results[0], subject: results[1]})
         }
     })
 }
