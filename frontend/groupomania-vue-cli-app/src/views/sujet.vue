@@ -1,14 +1,16 @@
 <template>
   <section id="subject">
-      <div>
+      <header>
         <h1>{{Subject.topic}}</h1>
         <p>Sujet créé par {{Subject.username}}</p>
-      </div>
+      </header>
+
+      <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p>
+
       <article v-for="item in Topic.comments" :key="item.commentId">
         <h2>{{item.user_comment}}</h2>
         <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
       </article>
-      
   </section>
 </template>
 
@@ -20,6 +22,12 @@ export default {
     return {
       Topic: {},
       Subject: {},
+      commentLength: null
+    }
+  },
+  methods: {
+    elt() {
+      return console.log(this.Topic.comments)
     }
   },
   props: {
@@ -33,8 +41,11 @@ export default {
       method: 'GET'
     })
     .then (res => res.json())
-    .then(data => this.Topic = data)
-    .then(data => this.Subject = data.subject[0])
+    .then(data => {
+      this.Topic = data
+      this.Subject = data.subject[0]
+      this.commentLength = data.comments.length
+      })
     
     .catch(() => console.log({message: "connexion impossible"}))
   },
