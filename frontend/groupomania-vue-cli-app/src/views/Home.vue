@@ -1,5 +1,5 @@
 <template>
-  <section id="sujet_view">
+  <section id="all_subject">
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
 
@@ -36,7 +36,7 @@
 import Addsubject from '../components/Addsubject.vue'
 
 export default {
-  name: 'sujet_view',
+  name: 'all_subject',
   data () {
     return {
       Topics: {},
