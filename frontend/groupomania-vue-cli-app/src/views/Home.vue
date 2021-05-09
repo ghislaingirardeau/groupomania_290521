@@ -1,7 +1,13 @@
 <template>
-  <section class="sujet_view">
+  <section id="sujet_view">
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
+
+    <article>
+      <h2>Créer un sujet</h2>
+      <label for="subject">Nouveau sujet</label>
+      <input for="subject" type="text" v-model="comment">
+    </article>
 
     <article class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
@@ -13,7 +19,6 @@
         <p>Dernier commentaire fait le {{item.date_modification}}</p>
         </a>
       </div>
-
     </article>
 
     <article class="allsubject"> 
@@ -33,10 +38,14 @@
 
 <script>
 export default {
+  name: 'sujet_view',
   data () {
     return {
-      title: "Suivez l'actualité des derniers sujets commentés",
       Topics: {},
+      post: {
+        user_id: null,
+        comment: null
+      }
     }
   },
  
@@ -46,8 +55,15 @@ export default {
     })
     .then (res => res.json())
     .then(data => this.Topics = data)
-    .catch(() => console.log({message: "connexion impossible"}))
+    .catch(() => console.log({message: "connexion impossible"})),
 
+    fetch("http://localhost:3000/api/sujet", {
+      method: 'POST',
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(this.post)
+    })
+    .then (res => res.json())
+    .catch(() => console.log({message: "connexion impossible"}))
   }
 }
 </script>
