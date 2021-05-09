@@ -3,6 +3,8 @@
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
 
+    <Addsubject/>
+
     <article class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
 
@@ -31,29 +33,18 @@
 </template>
 
 <script>
+import Addsubject from '../components/Addsubject.vue'
+
 export default {
   name: 'sujet_view',
   data () {
     return {
       Topics: {},
-      post: {
-        user_id: "14",
-        topic: null
-      }
     }
   },
-  methods: {
-    postSubject() {
-      fetch("http://localhost:3000/api/sujet/", {
-      method: 'POST',
-      headers: {"content-type": "application/json"},
-      body: JSON.stringify(this.post)
-      })
-      .then (res => res.json())
-      .catch(() => console.log({message: "connexion impossible"}))
-    }
+  components: {
+    Addsubject
   },
- 
   mounted (){
     fetch("http://localhost:3000/api/sujet", {
       method: 'GET'
