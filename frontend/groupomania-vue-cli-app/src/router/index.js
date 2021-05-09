@@ -9,9 +9,13 @@ const routes = [
     component: Home
   },
   {
-    path: '/sujet?topicId=' + ':id',
+    path: '/sujet/:id',
     name: 'sujet',
-    component: Sujet
+    component: Sujet,
+    props: (route) => {
+      const id = Number.parseInt(route.params.id);
+      return { id }
+    },
   },
 ]
 
