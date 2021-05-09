@@ -9,7 +9,7 @@ const routes = [
     component: Home
   },
   {
-    path: '/sujet/:topicid',
+    path: '/sujet?topicId=' + ':id',
     name: 'sujet',
     component: Sujet
   },
