@@ -47,7 +47,10 @@ export default {
   },
   mounted (){
     fetch("http://localhost:3000/api/sujet", {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        "content-type": "application/json",
+      }
     })
     .then (res => res.json())
     .then(data => this.Topics = data)
