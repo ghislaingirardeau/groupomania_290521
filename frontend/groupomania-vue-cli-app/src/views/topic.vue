@@ -5,7 +5,7 @@
         <p>Sujet créé par {{Subject.username}}</p>
       </header>
 
-      <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p>
+      <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article v-for="item in Topic.comments" :key="item.commentId">
         <h2>{{item.user_comment}}</h2>
@@ -22,12 +22,7 @@ export default {
     return {
       Topic: {},
       Subject: {},
-      commentLength: null
-    }
-  },
-  methods: {
-    elt() {
-      return console.log(this.Topic.comments)
+      commentLength: null  /* renvoie un template specifique si pas de commentaire */
     }
   },
   props: {
@@ -50,7 +45,7 @@ export default {
     .then(data => {
       this.Topic = data
       this.Subject = data.subject[0]
-      this.commentLength = data.comments.length
+      this.commentLength = data.comments.length /* renvoie un template specifique si pas de commentaire */
       })
     
     .catch(() => console.log({message: "connexion impossible"}))
