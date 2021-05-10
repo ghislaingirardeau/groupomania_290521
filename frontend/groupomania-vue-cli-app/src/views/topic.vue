@@ -1,5 +1,5 @@
 <template>
-  <section id="subject">
+  <section id="Topic">
       <header>
         <h1>{{Subject.topic}}</h1>
         <p>Sujet créé par {{Subject.username}}</p>
@@ -17,7 +17,7 @@
 <script>
 
 export default {
-  name: 'subject',
+  name: 'Topic',
   data () {
     return {
       Topic: {},

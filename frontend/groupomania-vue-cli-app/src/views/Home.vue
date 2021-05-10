@@ -1,9 +1,9 @@
 <template>
-  <section id="all_subject">
+  <section id="Home">
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1> {{$store.state.token}}
 
-    <Addsubject/> <!-- composant pour l'ajout de sujet -->
+    <Addtopic/> <!-- composant pour l'ajout de sujet -->
 
     <article class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
@@ -33,17 +33,17 @@
 </template>
 
 <script>
-import Addsubject from '../components/Addsubject.vue'
+import Addtopic from '../components/Addtopic.vue'
 
 export default {
-  name: 'all_subject',
+  name: 'Home',
   data () {
     return {
       Topics: {},
     }
   },
   components: {
-    Addsubject
+    Addtopic
   },
   mounted (){
     var token = sessionStorage.getItem('token')
