@@ -1,3 +1,14 @@
+<template>
+    <article>
+      <h2>Créer un sujet</h2>
+      <form action="home">
+      <label for="subject">Nouveau sujet</label>
+      <input for="subject" type="text" v-model="post.topic">
+      <input type="submit" value="Envoyer !" @click="postSubject">
+      </form>
+    </article>
+</template>
+
 <script>
 export default {
     name: "Addsubject",
@@ -23,13 +34,3 @@ export default {
 }
 </script>
 
-<template>
-    <article>
-      <h2>Créer un sujet</h2>
-      <form action="home">
-      <label for="subject">Nouveau sujet</label>
-      <input for="subject" type="text" v-model="post.topic">
-      <input type="submit" value="Envoyer !" @click="postSubject">
-      </form>
-    </article>
-</template>
