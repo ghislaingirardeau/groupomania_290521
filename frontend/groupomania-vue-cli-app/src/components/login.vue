@@ -2,13 +2,12 @@
     <article id="login">
       <h2>Login</h2>
       <form action="home">
-      <label for="login">Username</label>
-      <input for="login" type="text" v-model="post.username">
-      <label for="login">Password</label>
-      <input for="login" type="text" v-model="post.password">
-      <input type="submit" value="Envoyer !" @click="postLogin">
+        <label for="login">Username</label>
+        <input for="login" type="text" v-model="post.username">
+        <label for="login">Password</label>
+        <input for="login" type="text" v-model="post.password">
+        <input type="submit" value="Envoyer !" @click="postLogin">
       </form>
-
     </article>
 </template>
 
@@ -21,7 +20,6 @@ export default {
             username: null,
             password: null
           },
-          token: "test"
         }
     },
     methods: {
@@ -30,14 +28,17 @@ export default {
           method: 'POST',
           headers: {
             "content-type": "application/json",
-            'Authorization': 'Bearer' + this.token
             },
           body: JSON.stringify(this.post)
           })
           .then (res => res.json())
-          .then(data => console.log(data.token))
+          .then(data => {
+            /* this.$store.commit('TOKEN_AUTHORIZATION', data.token) */
+            sessionStorage.setItem('token', data.token)
+            sessionStorage.setItem('userId', data.userId)
+            })
           .catch(() => console.log({message: "connexion impossible"}))
-        }
+        },
     },
 }
 </script>

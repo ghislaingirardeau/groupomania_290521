@@ -1,7 +1,7 @@
 <template>
   <section id="all_subject">
 
-    <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
+    <h1>BIENVENUE SUR LE FORUM Groupomania</h1> {{$store.state.token}}
 
     <Addsubject/>
 
@@ -46,10 +46,15 @@ export default {
     Addsubject
   },
   mounted (){
+    /* console.log(this.$store.state.token) */
+    var token = sessionStorage.getItem('token')
+    var userid = sessionStorage.getItem('userId')
+    console.log(userid)
     fetch("http://localhost:3000/api/sujet", {
       method: 'GET',
       headers: {
         "content-type": "application/json",
+        "Authorization": 'Bearer ' + token
       }
     })
     .then (res => res.json())
