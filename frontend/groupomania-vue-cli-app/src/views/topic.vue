@@ -44,7 +44,7 @@ export default {
     .then (res => res.json())
     .then(data => {
       this.Topic = data
-      this.Subject = data.subject[0]
+      this.Subject = data.subject[0] /* recupere seulement la partie du sujet */
       this.commentLength = data.comments.length /* renvoie un template specifique si pas de commentaire */
       })
     

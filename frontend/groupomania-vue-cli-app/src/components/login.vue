@@ -3,9 +3,9 @@
       <h2>Login</h2>
       <form action="home">
         <label for="login">Username</label>
-        <input for="login" type="text" v-model="post.username">
+        <input for="login" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
         <label for="login">Password</label>
-        <input for="login" type="text" v-model="post.password">
+        <input for="login" type="password" v-model="post.password"> <!-- copie les données dans le data post  -->
         <input type="submit" value="Envoyer !" @click="postLogin">
       </form>
     </article>
@@ -32,8 +32,7 @@ export default {
           body: JSON.stringify(this.post)
           })
           .then (res => res.json())
-          .then(data => {
-            /* this.$store.commit('TOKEN_AUTHORIZATION', data.token) */
+          .then(data => { /* envoie le token et le id dans la session storage pour recup sur la page home */
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('userId', data.userId)
             })

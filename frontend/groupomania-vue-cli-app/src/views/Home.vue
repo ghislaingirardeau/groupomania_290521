@@ -46,7 +46,7 @@ export default {
     Addtopic
   },
   mounted (){
-    var token = sessionStorage.getItem('token')
+    var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login */
     /* var userid = sessionStorage.getItem('userId') */
     fetch("http://localhost:3000/api/sujet", {
       method: 'GET',
