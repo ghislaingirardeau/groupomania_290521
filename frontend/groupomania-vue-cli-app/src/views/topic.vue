@@ -37,8 +37,14 @@ export default {
     },
   },
   mounted (){
+    var token = sessionStorage.getItem('token')
+    /* var userid = sessionStorage.getItem('userId') */
     fetch("http://localhost:3000/api/sujet/" + this.id, {
-      method: 'GET'
+      method: 'GET',
+      headers: {
+        "content-type": "application/json",
+        "Authorization": 'Bearer ' + token
+      }
     })
     .then (res => res.json())
     .then(data => {

@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Account from '../views/account.vue'
-import Accueil from '../views/Accueil.vue'
-import Subject from '../views/subject.vue'
+import Home from '../views/home.vue'
+import Topic from '../views/topic.vue'
 
 const routes = [
   {
@@ -10,14 +10,14 @@ const routes = [
     component: Account
   },
   {
-    path: '/Accueil', /* accueil */
-    name: 'Accueil',
-    component: Accueil
+    path: '/Accueil',
+    name: 'Home',
+    component: Home
   },
   {
     path: '/sujet/:id',
-    name: 'subject',
-    component: Subject,
+    name: 'Topic',
+    component: Topic,
     props: (route) => {
       const id = Number.parseInt(route.params.id);
       return { id }

@@ -3,7 +3,7 @@
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1> {{$store.state.token}}
 
-    <Addsubject/>
+    <Addsubject/> <!-- composant pour l'ajout de sujet -->
 
     <article class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
@@ -46,10 +46,8 @@ export default {
     Addsubject
   },
   mounted (){
-    /* console.log(this.$store.state.token) */
     var token = sessionStorage.getItem('token')
-    var userid = sessionStorage.getItem('userId')
-    console.log(userid)
+    /* var userid = sessionStorage.getItem('userId') */
     fetch("http://localhost:3000/api/sujet", {
       method: 'GET',
       headers: {
