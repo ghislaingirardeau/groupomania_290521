@@ -1,6 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
-import Sujet from '../views/sujet.vue'
+import Subject from '../views/subject.vue'
 
 const routes = [
   {
@@ -10,8 +10,8 @@ const routes = [
   },
   {
     path: '/sujet/:id',
-    name: 'sujet',
-    component: Sujet,
+    name: 'subject',
+    component: Subject,
     props: (route) => {
       const id = Number.parseInt(route.params.id);
       return { id }
