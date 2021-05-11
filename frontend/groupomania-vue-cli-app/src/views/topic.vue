@@ -8,8 +8,9 @@
       <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article v-for="item in Topic.comments" :key="item.commentId">
-        <h2>{{item.user_comment}}</h2>
+        <h2>{{item.user_comment}}</h2>{{user_id}} {{item.user_id}}
         <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
+        <button v-if="user_id === item.user_id">Modifier</button>
       </article>
   </section>
 </template>
@@ -22,7 +23,8 @@ export default {
     return {
       Topic: {},
       Subject: {},
-      commentLength: null  /* renvoie un template specifique si pas de commentaire */
+      commentLength: null,  /* renvoie un template specifique si pas de commentaire */
+      user_id: Number
     }
   },
   props: {
@@ -31,9 +33,10 @@ export default {
     required: true,
     },
   },
-  mounted (){
+  mounted () {
     var token = sessionStorage.getItem('token')
-    /* var userid = sessionStorage.getItem('userId') */
+    this.user_id = parseInt(sessionStorage.getItem('userId'))
+
     fetch("http://localhost:3000/api/sujet/" + this.id, {
       method: 'GET',
       headers: {
@@ -45,7 +48,7 @@ export default {
     .then(data => {
       this.Topic = data
       this.Subject = data.subject[0] /* recupere seulement la partie du sujet */
-      this.commentLength = data.comments.length /* renvoie un template specifique si pas de commentaire */
+      this.commentLength = data.comments.length /* renvoie un template specifique si pas encore de commentaires */
       })
     
     .catch(() => console.log({message: "connexion impossible"}))

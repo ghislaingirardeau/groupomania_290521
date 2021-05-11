@@ -31,12 +31,12 @@ export default {
           this.post.user_id = this.user
           console.log(this.post)
           fetch("http://localhost:3000/api/sujet/", {
-          method: 'POST',
-          headers: {
-            "content-type": "application/json",
-            "Authorization": 'Bearer ' + token
-          },
-          body: JSON.stringify(this.post)
+            method: 'POST',
+            headers: {
+              "content-type": "application/json",
+              "Authorization": 'Bearer ' + token
+            },
+            body: JSON.stringify(this.post)
           })
           .then (res => res.json())
           .catch(() => console.log({message: "connexion impossible"}))
