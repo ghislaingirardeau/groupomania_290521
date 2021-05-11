@@ -37,40 +37,39 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
     },
   },
   methods: {
-        modifyComment() { 
-          var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
-          this.update.user_id = sessionStorage.getItem('userId')
-           /* envoie le userid dans le put */
+    modifyComment() { 
+      var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
+      this.update.user_id = sessionStorage.getItem('userId')
+       /* envoie le userid dans le put */
 
-          fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
-            method: 'PUT',
-            headers: {
-              "content-type": "application/json",
-              "Authorization": 'Bearer ' + token
-            },
-            body: JSON.stringify(this.update)
-          })
-          .then (res => res.json())
-          .catch(() => console.log({message: "modification du commentaire impossible"}))
+      fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
+        method: 'PUT',
+        headers: {
+          "content-type": "application/json",
+          "Authorization": 'Bearer ' + token
         },
-        
-        deleteComment() { 
-          var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
-          this.update.user_id = sessionStorage.getItem('userId')
-           /* envoie le userid dans le delete */
-          console.log(JSON.stringify({user_id: this.update.user_id})) /* sinon renvoie seulement un nombre et non un objet */
-          fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
-            method: 'DELETE',
-            headers: {
-              "content-type": "application/json",
-              "Authorization": 'Bearer ' + token
-            },
-            body: JSON.stringify({user_id: this.update.user_id})
-          })
-          .then (res => res.json())
-          .catch(() => console.log({message: "suppression du commentaire impossible"}))
-        }  
+        body: JSON.stringify(this.update)
+      })
+      .then (res => res.json())
+      .catch(() => console.log({message: "modification du commentaire impossible"}))
     },
-  
+        
+    deleteComment() { 
+      var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
+      this.update.user_id = sessionStorage.getItem('userId')
+       /* envoie le userid dans le delete */
+       
+      fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
+        method: 'DELETE',
+        headers: {
+          "content-type": "application/json",
+          "Authorization": 'Bearer ' + token
+        },
+        body: JSON.stringify({user_id: this.update.user_id})
+      })
+      .then (res => res.json())
+      .catch(() => console.log({message: "suppression du commentaire impossible"}))
+    }  
+  },
 })
 </script>
