@@ -6,7 +6,7 @@ const connection = mysql.createConnection(config)
 
 exports.allTopics = (req, res, next) => { /* AFFICHE TOUS LES SUJETS PAR DATE DE CREATION ET LES 3 DERNIERS SUJETS COMMENTÉS */
     
-    const sql = `CALL show_topics();`
+    const sql = `CALL list_topics();`
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les sujets"})
