@@ -4,7 +4,7 @@
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
 
     <aside>
-      <Addtopic/> <!-- composant pour l'ajout de sujet -->
+      <Addtopic /> <!-- composant pour l'ajout de sujet -->
     </aside>
 
     <article class="last_subject_comment"> 
@@ -44,6 +44,7 @@ export default {
   data () {
     return {
       Topics: {},
+      userId: null
     }
   },
   components: {
@@ -51,7 +52,8 @@ export default {
   },
   mounted (){
     var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login */
-    /* var userid = sessionStorage.getItem('userId') */
+    this.userId = sessionStorage.getItem('userId')
+    
     fetch("http://localhost:3000/api/sujet", {
       method: 'GET',
       headers: {
