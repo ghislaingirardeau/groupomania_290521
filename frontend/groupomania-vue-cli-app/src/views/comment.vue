@@ -2,18 +2,17 @@
     <article id="Updatecomment">
       <h2>modifer mon commentaire</h2>
 
-      <form action="../../Accueil">
-        <label for="subject">Nouveau commentaire</label>
-        <input for="subject" type="text" v-model="update.comment">
-        <input type="submit" value="Modifier" @click="modifyComment">
-      </form>
+      <label for="subject">Nouveau commentaire</label>
+      <input for="subject" type="text" v-model="update.comment">
+      <a :href="'http://localhost:8080/sujet/' + topicid" @click="modifyComment">Envoi</a>
+
 
     </article>
     
-</template>
+</template> 
 
 <script>
-export default ({
+export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en front??  */
   
   name: "Updatecomment",
   data () {

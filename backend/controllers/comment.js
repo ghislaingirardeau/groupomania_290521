@@ -52,7 +52,8 @@ exports.removeComment = (req, res, next) => {
             const sql = `CALL delete_comment(@comment, @user_id);` 
             /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
             connection.query(sql, (error, results, fields) => {
-                if (error || results.length == 2 || results.affectedRows == 0) { /* si Id n'existe pas renverra 2 ligne ou si Id ne correspond pas au select renverra 0 affectedRows   */
+                if (error || results.length == 2 || results.affectedRows == 0) { 
+                    /* si Id n'existe pas renverra 2 ligne ou si Id ne correspond pas au select renverra 0 affectedRows   */
                     res.status(400).json({message: "Echec de la suppression du commentaire"})
                 } else if (results) {
                     res.status(200).json({message: "Le commentaire a bien été supprimé"})
