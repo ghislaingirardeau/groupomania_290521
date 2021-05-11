@@ -26,8 +26,7 @@
       <article v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
         <a :href="'sujet/' + item.topicId">
           <h3>{{item.topic}}</h3>
-          <p>Sujet créé par {{item.username}}</p>
-          <p>Dernier commentaire fait le {{item.date_creation}}</p>
+          <p>Sujet créé par {{item.username}} le {{item.date_creation}}</p>
         </a>
       </article>
     </main>
