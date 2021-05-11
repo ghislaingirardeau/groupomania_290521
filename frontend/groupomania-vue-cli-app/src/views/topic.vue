@@ -8,9 +8,10 @@
       <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article v-for="item in Topic.comments" :key="item.commentId">
-        <h2>{{item.user_comment}}</h2>{{user_id}} {{item.user_id}}
+        <h2>{{item.user_comment}}</h2>
         <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
-        <button v-if="user_id === item.user_id">Modifier</button>
+        <a v-if="user_id === item.user_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
+        <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
       </article>
   </section>
 </template>

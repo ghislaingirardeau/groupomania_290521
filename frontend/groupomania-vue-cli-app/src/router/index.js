@@ -3,6 +3,7 @@ import Login from '../components/login.vue'
 import Signup from '../components/signup.vue'
 import Home from '../views/home.vue'
 import Topic from '../views/topic.vue'
+import Comment from '../views/comment.vue'
 
 const routes = [
   {
@@ -27,6 +28,16 @@ const routes = [
     props: (route) => {
       const id = Number.parseInt(route.params.id);
       return { id }
+    },
+  },
+  {
+    path: '/sujet/:id/:commentId',
+    name: 'Comment',
+    component: Comment,
+    props: (route) => {
+      const id = Number.parseInt(route.params.id);
+      const commentId = Number.parseInt(route.params.commentId);
+      return { id, commentId }
     },
   },
 ]

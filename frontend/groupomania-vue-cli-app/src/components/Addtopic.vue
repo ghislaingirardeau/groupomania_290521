@@ -28,8 +28,8 @@ export default {
         
         postSubject() { 
           var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
-          this.post.user_id = this.user
-          console.log(this.post)
+          this.post.user_id = this.user /* envoie le userid dans le post */
+          
           fetch("http://localhost:3000/api/sujet/", {
             method: 'POST',
             headers: {
