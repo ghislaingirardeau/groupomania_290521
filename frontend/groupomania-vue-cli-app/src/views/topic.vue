@@ -7,6 +7,10 @@
 
       <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
+      <aside> 
+      <Addcomment :user='user_id' :id="id"/> <!-- composant pour l'ajout de sujet -->
+      </aside>
+
       <article v-for="item in Topic.comments" :key="item.commentId">
         <h2>{{item.user_comment}}</h2>
         <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
@@ -17,6 +21,7 @@
 </template>
 
 <script>
+import Addcomment from '../components/Addcomment.vue'
 
 export default {
   name: 'Topic',
@@ -33,6 +38,9 @@ export default {
     type: Number,
     required: true,
     },
+  },
+  components: {
+    Addcomment
   },
   mounted () {
     var token = sessionStorage.getItem('token')
