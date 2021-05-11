@@ -1,7 +1,7 @@
 <template>
     <article id="login">
       <h2>Login</h2>
-      <form action="home">
+      <form action="Accueil">
         <label for="login">Username</label>
         <input for="login" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
         <label for="login">Password</label>

@@ -1,7 +1,7 @@
 <template>
   <div id="nav">
-    <router-link to="/Accueil">Accueil</router-link> |
-    <router-link to="/">Compte</router-link>
+    <router-link to="/">login</router-link> |
+    <router-link to="/signup">signup</router-link>
     <router-view/>
   </div>
 
