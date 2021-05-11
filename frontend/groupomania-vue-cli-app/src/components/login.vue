@@ -36,7 +36,7 @@ export default {
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('userId', data.userId)
             })
-          .catch(() => console.log({message: "connexion impossible"}))
+          .catch(() => console.log({message: "erreur de connexion"}))
         },
     },
 }
