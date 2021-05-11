@@ -58,14 +58,14 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
           var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
           this.update.user_id = sessionStorage.getItem('userId')
            /* envoie le userid dans le delete */
-
+          console.log(JSON.stringify({user_id: this.update.user_id})) /* sinon renvoie seulement un nombre et non un objet */
           fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
             method: 'DELETE',
             headers: {
               "content-type": "application/json",
               "Authorization": 'Bearer ' + token
             },
-            body: JSON.stringify(this.update.user_id)
+            body: JSON.stringify({user_id: this.update.user_id})
           })
           .then (res => res.json())
           .catch(() => console.log({message: "suppression du commentaire impossible"}))
