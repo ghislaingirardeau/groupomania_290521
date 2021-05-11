@@ -1,5 +1,5 @@
 <template>
-    <article id="ManageComment">
+    <div id="ManageComment">
       <h2>Modifer mon commentaire</h2>
 
       <label for="subject">Nouveau commentaire</label>
@@ -10,7 +10,7 @@
 
       <a :href="'http://localhost:8080/sujet/' + topicid" @click="deleteComment">Supprimer</a>
 
-    </article>
+    </div>
     
 </template> 
 
