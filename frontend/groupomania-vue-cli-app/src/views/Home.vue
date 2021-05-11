@@ -1,4 +1,5 @@
 <template>
+
   <section id="Home">
 
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>

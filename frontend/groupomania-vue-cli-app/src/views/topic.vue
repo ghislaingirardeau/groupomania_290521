@@ -1,11 +1,13 @@
 <template>
+
   <section id="Topic">
+
       <header>
         <h1>{{Subject.topic}}</h1>
         <p>Sujet créé par {{Subject.username}}</p>
       </header>
 
-      <p v-if="commentLength === 0">Il n'y a aucun commentaire fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+      <p v-if="commentLength === 0">Il n'y a pas encore de commentaires fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <aside> 
       <Addcomment :user='user_id' :id="id"/> <!-- composant pour l'ajout de sujet -->
@@ -17,7 +19,9 @@
         <a v-if="user_id === item.user_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
       </article>
+
   </section>
+  
 </template>
 
 <script>
