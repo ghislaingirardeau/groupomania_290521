@@ -4,7 +4,7 @@
     <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
 
     <aside>
-      <Addtopic /> <!-- composant pour l'ajout de sujet -->
+      <Addtopic :user='userId'/> <!-- composant pour l'ajout de sujet -->
     </aside>
 
     <article class="last_subject_comment"> 
