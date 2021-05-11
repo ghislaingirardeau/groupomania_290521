@@ -70,7 +70,7 @@ exports.modifyComment = (req, res, next) => {
             if (error) {
                 res.status(500).json({message: 'erreur database'})
             } else if (results) {
-                const sql = `CALL update_comment(@commentId, @user_id, @commentUpdated)`
+                const sql = `CALL modify_comment(@commentId, @user_id, @commentUpdated)`
                 /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
                 connection.query(sql, (error, results, fields) => {
                     if (error || results.length == 2 || results.affectedRows == 0) {
