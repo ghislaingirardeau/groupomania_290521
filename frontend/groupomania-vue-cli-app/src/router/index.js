@@ -26,18 +26,18 @@ const routes = [
     name: 'Topic',
     component: Topic,
     props: (route) => {
-      const id = Number.parseInt(route.params.id);
+      const id = Number.parseInt(route.params.id); /* je t'envoie en params un nombre et ce nombre sera stocké dans la props id */
       return { id }
     },
   },
   {
-    path: '/sujet/:id/:commentId',
+    path: '/sujet/:topicid/:commentId',
     name: 'Comment',
     component: Comment,
     props: (route) => {
-      const id = Number.parseInt(route.params.id);
+      const topicid = Number.parseInt(route.params.topicid);
       const commentId = Number.parseInt(route.params.commentId);
-      return { id, commentId }
+      return { topicid, commentId }
     },
   },
 ]
