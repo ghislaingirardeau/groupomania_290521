@@ -22,12 +22,12 @@ const routes = [
     component: Home
   },
   {
-    path: '/sujet/:id',
+    path: '/sujet/:topicid',
     name: 'Topic',
     component: Topic,
     props: (route) => {
-      const id = Number.parseInt(route.params.id); /* je t'envoie en params un nombre et ce nombre sera stocké dans la props id */
-      return { id }
+      const topicid = Number.parseInt(route.params.topicid); /* je t'envoie en params un nombre et ce nombre sera stocké dans la props topicid */
+      return { topicid }
     },
   },
   {

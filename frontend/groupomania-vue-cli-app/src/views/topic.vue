@@ -10,7 +10,7 @@
       <p v-if="commentLength === 0">Il n'y a pas encore de commentaires fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <aside> 
-      <Addcomment :user='user_id' :id="id"/> <!-- composant pour l'ajout de sujet -->
+      <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
       </aside>
 
       <article v-for="item in Topic.comments" :key="item.commentId">
@@ -21,7 +21,7 @@
       </article>
 
   </section>
-  
+
 </template>
 
 <script>
@@ -38,7 +38,7 @@ export default {
     }
   },
   props: {
-    id: {
+    topicid: {
     type: Number,
     required: true,
     },
@@ -50,7 +50,7 @@ export default {
     var token = sessionStorage.getItem('token')
     this.user_id = parseInt(sessionStorage.getItem('userId'))
 
-    fetch("http://localhost:3000/api/sujet/" + this.id, {
+    fetch("http://localhost:3000/api/sujet/" + this.topicid, {
       method: 'GET',
       headers: {
         "content-type": "application/json",

@@ -6,7 +6,7 @@
 
     <label for="Comment">Nouveau commentaire</label>
     <input for="Comment" type="text" v-model="post.comment">
-    <a :href="'http://localhost:8080/sujet/' + id" @click="postComment">Envoyer</a>
+    <a :href="'http://localhost:8080/sujet/' + topicid" @click="postComment">Envoyer</a>
 
   </article>
 
@@ -25,7 +25,7 @@ export default {
   },
   props: {
     user: Number,
-    id: { /* recupere id du topic qui est dans l'url */
+    topicid: { /* recupere id du topic qui est dans l'url */
       type: Number,
       required: true,
     },
@@ -36,7 +36,7 @@ export default {
       var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
       this.post.user_id = this.user /* envoie le userid dans le post */
           
-      fetch("http://localhost:3000/api/sujet/" + this.id, {
+      fetch("http://localhost:3000/api/sujet/" + this.topicid, {
         method: 'POST',
         headers: {
           "content-type": "application/json",
