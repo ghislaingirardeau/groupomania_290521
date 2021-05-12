@@ -4,22 +4,38 @@ import Signup from '../components/signup.vue'
 import Home from '../views/home.vue'
 import Topic from '../views/topic.vue'
 import Comment from '../views/comment.vue'
+import log from '../views/log.vue'
+import account from '../views/account.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'Login',
-    component: Login
-  },
-  {
-    path: '/Signup',
-    name: 'Signup',
-    component: Signup
+    name: 'log',
+    component: log,
+    children: [
+      {
+        path: 'Login',
+        name: 'Login',
+        component: Login
+      },
+      {
+        path: 'Signup',
+        name: 'Signup',
+        component: Signup
+      },
+    ]
   },
   {
     path: '/Accueil',
     name: 'Home',
-    component: Home
+    component: Home,
+    children: [
+      {
+        path: 'moncompte',
+        name: 'account',
+        component: account
+      },
+    ]
   },
   {
     path: '/sujet/:topicid',

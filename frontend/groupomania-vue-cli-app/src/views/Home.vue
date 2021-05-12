@@ -2,15 +2,19 @@
 
   <section id="Home">
 
-    <h1>BIENVENUE SUR LE FORUM Groupomania</h1>
+    <h1>BIENVENUE </h1>
+
+    <nav>
+    <router-link to="/Accueil">Accueil</router-link> |
+    <router-link to="/Accueil/Moncompte">Mon compte</router-link>    
+    <router-view></router-view> 
+    </nav>
 
     <aside>
       <Addtopic :user='user_id'/> <!-- composant pour l'ajout de sujet -->
     </aside>
 
-    <aside>
-      <Deleteaccount/> <!-- composant pour l'ajout de sujet -->
-    </aside>
+    
 
     <main class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
@@ -41,7 +45,6 @@
 
 <script>
 import Addtopic from '../components/Addtopic.vue'
-import Deleteaccount from '../components/Deleteaccount.vue'
 
 export default {
   name: 'Home',
@@ -53,7 +56,6 @@ export default {
   },
   components: {
     Addtopic,
-    Deleteaccount
   },
   mounted (){
     var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login */

@@ -1,22 +1,15 @@
 <template>
-
-    <div id="account">
-        
-        Ceci est la page du login
-        <login/>
-    </div>
-
+    <aside>
+      <Deleteaccount/> <!-- composant pour l'ajout de sujet -->
+    </aside>
 </template>
 
 <script>
-import login from '../components/login.vue'
+import Deleteaccount from '../components/Deleteaccount.vue'
 
-export default {
-    name: "account",
-    data () {
-    },
+export default ({
     components: {
-        login
-    }  
-}
+    Deleteaccount
+  },
+})
 </script>
