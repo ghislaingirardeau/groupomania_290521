@@ -27,7 +27,7 @@ exports.signup = (req, res, next) => {
                         res.status(400).json({message: 'Ce pseudo ou cette email existe deja'})
                     }
                     else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
-                        let userSelect = result[0] /* extrait l'array correspondant a ma selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+                        let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
                         res.status(200).json({
                         userId: userSelect[0].id,
                             token: jwt.sign(
@@ -51,12 +51,13 @@ exports.login = (req, res, next) => {
         }
         else if(results){
 
-            const sql = `SELECT * FROM Users WHERE username=@username`;
+            const sql = `SELECT id, password FROM Users WHERE username=@username`;
             connection.query(sql, (error, results, fields) => {
-                if (results.length == 0 || error) {
+                if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
                     res.status(400).json({message: "Ce pseudo n'existe pas"})
                 }
-                else if(results.length == 1){
+                else if(results.length == 1){ /* Si utilisateur existe, renvoie un tableau avec une seule donnée */
+                    console.log(results)
                     bcrypt.compare(req.body.password, results[0].password)
                     .then(valid => {
                         if (!valid){
@@ -80,27 +81,36 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
    
     var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
     
-    const sql = `SELECT password FROM Users WHERE email="${buffer}" AND username="${req.body.username}"`;
+    const sql = `SET @email="${buffer}", @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
-        
-        if (results.length == 0 || error) {
-            res.status(400).json({message: "Ce pseudo ou cet email ne sont pas valides"})
-        }
-        else if(results.length == 1){ /* Demande une auth du mot de passe pour valider la suppression */
+        if (error) {
+            res.status(500).json({message: 'erreur database'})
+        } 
+        else if(results) {
             
-            bcrypt.compare(req.body.password, results[0].password)
-            .then(valid => {
-                if (!valid){
-                return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+            const sql = `CALL delete_user(@username, @email);`;
+            connection.query(sql, (error, results, fields) => {
+                if (results[0].length == 0 || error) { /* Si le tableau ne renvoie aucun resultat, la longueur du 1er array est donc vide */
+                    res.status(500).json({message: "cet utilisateur n'existe pas"})
+                   
+                } else if(results[0].length == 1) { /* Si le tableau renvoie bien une donnée password, la longueur du 1er array est donc de 1 */
+                    let getPassword = results[0] /* recupere le array contenant le array password */
+                        
+                    bcrypt.compare(req.body.password, getPassword[0].password) /* Je vérifie le password avant la suppression */
+                    .then(valid => {
+                        if (!valid){
+                        return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+                        }
+                        const sql = `DELETE FROM users WHERE email=@email AND username=@username`;
+                        connection.query(sql, () => {
+                            return res.status(200).json({message: "Votre compte a bien été supprimé"})   
+                        });
+                    })
+                    .catch(() => res.status(500).json({message: "erreur login"}))
+
                 }
-                const sql = `DELETE FROM users WHERE email="${buffer}" AND username="${req.body.username}"`;
-                connection.query(sql, () => {
-                    return res.status(200).json({message: "Votre compte est supprimé"})   
-                });
             })
-            .catch(() => res.status(500).json({message: "erreur login"}))
-        }      
+        }  
     });
 }
-
 
