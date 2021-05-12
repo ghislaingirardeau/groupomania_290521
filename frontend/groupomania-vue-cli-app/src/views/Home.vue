@@ -8,6 +8,10 @@
       <Addtopic :user='user_id'/> <!-- composant pour l'ajout de sujet -->
     </aside>
 
+    <aside>
+      <Deleteaccount/> <!-- composant pour l'ajout de sujet -->
+    </aside>
+
     <main class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
 
@@ -37,6 +41,7 @@
 
 <script>
 import Addtopic from '../components/Addtopic.vue'
+import Deleteaccount from '../components/Deleteaccount.vue'
 
 export default {
   name: 'Home',
@@ -47,7 +52,8 @@ export default {
     }
   },
   components: {
-    Addtopic
+    Addtopic,
+    Deleteaccount
   },
   mounted (){
     var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login */
