@@ -37,7 +37,7 @@ export default {
       user_id: Number
     }
   },
-  props: {
+  props: { /* Recuperer l'id du topic envoyer en parametre de l'url */
     topicid: {
     type: Number,
     required: true,

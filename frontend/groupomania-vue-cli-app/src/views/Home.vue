@@ -21,7 +21,7 @@
     </main>
 
     <main class="allsubject">
-      <h2>Retrouver tous les sujets</h2>
+      <h2>Retrouver nos derniers sujets créés</h2>
 
       <article v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
         <a :href="'sujet/' + item.topicId">
