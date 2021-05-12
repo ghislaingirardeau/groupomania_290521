@@ -32,7 +32,7 @@ exports.addComment = (req, res, next) => {  /* recup de pseudo_id ??? */
                     if (error) {
                         res.status(400).json({message: "Impossible d'ajouter les commentaires"})
                     } else if (results) {
-                        res.status(201).json({message: "Commentaire ajouté"})
+                        res.status(201).json({message: "Votre commentaire a bien été ajouté"})
                     }
                 })
             }

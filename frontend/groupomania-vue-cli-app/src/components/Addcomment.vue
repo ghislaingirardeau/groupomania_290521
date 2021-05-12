@@ -6,7 +6,9 @@
 
     <label for="Comment">Nouveau commentaire</label>
     <input for="Comment" type="text" v-model="post.comment">
-    <a :href="'http://localhost:8080/sujet/' + topicid" @click="postComment">Envoyer</a>
+    
+    <button @click="postComment">Publier</button>
+    <p>{{serverMessage}}</p>
 
   </article>
 
@@ -20,7 +22,8 @@ export default {
         post: {
           user_id: null,
           comment: null
-        }
+        },
+        serverMessage: null
       }
   },
   props: {
@@ -45,6 +48,10 @@ export default {
         body: JSON.stringify(this.post)
       })
       .then (res => res.json())
+      .then (data=> {
+        this.serverMessage = data.message
+        window.open('/sujet/' + this.topicid, '_self')
+      })
       .catch(() => console.log({message: "connexion impossible"}))
     } 
   },

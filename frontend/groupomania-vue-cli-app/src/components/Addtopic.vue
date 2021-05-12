@@ -4,11 +4,11 @@
 
       <h2>Créer un sujet</h2>
 
-      <form action="Accueil">
-        <label for="subject">Nouveau sujet</label>
-        <input for="subject" type="text" v-model="post.topic">
-        <input type="submit" value="Envoyer !" @click="postSubject">
-      </form>
+      <label for="topic">Nouveau sujet</label>
+      <input for="topic" type="text" v-model="post.topic">
+      
+      <button @click="postSubject">Publier</button>
+      <p>{{serverMessage}}</p>
 
     </article>
 
@@ -22,7 +22,8 @@ export default {
         post: {
           user_id: null,
           topic: null
-        }
+        },
+        serverMessage: null
       }
   },
   props: { /* recup le user du parent */
@@ -43,6 +44,10 @@ export default {
         body: JSON.stringify(this.post)
       })
       .then (res => res.json())
+      .then (data=> {
+        this.serverMessage = data.message
+        window.open('/Accueil', '_self')
+      })
       .catch(() => console.log({message: "connexion impossible"}))
     } 
   },
