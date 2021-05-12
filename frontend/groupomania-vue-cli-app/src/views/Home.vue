@@ -6,15 +6,11 @@
 
     <nav>
     <router-link to="/Accueil">Accueil</router-link> |
-    <router-link to="/Accueil/Moncompte">Mon compte</router-link>    
+    <router-link to="/Accueil/AjoutSujet">Créer un sujet</router-link> |
+    <router-link to="/Accueil/Moncompte">Mon compte</router-link> 
+        
     <router-view></router-view> 
     </nav>
-
-    <aside>
-      <Addtopic :user='user_id'/> <!-- composant pour l'ajout de sujet -->
-    </aside>
-
-    
 
     <main class="last_subject_comment"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
@@ -44,7 +40,6 @@
 </template>
 
 <script>
-import Addtopic from '../components/Addtopic.vue'
 
 export default {
   name: 'Home',
@@ -53,9 +48,6 @@ export default {
       Topics: {},
       user_id: null
     }
-  },
-  components: {
-    Addtopic,
   },
   mounted (){
     var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login */

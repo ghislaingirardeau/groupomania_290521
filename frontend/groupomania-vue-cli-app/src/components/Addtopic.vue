@@ -26,14 +26,11 @@ export default {
         serverMessage: null
       }
   },
-  props: { /* recup le user du parent */
-    user: String
-  },
   methods: {
         
     postSubject() { 
       var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
-      this.post.user_id = this.user /* envoie le userid dans le post */
+      this.post.user_id = sessionStorage.getItem('userId') /* envoie le userid dans le post */
 
       fetch("http://localhost:3000/api/sujet/", {
         method: 'POST',
@@ -51,7 +48,6 @@ export default {
           window.open('/Accueil', '_self')
           })
         } else { /* sinon j'envoie une erreur */
-          console.log({message: "Ajout du sujet impossible"})
           this.serverMessage = "Ajout du sujet impossible"
         }
       })

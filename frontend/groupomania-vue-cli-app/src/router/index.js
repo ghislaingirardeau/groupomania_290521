@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import Login from '../components/login.vue'
 import Signup from '../components/signup.vue'
+import Addtopic from '../components/Addtopic.vue'
 import Home from '../views/home.vue'
 import Topic from '../views/topic.vue'
 import Comment from '../views/comment.vue'
@@ -34,6 +35,11 @@ const routes = [
         path: 'moncompte',
         name: 'account',
         component: account
+      },
+      {
+        path: 'AjoutSujet',
+        name: 'Addtopic',
+        component: Addtopic
       },
     ]
   },
