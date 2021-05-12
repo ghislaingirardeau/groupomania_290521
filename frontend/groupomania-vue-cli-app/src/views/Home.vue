@@ -5,14 +5,14 @@
     <h1>BIENVENUE </h1>
 
     <nav>
-    <router-link to="/Accueil">Accueil</router-link> |
-    <router-link to="/Accueil/AjoutSujet">Créer un sujet</router-link> |
-    <router-link to="/Accueil/Moncompte">Mon compte</router-link> 
+    <router-link to="/Accueil" @click="showContent">Accueil</router-link> |
+    <router-link to="/Accueil/AjoutSujet" @click="maskContent">Créer un sujet</router-link> |
+    <router-link to="/Accueil/Moncompte" @click="maskContent">Mon compte</router-link> 
         
     <router-view></router-view> 
     </nav>
 
-    <main class="last_subject_comment"> 
+    <main class="last_subject_comment" v-show="show"> 
       <h2>Suivez l'actualité des derniers sujets commentés</h2>
 
       <article v-for="item in Topics.lastTopicComment" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
@@ -24,7 +24,7 @@
       </article>
     </main>
 
-    <main class="allsubject">
+    <main class="allsubject" v-show="show">
       <h2>Retrouver nos derniers sujets créés</h2>
 
       <article v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
@@ -46,7 +46,16 @@ export default {
   data () {
     return {
       Topics: {},
-      user_id: null
+      user_id: null,
+      show: true
+    }
+  },
+  methods: {
+    showContent(){
+      return this.show = true
+    },
+    maskContent(){
+      return this.show = false
     }
   },
   mounted (){
