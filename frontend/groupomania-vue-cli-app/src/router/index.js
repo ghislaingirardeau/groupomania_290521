@@ -1,11 +1,11 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import log from '../views/log.vue'
 import Login from '../components/login.vue'
 import Signup from '../components/signup.vue'
-import Addtopic from '../components/Addtopic.vue'
 import Home from '../views/home.vue'
 import Topic from '../views/topic.vue'
+import Addtopic from '../components/Addtopic.vue'
 import Comment from '../views/comment.vue'
-import log from '../views/log.vue'
 import account from '../views/account.vue'
 
 const routes = [
@@ -15,7 +15,7 @@ const routes = [
     component: log,
     children: [
       {
-        path: 'Login',
+        path: '',
         name: 'Login',
         component: Login
       },
