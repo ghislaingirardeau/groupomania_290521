@@ -43,10 +43,17 @@ export default {
         },
         body: JSON.stringify(this.post)
       })
-      .then (res => res.json())
-      .then (data=> {
-        this.serverMessage = data.message
-        window.open('/Accueil', '_self')
+      .then (res => {
+        if(res.ok) { /* si reponse est ok, je recupere le data */
+          res.json()
+          .then (data => {
+          this.serverMessage = data.message
+          window.open('/Accueil', '_self')
+          })
+        } else { /* sinon j'envoie une erreur */
+          console.log({message: "Ajout du sujet impossible"})
+          this.serverMessage = "Ajout du sujet impossible"
+        }
       })
       .catch(() => console.log({message: "connexion impossible"}))
     } 
