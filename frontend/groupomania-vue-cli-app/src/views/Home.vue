@@ -5,9 +5,10 @@
     <h1>BIENVENUE </h1>
 
     <nav>
-    <router-link to="/Accueil" @click="showContent">Accueil</router-link> |
-    <router-link to="/Accueil/AjoutSujet" @click="maskContent">Créer un sujet</router-link> |
-    <router-link to="/Accueil/Moncompte" @click="maskContent">Mon compte</router-link> 
+    <router-link to="/Accueil" @click="showContent">Accueil</router-link> | 
+    <router-link to="/Accueil/AjoutSujet" @click="maskContent">Créer un sujet</router-link> | <!-- Masquer les sujets au click avec v-show -->
+    <router-link to="/Accueil/Moncompte" @click="maskContent">Mon compte</router-link> | <!-- Masquer les sujets au click avec v-show -->
+    <a href="/" @click="disconnect">Deconnexion</a> 
         
     <router-view></router-view> 
     </nav>
@@ -56,6 +57,10 @@ export default {
     },
     maskContent(){
       return this.show = false
+    },
+    disconnect(){
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('userId')
     }
   },
   mounted (){
