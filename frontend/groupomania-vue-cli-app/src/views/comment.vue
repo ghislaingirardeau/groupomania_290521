@@ -10,7 +10,6 @@
 
       <h2>Supprimer mon commentaire</h2>
 
-      <a :href="'http://localhost:8080/sujet/' + topicid" @click="deleteComment">Supprimer</a>
       <button @click="deleteComment">Supprimer</button>
       <p>{{serverMessage}}</p>
 
@@ -55,12 +54,19 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         },
         body: JSON.stringify(this.update)
       })
-      .then (res => res.json())
-      .then (data=> {
-        this.serverMessage = data.message
-        window.open('/sujet/' + this.topicid, '_self')
+      .then (res => {
+        if(res.ok) { /* si reponse est ok, je recupere le data */
+          res.json()
+          .then (data => {
+          this.serverMessage = data.message
+          window.open('/sujet/' + this.topicid, '_self')
+          })
+        } else { /* sinon j'envoie une erreur */
+          console.log({message: "modification du commentaire impossible"})
+          this.serverMessage = "Vous n'avez pas les droits pour modifier ce commentaire"
+        }
       })
-      .catch(() => console.log({message: "modification du commentaire impossible"}))
+      .catch(() => {console.log({message: "modification du commentaire impossible"})})
     },
         
     deleteComment() { 
@@ -76,10 +82,17 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         },
         body: JSON.stringify({user_id: this.update.user_id})
       })
-      .then (res => res.json())
-      .then (data=> {
-        this.serverMessage = data.message
-        window.open('/sujet/' + this.topicid, '_self')
+      .then (res => {
+        if(res.ok) { /* si reponse est ok, je recupere le data */
+          res.json()
+          .then (data => {
+          this.serverMessage = data.message
+          window.open('/sujet/' + this.topicid, '_self')
+          })
+        } else { /* sinon j'envoie une erreur */
+          console.log({message: "supprimer du commentaire impossible"})
+          this.serverMessage = "Vous n'avez pas les droits pour supprimer ce commentaire"
+        }
       })
       .catch(() => console.log({message: "suppression du commentaire impossible"}))
     }  
