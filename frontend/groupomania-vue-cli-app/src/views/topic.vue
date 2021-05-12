@@ -2,24 +2,27 @@
 
   <section id="Topic">
 
-    <router-link to="/Accueil">Accueil</router-link> 
-      <header>
-        <h1>{{Subject.topic}}</h1>
-        <p>Sujet créé par {{Subject.username}}</p>
-      </header>
+    <nav>
+      <router-link to="/Accueil">Accueil</router-link>
+    </nav>
 
-      <p v-if="commentLength === 0">Il n'y a pas encore de commentaires fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+    <header>
+      <h1>{{Subject.topic}}</h1>
+      <p>Sujet créé par {{Subject.username}}</p>
+    </header>
 
-      <aside> 
-      <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
-      </aside>
+    <p v-if="commentLength === 0">Il n'y a pas encore de commentaires fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
-      <article v-for="item in Topic.comments" :key="item.commentId">
-        <h2>{{item.user_comment}}</h2>
-        <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
-        <a v-if="user_id === item.user_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
-        <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
-      </article>
+    <aside> 
+    <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
+    </aside>
+
+    <article v-for="item in Topic.comments" :key="item.commentId">
+      <h2>{{item.user_comment}}</h2>
+      <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
+      <a v-if="user_id === item.user_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
+      <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
+    </article>
 
   </section>
 

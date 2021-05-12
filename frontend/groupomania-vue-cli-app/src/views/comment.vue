@@ -1,5 +1,11 @@
 <template>
     <div id="ManageComment">
+
+      <nav>
+      <router-link to="/Accueil">Accueil</router-link> | 
+      <router-link :to="'/sujet/' + topicid">Retour sujet</router-link>
+      </nav>
+
       <h2>Modifer mon commentaire</h2>
 
       <label for="subject">Nouveau commentaire</label>
@@ -11,7 +17,7 @@
       <h2>Supprimer mon commentaire</h2>
 
       <button @click="deleteComment">Supprimer</button>
-      <p>{{serverMessage}}</p>
+      <p>{{deleteMessage}}</p>
 
     </div>
     
@@ -27,7 +33,8 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
           user_id: null,
           comment: null
         },
-        serverMessage: null
+        serverMessage: null,
+        deleteMessage: null
       }
   },
   props: { /* recupere les props soient les parametres de la route defini dans la route de index */
@@ -46,7 +53,7 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
       this.update.user_id = sessionStorage.getItem('userId')
        /* envoie le userid dans le put */
 
-      fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
+      fetch("http://localhost:3000/api/sujet/" + this.topicid + "/" + this.commentId, {
         method: 'PUT',
         headers: {
           "content-type": "application/json",
@@ -74,7 +81,7 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
       this.update.user_id = sessionStorage.getItem('userId')
        /* envoie le userid dans le delete */
        
-      fetch("http://localhost:3000/api/sujet/" + this.id + "/" + this.commentId, {
+      fetch("http://localhost:3000/api/sujet/" + this.topicid+ "/" + this.commentId, {
         method: 'DELETE',
         headers: {
           "content-type": "application/json",
@@ -86,7 +93,7 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         if(res.ok) { /* si reponse est ok, je recupere le data */
           res.json()
           .then (data => {
-          this.serverMessage = data.message
+          this.deleteMessage = data.message
           window.open('/sujet/' + this.topicid, '_self')
           })
         } else { /* sinon j'envoie une erreur */
