@@ -4,11 +4,15 @@
 
       <label for="subject">Nouveau commentaire</label>
       <input for="subject" type="text" v-model="update.comment">
-      <a :href="'http://localhost:8080/sujet/' + topicid" @click="modifyComment">Modifier</a>
+
+      <button @click="modifyComment">Modifier</button>
+      <p>{{serverMessage}}</p>
 
       <h2>Supprimer mon commentaire</h2>
 
       <a :href="'http://localhost:8080/sujet/' + topicid" @click="deleteComment">Supprimer</a>
+      <button @click="deleteComment">Supprimer</button>
+      <p>{{serverMessage}}</p>
 
     </div>
     
@@ -23,7 +27,8 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         update: {
           user_id: null,
           comment: null
-        }
+        },
+        serverMessage: null
       }
   },
   props: { /* recupere les props soient les parametres de la route defini dans la route de index */
@@ -51,6 +56,10 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         body: JSON.stringify(this.update)
       })
       .then (res => res.json())
+      .then (data=> {
+        this.serverMessage = data.message
+        window.open('/sujet/' + this.topicid, '_self')
+      })
       .catch(() => console.log({message: "modification du commentaire impossible"}))
     },
         
@@ -68,6 +77,10 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
         body: JSON.stringify({user_id: this.update.user_id})
       })
       .then (res => res.json())
+      .then (data=> {
+        this.serverMessage = data.message
+        window.open('/sujet/' + this.topicid, '_self')
+      })
       .catch(() => console.log({message: "suppression du commentaire impossible"}))
     }  
   },
