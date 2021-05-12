@@ -36,7 +36,7 @@
       </article>
     </main>
 
-  </section>../components/Add_topic.vue
+  </section>
 
 </template>
 
