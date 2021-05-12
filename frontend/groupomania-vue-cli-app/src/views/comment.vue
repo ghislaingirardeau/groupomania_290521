@@ -15,8 +15,8 @@
 </template> 
 
 <script>
-import deletecomment from '../components/deletecomment.vue'
-import updatecomment from '../components/updatecomment.vue'
+import deletecomment from '../components/delete_comment.vue'
+import updatecomment from '../components/update_comment.vue'
 
 export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en front??  */
   

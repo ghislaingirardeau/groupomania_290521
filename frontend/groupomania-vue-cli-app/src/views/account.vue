@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import Deleteaccount from '../components/Deleteaccount.vue'
+import Deleteaccount from '../components/Delete_account.vue'
 
 export default ({
     components: {

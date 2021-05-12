@@ -20,7 +20,7 @@
     <article v-for="item in Topic.comments" :key="item.commentId">
       <h2>{{item.user_comment}}</h2>
       <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
-      <a v-if="user_id === item.user_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
+      <a v-if="user_id === item.user_id || user_id === moderator_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
       <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
     </article>
 
@@ -29,7 +29,7 @@
 </template>
 
 <script>
-import Addcomment from '../components/Addcomment.vue'
+import Addcomment from '../components/Add_comment.vue'
 
 export default {
   name: 'Topic',
@@ -38,7 +38,8 @@ export default {
       Topic: {},
       Subject: {},
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
-      user_id: Number
+      user_id: Number,
+      moderator_id: 38 /* A MASQUER ENV. */
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */

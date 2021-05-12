@@ -4,7 +4,7 @@ import Login from '../components/login.vue'
 import Signup from '../components/signup.vue'
 import Home from '../views/home.vue'
 import Topic from '../views/topic.vue'
-import Addtopic from '../components/Addtopic.vue'
+import Addtopic from '../components/Add_topic.vue'
 import Comment from '../views/comment.vue'
 import account from '../views/account.vue'
 
