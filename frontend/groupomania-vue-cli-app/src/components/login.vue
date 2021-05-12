@@ -37,16 +37,20 @@ export default {
         },
       body: JSON.stringify(this.post)
       })
-      .then (res => res.json())
-      .then(data => {
-            
-        if(data.userId != undefined && data.token != undefined) { /* Verifie si j'ai bien un token et un userid en reponse */
-        /* envoie le token et le id dans la session storage pour recup sur la page home */  
+      .then (res => {
+        if(res.ok) { /* si reponse est ok, je recupere le data */
+          res.json()
+          .then (data => {
+          /* envoie le token et le id dans la session storage pour recup sur la page home */  
           sessionStorage.setItem('token', data.token)
           sessionStorage.setItem('userId', data.userId)
           window.open('/Accueil', '_self')
-        } else {
-          this.errorMessage = data.message /* renvoie error du backend sur le frontend */
+          })
+        } else { /* sinon j'envoie une erreur */
+          res.json()
+          .then(data => {
+            this.errorMessage = data.message /* renvoie error du backend sur le frontend */
+          })
         }
       })
       .catch(() => console.log({message: "erreur de connexion"}))
