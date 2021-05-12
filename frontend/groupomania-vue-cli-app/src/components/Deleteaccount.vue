@@ -37,28 +37,34 @@ export default {
         
     deleteAccount() { 
       var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
+      var confirmation = window.confirm("Etes-vous sûr de vouloir supprimer votre compte ?") /* Ajoute une alerte pour confirmer la suppression */
 
-      fetch("http://localhost:3000/api/compte/remove", {
-        method: 'DELETE',
-        headers: {
-          "content-type": "application/json",
-          "Authorization": 'Bearer ' + token
-        },
-        body: JSON.stringify(this.post)
-      })
-      .then (res => {
-        if(res.ok) { /* si reponse est ok, je recupere le data */
-          res.json()
-          .then (data => {
-          this.serverMessage = data.message
-          window.open('/', '_self')
-          })
-        } else { /* sinon j'envoie une erreur */
-          console.log({message: "Erreur lors de la suppression du compte"})
-          this.serverMessage = "Erreur lors de la suppression du compte"
-        }
-      })
-      .catch(() => console.log({message: "connexion impossible"}))
+      if (confirmation === true) {
+        fetch("http://localhost:3000/api/compte/remove", {
+          method: 'DELETE',
+          headers: {
+            "content-type": "application/json",
+            "Authorization": 'Bearer ' + token
+          },
+          body: JSON.stringify(this.post)
+        })
+        .then (res => {
+          if(res.ok) { /* si reponse est ok, je recupere le data */
+            res.json()
+            .then (data => {
+            this.serverMessage = data.message
+            window.open('/', '_self')
+            })
+          } else { /* sinon j'envoie une erreur */
+            console.log({message: "Erreur lors de la suppression du compte"})
+            this.serverMessage = "Erreur lors de la suppression du compte"
+          }
+        })
+        .catch(() => console.log({message: "connexion impossible"}))
+
+      } else {
+        this.serverMessage = "La suppression du compte a été stoppé"
+      }
     } 
   },
 }
