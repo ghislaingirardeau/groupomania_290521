@@ -22,12 +22,18 @@ exports.signup = (req, res, next) => {
             }
             else if(results){
                 const sql = `CALL signup_user(@username, @email, @password);`;
-                connection.query(sql, (error, results, fields) => {
+                connection.query(sql, (error, result, fields) => {
                     if (error) {
-                        res.status(400).json({message: 'Ce pseudo existe deja'})
+                        res.status(400).json({message: 'Ce pseudo ou cette email existe deja'})
                     }
-                    else if(results){
-                        res.status(201).json({message: 'utilisateur créé'})
+                    else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
+                        let userSelect = result[0] /* extrait l'array correspondant a ma selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+                        res.status(200).json({
+                        userId: userSelect[0].id,
+                            token: jwt.sign(
+                            {userId: userSelect[0].id}, `${process.env.CLE}`,
+                            { expiresIn: '24h'})  
+                        })
                     }
                 });
             }
@@ -53,15 +59,15 @@ exports.login = (req, res, next) => {
                 else if(results.length == 1){
                     bcrypt.compare(req.body.password, results[0].password)
                     .then(valid => {
-                    if (!valid){
-                    return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
-                    }
-                    res.status(200).json({
-                    userId: results[0].id,
-                        token: jwt.sign(
-                        {userId: results[0].id}, `${process.env.CLE}`,
-                        { expiresIn: '24h'})  
-                    })
+                        if (!valid){
+                        return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
+                        }
+                        res.status(200).json({
+                        userId: results[0].id,
+                            token: jwt.sign(
+                            {userId: results[0].id}, `${process.env.CLE}`,
+                            { expiresIn: '24h'})  
+                        })
                     })
                     .catch(() => res.status(500).json({message: "erreur login"}))
                 }           

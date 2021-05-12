@@ -40,7 +40,7 @@ export default {
       .then (res => res.json())
       .then(data => {
             
-        if(data.userId != undefined && data.token != undefined) { /* J'ai bien un token et un userid en reponse */
+        if(data.userId != undefined && data.token != undefined) { /* Verifie si j'ai bien un token et un userid en reponse */
         /* envoie le token et le id dans la session storage pour recup sur la page home */  
           sessionStorage.setItem('token', data.token)
           sessionStorage.setItem('userId', data.userId)
