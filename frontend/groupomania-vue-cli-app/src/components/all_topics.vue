@@ -7,7 +7,7 @@
         <a :href="'sujet/' + item.topicId">
           <h3>{{item.topic}}</h3>
           <p>Sujet créé par {{item.username}}</p>
-          <p>Dernier commentaire fait le {{item.date_modification}}</p>
+          <p>Dernier commentaire fait {{item.Date}}</p>
         </a>
       </article>
 
@@ -16,7 +16,7 @@
       <article v-for="item in Topics.AllTopic" :key="item.topicId"> <!-- Envoyer l'id en parametre url au click -->
         <a :href="'sujet/' + item.topicId">
           <h3>{{item.topic}}</h3>
-          <p>Sujet créé par {{item.username}} le {{item.date_creation}}</p>
+          <p>Sujet créé par {{item.username}} {{item.Date}}</p>
         </a>
       </article>
     </main>

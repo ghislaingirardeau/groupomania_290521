@@ -19,7 +19,7 @@
 
     <article v-for="item in Topic.comments" :key="item.commentId">
       <h2>{{item.user_comment}}</h2>
-      <p>Envoyé par {{item.username}} le {{item.date_comment}}</p>
+      <p>Envoyé par {{item.username}} {{item.Date}}</p>
       <a v-if="user_id === item.user_id || user_id === moderator_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
       <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
     </article>

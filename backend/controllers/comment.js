@@ -5,7 +5,7 @@ const connection = mysql.createConnection(config)
 
 exports.allComments = (req, res, next) => {
 
-    const sql = `CALL list_comment(${req.params.topic_id});`
+    const sql = `CALL list_comments(${req.params.topic_id});`
     connection.query(sql, (error, results, fields) => {
         if (error) {
             res.status(400).json({message: "Impossible d'afficher les commentaires"})
