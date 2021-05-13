@@ -11,7 +11,7 @@
       <p>Sujet créé par {{Subject.username}}</p>
     </header>
 
-    <p v-if="commentLength === 0">Il n'y a pas encore de commentaires fait sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+    <p v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
     <aside> 
     <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->

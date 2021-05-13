@@ -3,12 +3,13 @@ import log from '../views/log.vue'
 import Login from '../components/login.vue'
 import Signup from '../components/signup.vue'
 import Home from '../views/home.vue'
+import allTopics from '../components/all_topics.vue'
 import Topic from '../views/topic.vue'
-import Addtopic from '../components/Add_topic.vue'
+import addTopic from '../components/Add_topic.vue'
 import Comment from '../views/comment.vue'
 import account from '../views/account.vue'
 
-const routes = [
+const routes = [ /* au clic affichera les vues et composant correspondant, par default renvoie Login(log) et Topics(home) */
   {
     path: '/',
     name: 'log',
@@ -32,6 +33,11 @@ const routes = [
     component: Home,
     children: [
       {
+        path: '',
+        name: 'topics',
+        component: allTopics
+      },
+      {
         path: 'Moncompte',
         name: 'account',
         component: account
@@ -39,7 +45,7 @@ const routes = [
       {
         path: 'AjoutSujet',
         name: 'Addtopic',
-        component: Addtopic
+        component: addTopic
       },
     ]
   },
