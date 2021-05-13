@@ -27,12 +27,9 @@
 }
 
 #body a.router-link-exact-active {
-  color: #42b983;
+  color: rgb(212, 89, 89);
 }
 
-.nav_link_display {
-  margin: 0 100px 0 100px;
-}
 
 
 </style>

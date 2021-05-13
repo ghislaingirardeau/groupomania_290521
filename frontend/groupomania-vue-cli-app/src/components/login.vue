@@ -1,14 +1,14 @@
 <template>
 
-    <div id="login">
+    <div id="login" class="row, mt-5">
       
-      <label for="login">Username</label>
-      <input for="login" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
+      <label for="login" class="col-2">Username</label>
+      <input for="login" type="text" class="col-4" v-model="post.username"> <!-- copie les données dans le data post  -->
       
-      <label for="login">Password</label>
-      <input for="login" type="password" v-model="post.password"> <!-- copie les données dans le data post  -->
+      <label for="login" class="col-2" >Password</label>
+      <input for="login" type="password" class="col-4" v-model="post.password"> <!-- copie les données dans le data post  -->
       
-      <button @click="postLogin">Envoyer</button>
+      <button class="col-2, mt-3" @click="postLogin">Envoyer</button>
       <p>{{errorMessage}}</p>
 
     </div>

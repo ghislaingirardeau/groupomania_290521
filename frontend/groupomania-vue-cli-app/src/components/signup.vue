@@ -1,6 +1,6 @@
 <template>
 
-    <div id="Signup">
+    <div id="Signup" class="mt-5">
 
       <label for="signup">Username</label>
       <input for="signup" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
