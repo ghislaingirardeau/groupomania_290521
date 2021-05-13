@@ -1,5 +1,5 @@
 <template>
-  <div id="nav">
+  <div id="body">
     
   <router-view></router-view> 
   </div>
@@ -15,16 +15,19 @@
   color: #2c3e50;
 }
 
-#nav {
+#body {
   padding: 30px;
 }
 
-#nav a {
+#body a {
   font-weight: bold;
   color: #2c3e50;
+  font-size: 2rem;
 }
 
-#nav a.router-link-exact-active {
+#body a.router-link-exact-active {
   color: #42b983;
 }
+
+
 </style>

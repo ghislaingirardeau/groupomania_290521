@@ -1,8 +1,6 @@
 <template>
 
-    <article id="Signup">
-
-      <h2>Signup</h2>
+    <div id="Signup">
 
       <label for="signup">Username</label>
       <input for="signup" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
@@ -16,7 +14,7 @@
       <button @click="postSignup">Envoyer</button>
       <p>{{errorMessage}}</p>
 
-    </article>
+    </div>
 
 </template>
 
