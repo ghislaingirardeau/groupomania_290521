@@ -44,6 +44,7 @@ export default {
           /* envoie le token et le id dans la session storage pour recup sur la page home */  
           sessionStorage.setItem('token', data.token)
           sessionStorage.setItem('userId', data.userId)
+          sessionStorage.setItem('username', data.username)
           window.open('/Accueil', '_self')
           })
         } else { /* sinon j'envoie une erreur */

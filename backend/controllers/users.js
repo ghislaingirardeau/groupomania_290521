@@ -51,7 +51,7 @@ exports.login = (req, res, next) => {
         }
         else if(results){
 
-            const sql = `SELECT id, password FROM Users WHERE username=@username`;
+            const sql = `SELECT id, password, username FROM Users WHERE username=@username`;
             connection.query(sql, (error, results, fields) => {
                 if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
                     res.status(400).json({message: "Ce pseudo n'existe pas"})
@@ -64,6 +64,7 @@ exports.login = (req, res, next) => {
                         return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                         }
                         res.status(200).json({
+                        username: results[0].username,    
                         userId: results[0].id,
                             token: jwt.sign(
                             {userId: results[0].id}, `${process.env.CLE}`,

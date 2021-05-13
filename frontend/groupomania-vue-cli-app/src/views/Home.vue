@@ -2,7 +2,7 @@
 
   <section id="Home">
 
-    <h1>BIENVENUE </h1>
+    <h1>BIENVENUE {{username}}</h1>
 
     <nav>
     <router-link :to="{name: 'topics'}" >Accueil</router-link> | 
@@ -22,9 +22,10 @@
 export default {
   name: 'Home',
   data () {
-    
+    return {
+      username: sessionStorage.getItem('username'),
+      }
   },
-
   disconnect(){
     sessionStorage.removeItem('token')
     sessionStorage.removeItem('userId')
