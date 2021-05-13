@@ -3,7 +3,7 @@
   <section id="Topic">
 
     <nav>
-      <router-link :to="{name: 'Home'}">Accueil</router-link>
+      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link>
     </nav>
 
     <header>

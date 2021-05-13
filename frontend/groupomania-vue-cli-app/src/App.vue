@@ -13,6 +13,7 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+  font-size: 1.2rem;
 }
 
 #body {
@@ -22,11 +23,15 @@
 #body a {
   font-weight: bold;
   color: #2c3e50;
-  font-size: 2rem;
+  font-size: 1.4rem;
 }
 
 #body a.router-link-exact-active {
   color: #42b983;
+}
+
+.nav_link_display {
+  margin: 0 100px 0 100px;
 }
 
 

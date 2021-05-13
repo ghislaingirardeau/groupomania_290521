@@ -5,13 +5,13 @@
     <h1>BIENVENUE {{username}}</h1>
 
     <nav>
-    <router-link :to="{name: 'topics'}" >Accueil</router-link> | 
-    <router-link :to="{name: 'Addtopic'}" >Créer un sujet</router-link> | <!-- Masquer les sujets au click avec v-show -->
-    <router-link :to="{name: 'account'}" >Mon compte</router-link> | <!-- Masquer les sujets au click avec v-show -->
-    <a href="/" @click="disconnect">Deconnexion</a> 
-        
-    <router-view></router-view> 
+    <router-link :to="{name: 'topics'}" class="nav_link_display">Accueil</router-link> | 
+    <router-link :to="{name: 'Addtopic'}" class="nav_link_display">Créer un sujet</router-link> | <!-- Masquer les sujets au click avec v-show -->
+    <router-link :to="{name: 'account'}" class="nav_link_display">Mon compte</router-link> | <!-- Masquer les sujets au click avec v-show -->
+    <a href="/" @click="disconnect" class="nav_link_display">Deconnexion</a> 
     </nav>
+    <router-view></router-view> 
+    
 
   </section>
 
