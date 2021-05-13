@@ -44,7 +44,7 @@ const routes = [
     ]
   },
   {
-    path: '/sujet/:topicid',
+    path: '/sujet/:topicid(\\d+)', /* (\\d+) = le topicid doit etre un nombre entier */
     name: 'Topic',
     component: Topic,
     props: (route) => {
@@ -53,7 +53,7 @@ const routes = [
     },
   },
   {
-    path: '/sujet/:topicid/:commentId',
+    path: '/sujet/:topicid/:commentId(\\d+)',
     name: 'Comment',
     component: Comment,
     props: (route) => {
