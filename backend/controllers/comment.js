@@ -79,15 +79,22 @@ exports.modifyComment = (req, res, next) => {
                 res.status(500).json({message: 'erreur database'})
             } else if (results) {
 
-                const sql = `CALL modify_comment(@commentId, @user_id, @commentUpdated)`
+                const sql = `CALL set_comment(@commentId, @user_id, @commentUpdated)`
                 /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
                 connection.query(sql, (error, results, fields) => {
-                    
-                    if (error || results.length == 2 || results.affectedRows == 0) {
-                        res.status(400).json({message: "Impossible de modifier les commentaires"})
-                       
-                    } else if (results) {
-                        res.status(201).json({message: "Commentaire modifié"})
+
+                    let response = results[0] /* je recupere ma reponse et je l'envoie comme condition */
+                    if(response[0].response == "Cet id n'existe pas") {
+                        res.status(400).json({message: response[0].response})
+                    }
+                    else if (response[0].response == "vous n'avez pas les droits") {
+                        res.status(400).json({message: response[0].response})
+                    }
+                    else if (response[0].response == "Commentaire modifié") {
+                        res.status(200).json({message: response[0].response})
+                    }
+                    else if (response[0].response == "Commentaire modifié par le modérateur") {
+                        res.status(200).json({message: response[0].response})
                     }
                 })
             }

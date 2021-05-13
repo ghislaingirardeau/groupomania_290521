@@ -12,6 +12,6 @@ router.get('/:topic_id', authentification, comment.allComments)   /* send topicI
 router.post('/:topic_id', authentification, comment.addComment)   /* expect {"user_id":"XXX" ,"comment": "XXXX"} */
 
 router.delete('/:topic_id/:comment_id', authentification, comment.removeComment) /*expect { user_id:XXX } */
-router.put('/:topic_id/:comment_id', authentification, comment.modifyComment) /*expect { user_id:XXX ,"comment": "XXXX"} */
+router.put('/:topic_id/:comment_id', authentification, comment.modifyComment) /*expect { "user_id":"XXX" ,"comment": "XXXX"} */
 
 module.exports = router
