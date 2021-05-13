@@ -91,7 +91,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
             
             const sql = `CALL delete_user(@username, @email);`;
             connection.query(sql, (error, results, fields) => {
-                if (results[0].length == 0 || error) { /* Si le tableau ne renvoie aucun resultat, la longueur du 1er array est donc vide */
+                if (results[0].length == 0 || error) { /* Si le tableau ne renvoie aucun resultat (id n'existe pas), la longueur du 1er array est donc vide */
                     res.status(500).json({message: "cet utilisateur n'existe pas"})
                    
                 } else if(results[0].length == 1) { /* Si le tableau renvoie bien une donnée password, la longueur du 1er array est donc de 1 */
