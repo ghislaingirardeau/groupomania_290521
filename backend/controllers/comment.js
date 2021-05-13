@@ -54,15 +54,15 @@ exports.removeComment = (req, res, next) => {
                 res.status(500).json({message: 'erreur database'})
             } else if (results) {
 
-            const sql = `CALL delete_comment(@comment, @user_id);` 
+            const sql = `CALL remove_comment(@comment, @user_id);` 
             /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
             connection.query(sql, (error, results, fields) => {
 
-                if (error || results.length == 2 || results.affectedRows == 0) { 
-                    /* si Id n'existe pas renverra 2 ligne ou si Id ne correspond pas au select renverra 0 affectedRows   */
-                    res.status(400).json({message: "Echec de la suppression du commentaire"})
-                } else if (results) {
-                    res.status(200).json({message: "Le commentaire a bien été supprimé"})
+                let response = results[0] /* je recupere ma reponse et je l'envoie comme condition */
+                if (response[0].response == "vous n'avez pas les droits" || response[0].response == "Cet id n'existe pas" || error) { 
+                    res.status(400).json({message: response[0].response})
+                } else if (response[0].response == "Votre commentaire a bien été supprimé") {
+                    res.status(200).json({message: response[0].response})
                 }
             })
         }

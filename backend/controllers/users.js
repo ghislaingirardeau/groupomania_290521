@@ -60,7 +60,7 @@ exports.login = (req, res, next) => {
                     res.status(400).json({message: "Ce pseudo n'existe pas"})
                 }
                 else if(results.length == 1){ /* Si utilisateur existe, renvoie un tableau avec une seule donnée */
-                    console.log(results)
+                    
                     bcrypt.compare(req.body.password, results[0].password)
                     .then(valid => {
                         if (!valid){
