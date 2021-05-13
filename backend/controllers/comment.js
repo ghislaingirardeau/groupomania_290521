@@ -84,16 +84,10 @@ exports.modifyComment = (req, res, next) => {
                 connection.query(sql, (error, results, fields) => {
 
                     let response = results[0] /* je recupere ma reponse et je l'envoie comme condition */
-                    if(response[0].response == "Cet id n'existe pas") {
+                    if(response[0].response == "Cet id n'existe pas" || response[0].response == "vous n'avez pas les droits" || error) {
                         res.status(400).json({message: response[0].response})
                     }
-                    else if (response[0].response == "vous n'avez pas les droits") {
-                        res.status(400).json({message: response[0].response})
-                    }
-                    else if (response[0].response == "Commentaire modifié") {
-                        res.status(200).json({message: response[0].response})
-                    }
-                    else if (response[0].response == "Commentaire modifié par le modérateur") {
+                    else if (response[0].response == "Commentaire modifié" || response[0].response == "Commentaire modifié par le modérateur") {
                         res.status(200).json({message: response[0].response})
                     }
                 })
