@@ -17,12 +17,14 @@ exports.signup = (req, res, next) => {
 
         const sql = `SET @username="${req.body.username}", @email="${buffer}", @password="${hash}";`
         connection.query(sql, (error, results, fields) => {
+
             if (error) {
                 res.status(400).json({message: 'Ce pseudo existe deja'})
             }
             else if(results){
                 const sql = `CALL signup_user(@username, @email, @password);`;
                 connection.query(sql, (error, result, fields) => {
+
                     if (error) {
                         res.status(400).json({message: 'Ce pseudo ou cette email existe deja'})
                     }
@@ -53,6 +55,7 @@ exports.login = (req, res, next) => {
 
             const sql = `SELECT id, password, username FROM Users WHERE username=@username`;
             connection.query(sql, (error, results, fields) => {
+
                 if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
                     res.status(400).json({message: "Ce pseudo n'existe pas"})
                 }
@@ -84,6 +87,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
     
     const sql = `SET @email="${buffer}", @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
+
         if (error) {
             res.status(500).json({message: 'erreur database'})
         } 
@@ -91,6 +95,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
             
             const sql = `CALL delete_user(@username, @email);`;
             connection.query(sql, (error, results, fields) => {
+
                 if (results[0].length == 0 || error) { /* Si le tableau ne renvoie aucun resultat (id n'existe pas), la longueur du 1er array est donc vide */
                     res.status(500).json({message: "cet utilisateur n'existe pas"})
                    
@@ -103,8 +108,13 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
                         return res.status(400).json({message: "Ce mot de passe n'est pas valide"})
                         }
                         const sql = `DELETE FROM users WHERE email=@email AND username=@username`;
-                        connection.query(sql, () => {
-                            return res.status(200).json({message: "Votre compte a bien été supprimé"})   
+                        connection.query(sql, (error, results, fields) => {
+
+                            if (error) {
+                                res.status(500).json({message: 'erreur database'})
+                            } else if(results) {
+                                return res.status(200).json({message: "Votre compte a bien été supprimé"})
+                            }
                         });
                     })
                     .catch(() => res.status(500).json({message: "erreur login"}))
