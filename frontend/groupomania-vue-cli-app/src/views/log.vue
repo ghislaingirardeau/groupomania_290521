@@ -4,8 +4,8 @@
         
     <h1>Bienvenue sur le forum Groupomania</h1>
     
-    <router-link to="/">login</router-link> |
-    <router-link to="/signup">signup</router-link>    
+    <router-link :to="{name: 'Login'}">login</router-link> |
+    <router-link :to="{name: 'Signup'}">signup</router-link>    
     <router-view></router-view> 
     </nav>
 

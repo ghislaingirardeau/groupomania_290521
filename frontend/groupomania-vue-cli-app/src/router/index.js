@@ -24,7 +24,7 @@ const routes = [
         name: 'Signup',
         component: Signup
       },
-    ]
+    ],
   },
   {
     path: '/Accueil',
@@ -32,7 +32,7 @@ const routes = [
     component: Home,
     children: [
       {
-        path: 'moncompte',
+        path: 'Moncompte',
         name: 'account',
         component: account
       },

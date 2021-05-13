@@ -3,4 +3,8 @@ mysql:
 -p groupomania
 
 A FAIRE 
-Frontend controle du moderator sur les btn delete et modif
+masker id moderator via env.
+
+backend npm run server ou npm run dev
+
+frontend/groupomania-vue-cli-app/  npm run serve

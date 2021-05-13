@@ -2,8 +2,8 @@
     <div id="ManageComment">
 
       <nav>
-      <router-link to="/Accueil">Accueil</router-link> | 
-      <router-link :to="'/sujet/' + topicid">Retour sujet</router-link>
+      <router-link :to="{name: 'Home'}">Accueil</router-link> | 
+      <router-link :to="{name: 'Topic'}">Retour sujet</router-link>
       </nav>
 
       <updatecomment :topicid="topicid" :commentId="commentId" /> <!-- Envoie les props dans le composant -->      
