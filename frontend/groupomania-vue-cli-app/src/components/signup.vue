@@ -3,13 +3,13 @@
     <div id="Signup" class="mt-5">
 
       <label for="signup">Username</label>
-      <input for="signup" type="text" v-model="post.username"> <!-- copie les données dans le data post  -->
+      <input for="signup" type="text" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
       <label for="signup">email</label>
-      <input for="signup" type="email" v-model="post.email"> <!-- copie les données dans le data post  -->
+      <input for="signup" type="email" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
       <label for="signup">Password</label>
-      <input for="signup" type="password" v-model="post.password"> <!-- copie les données dans le data post  -->
+      <input for="signup" type="password" minlength="8" required v-model="post.password"> <!-- copie les données dans le data post  -->
         
       <button @click="postSignup">Envoyer</button>
       <p>{{errorMessage}}</p>

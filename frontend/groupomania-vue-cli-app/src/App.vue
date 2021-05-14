@@ -6,7 +6,7 @@
 
 </template>
 
-<style>
+<style >
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -28,6 +28,12 @@
 
 #body a.router-link-exact-active {
   color: rgb(212, 89, 89);
+}
+
+.message__serveur{
+  padding-top: 10px;
+  font-weight: bold;
+  color: rgb(214, 37, 37);
 }
 
 </style>
