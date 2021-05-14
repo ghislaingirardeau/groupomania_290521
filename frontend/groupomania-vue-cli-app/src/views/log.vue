@@ -6,8 +6,8 @@
         <h1 class="col-12, mt-n4">Bienvenue sur le forum Groupomania</h1>
         </div>
         <nav class="row, text-center, mt-5">
-            <router-link :to="{name: 'Login'}" class="p-5">Se connecter</router-link>
-            <router-link :to="{name: 'Signup'}" class="p-5">S'inscrire</router-link>    
+            <router-link :to="{name: 'Login'}" class="col-6">Se connecter</router-link>
+            <router-link :to="{name: 'Signup'}" class="col-6">S'inscrire</router-link>    
         </nav>
         <router-view></router-view> 
     </div>

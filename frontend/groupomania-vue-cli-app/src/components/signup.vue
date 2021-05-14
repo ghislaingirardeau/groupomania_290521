@@ -2,17 +2,21 @@
 
     <div id="Signup" class="mt-5">
 
-      <label for="signup">Username</label>
-      <input for="signup" type="text" required v-model="post.username" > <!-- copie les données dans le data post  -->
+      <h2 class="col-12 mb-2">Remplissez le formulaire pour vous insrcire :</h2>
+
+      <label for="signup" class="col-12 mt-4">Mon pseudo</label>
+      <input for="signup" type="text" class="col-12 col-md-8" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
-      <label for="signup">email</label>
-      <input for="signup" type="email" required v-model="post.email"> <!-- copie les données dans le data post  -->
+      <label for="signup" class="col-12 mt-4">Mon adresse email</label>
+      <input for="signup" type="email" class="col-12 col-md-8" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
-      <label for="signup">Password</label>
-      <input for="signup" type="password" minlength="8" required v-model="post.password"> <!-- copie les données dans le data post  -->
-        
-      <button @click="postSignup">Envoyer</button>
-      <p>{{errorMessage}}</p>
+      <label for="signup" class="col-12 mt-4">Mot de passe (minimum 8 caractères)</label>
+      <input for="signup" type="password" class="col-12 col-md-8" minlength="8" required v-model="post.password"> <!-- copie les données dans le data post  -->
+      
+      <div class="col-12">
+      <button class="btn btn-primary btn-lg mt-4" @click="postSignup">Envoyer</button>
+      <p class="message__serveur">{{errorMessage}}</p>
+      </div> 
 
     </div>
 

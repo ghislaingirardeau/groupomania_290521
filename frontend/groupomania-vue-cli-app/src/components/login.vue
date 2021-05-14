@@ -2,30 +2,24 @@
 
     <div id="login" class="row, mt-5">
 
-      <h2>Veuillez vous identifier :</h2>
+      <h2 class="col-12 mb-2">Veuillez vous identifier :</h2>
       
-      <label for="login" class="col-12">Mon pseudo</label>
-      <input for="login" type="text" class="col-12" v-model="post.username" required> <!-- copie les données dans le data post  -->
+      <label for="login" class="col-12 mt-4">Mon pseudo</label>
+      <input for="login" type="text" class="col-12 col-md-8" v-model="post.username" required> <!-- copie les données dans le data post  -->
       
-      <label for="login" class="col-12" >Mot de passe</label>
-      <input for="login" type="password" minlength="8" class="col-12" v-model="post.password" required> <!-- copie les données dans le data post  -->
+      <label for="login" class="col-12 mt-3" >Mot de passe</label>
+      <input for="login" type="password" minlength="8" class="col-12 col-md-8" v-model="post.password" required> <!-- copie les données dans le data post  -->
       
-      <button class="mt-3" @click="postLogin">Envoyer</button>
+      <div class="col-12">
+      <button class="btn btn-primary btn-lg mt-4" @click="postLogin">Envoyer</button>
       <p class="message__serveur">{{errorMessage}}</p>
-
+      </div>
       <p>Si vous n'avez pas de compte cliquer sur "s'inscrire"</p>
 
     </div>
 </template>
 
 <style>
-
-label{
-  padding-top: 20px;
-}
-button{
-}
-
 
 </style>
 
