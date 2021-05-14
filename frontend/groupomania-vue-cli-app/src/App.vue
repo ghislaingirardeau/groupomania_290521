@@ -20,14 +20,21 @@
   padding: 30px;
 }
 
+#body nav a {
+  font-weight: bold;
+  color: #0d4883;
+  font-size: 1.4rem;
+}
+
 #body a {
+  font-style: italic;
   font-weight: bold;
   color: #0d4883;
   font-size: 1.4rem;
 }
 
 #body a.router-link-exact-active {
-  color: rgb(212, 89, 89);
+  color: rgb(240, 90, 30);
 }
 
 .message__serveur{
