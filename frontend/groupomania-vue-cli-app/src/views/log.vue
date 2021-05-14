@@ -1,7 +1,7 @@
 <template>
 
     <div id="log" class="container mt-md-n5">
-        <div class="row, text-center">
+        <div class="text-center">
         <img src="@/assets/Logo/icon-above-font.svg" alt="logo_groupomania" id="logo_log" class="mt-n5 mb-n5 w-50"/>
         <h1 class="col-12 mt-lg-n5">Bienvenue sur le forum Groupomania</h1>
         </div>

@@ -1,6 +1,6 @@
 <template>
 
-  <section id="Home">
+  <section id="Home" class="container">
 
     <h1>BIENVENUE {{username}}</h1>
 

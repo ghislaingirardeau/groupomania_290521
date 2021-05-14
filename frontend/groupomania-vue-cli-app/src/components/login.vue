@@ -5,10 +5,10 @@
       <h2 class="col-12 mb-2">Veuillez vous identifier :</h2>
       
       <label for="login" class="col-12 mt-4">Mon pseudo</label>
-      <input for="login" type="text" class="col-12 col-md-8" v-model="post.username" required> <!-- copie les données dans le data post  -->
+      <input for="login" type="text" class="col-12 col-md-6" v-model="post.username" required> <!-- copie les données dans le data post  -->
       
       <label for="login" class="col-12 mt-3" >Mot de passe</label>
-      <input for="login" type="password" minlength="8" class="col-12 col-md-8" v-model="post.password" required> <!-- copie les données dans le data post  -->
+      <input for="login" type="password" minlength="8" class="col-12 col-md-6" v-model="post.password" required> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
       <button class="btn btn-primary btn-lg mt-4" @click="postLogin">Envoyer</button>
