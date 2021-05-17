@@ -27,10 +27,15 @@
         
         <button v-if="user_id === item.user_id || user_id === moderator_id" class="col-3 text-center" @click="manageComment">Modifier</button>
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
-        <div v-show="manageShow">
-          <button class="btn btn-danger btn-lg mt-4" @click="deleteComment">Supprimer</button>
-          <p class="message__serveur col-12">{{deleteMessage}}</p>
-        </div> <!-- :href="'/sujet/' + Subject.topicId + '/' + item.commentId"  -->
+        
+        <!-- COMMENT MANAGEMENT -->
+        <div v-show="manageShow && user_id === item.user_id">
+          <!-- MODIF BOUTON -->
+          <updatecomment :topicid="topicid" :commentId="item.commentId" :user_comment="item.user_comment" />     
+          <!-- DELETE BOUTON -->
+          <deletecomment :topicid="topicid" :commentId="item.commentId"/>
+        </div> <!--   -->
+
       </article>
     </div>
 
@@ -44,6 +49,8 @@
 
 <script>
 import Addcomment from '../components/Add_comment.vue'
+import deletecomment from '../components/delete_comment.vue'
+import updatecomment from '../components/update_comment.vue'
 
 export default {
   name: 'Topic',
@@ -54,7 +61,7 @@ export default {
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
       user_id: Number,
       moderator_id: 38, /* A MASQUER ENV. */
-      manageShow: false
+      manageShow: false,
     }
   },
   methods: {
@@ -74,6 +81,8 @@ export default {
   },
   components: {
     Addcomment,
+    deletecomment,
+    updatecomment
   },
   mounted () {
     var token = sessionStorage.getItem('token')

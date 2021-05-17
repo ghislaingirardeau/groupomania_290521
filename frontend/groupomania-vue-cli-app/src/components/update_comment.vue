@@ -1,12 +1,10 @@
 <template>
-    <div id="UpdateComment" class="row mt-5 d-flex justify-content-center comment__view--colors">
-
-      <h2 class="col-12 mb-4">Gérer mon commentaire</h2>
+    <div id="UpdateComment">
 
       <label for="update_comment" class="col-12">Changer ci-dessous votre commentaire :</label>
-      <textarea name="update_comment" id="update_comment" v-model="update.comment" class="col-12" cols="30" rows="5"></textarea>
-
-      <button class="btn btn-orange btn-lg mt-4" @click="modifyComment">Modifier</button>
+      <textarea id="update_comment" name="update_comment" v-model="update.comment" :placeholder="user_comment" 
+      class="col-12" cols="10" rows="3" ></textarea>
+      <button class="btn btn-orange btn-lg mt-4" @click="modifyComment">Changer</button>
       <p class="message__serveur col-12">{{serverMessage}}</p>
 
     </div>
@@ -35,6 +33,10 @@ export default ({
     type: Number,
     required: true,
     },
+    user_comment: {
+      type: String,
+      required: true,
+    }
   },
   methods: {
 
