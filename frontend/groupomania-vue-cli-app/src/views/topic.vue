@@ -1,32 +1,69 @@
 <template>
 
-  <section id="Topic">
-
-    <nav>
-      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link>
-    </nav>
+  <section id="Topic" class="container">
 
     <header>
-      <h1>{{Subject.topic}}</h1>
-      <p>Sujet créé par {{Subject.username}}</p>
+      <img src="@/assets/Logo/icon-left-font.svg" alt="logo_groupomania" id="logo_home" class="mt-n5 mb-n5 w-50"/>
+      <h1 class="col-12 mt-lg-n5">Bienvenue sur notre forum</h1>
+      <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
     </header>
 
-    <p v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+    <nav class="row d-flex justify-content-around mt-3">
+      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link>
+    </nav>
+    <div class="col-12 mt-3 pt-3 row titre_sujet">
+      <h1 class="col-9 text-left">Sujet: {{Subject.topic}}</h1>
+      <p class="col-3 pt-3">créé par {{Subject.username}}</p>
+    </div>
 
-    <aside> 
+    <div class="row d-flex justify-content-around mt-4 comment--layout">
+
+      <p class="pt-3" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+
+      <article class="col-11 row d-flex justify-content-between mt-3 mb-3 text-left pt-4" v-for="item in Topic.comments" :key="item.commentId" id="comment">
+        <p class="col-12 comment--layout--font">{{item.user_comment}}</p>
+        <p class="col-9 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
+        <a v-if="user_id === item.user_id || user_id === moderator_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId" 
+        class="col-3 text-center">Modifier</a> 
+        <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
+      </article>
+    </div>
+
+    <aside class="row d-flex justify-content-around mt-5"> 
     <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
     </aside>
-
-    <article v-for="item in Topic.comments" :key="item.commentId">
-      <h2>{{item.user_comment}}</h2>
-      <p>Envoyé par {{item.username}} {{item.Date}}</p>
-      <a v-if="user_id === item.user_id || user_id === moderator_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId">Modifier</a> 
-      <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
-    </article>
 
   </section>
 
 </template>
+
+<style>
+.titre_sujet{
+  color: #2f353a;
+}
+.comment--layout {
+  background-color: rgb(248, 152, 114);
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+  color: #2f353a;
+}
+.comment--layout--font {
+  font-weight: 600;
+  color: #2f353a;
+  font-size: 1.2rem;
+  font-style: italic;
+}
+.comment--layout--by {
+  color: #2f353a;
+  font-size: 1rem;
+  font-style: italic;
+}
+#comment{
+  background-color: white;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+</style>
 
 <script>
 import Addcomment from '../components/Add_comment.vue'
