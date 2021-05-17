@@ -11,7 +11,8 @@
     <nav class="row d-flex justify-content-around mt-3">
       <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link>
     </nav>
-    <div class="col-12 mt-3 pt-3 row titre_sujet">
+
+    <div class="col-12 mt-3 pt-3 row comment__view--colors">
       <h1 class="col-9 text-left">Sujet: {{Subject.topic}}</h1>
       <p class="col-3 pt-3">créé par {{Subject.username}}</p>
     </div>
@@ -38,7 +39,7 @@
 </template>
 
 <style>
-.titre_sujet{
+.comment__view--colors{
   color: #2f353a;
 }
 .comment--layout {

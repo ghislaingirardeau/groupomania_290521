@@ -1,8 +1,14 @@
 <template>
-    <div id="ManageComment">
+    <div id="ManageComment" class="container">
 
-      <nav>
-      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link> | 
+      <header>
+        <img src="@/assets/Logo/icon-left-font.svg" alt="logo_groupomania" id="logo_home" class="mt-n5 mb-n5 w-25"/>
+        <h1 class="col-12 mt-lg-n5">Bienvenue sur notre forum</h1>
+        <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
+      </header>
+
+      <nav class="row d-flex justify-content-around mt-3">
+      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link> 
       <router-link :to="{name: 'Topic'}" class="nav_link_display">Retour sujet</router-link>
       </nav>
 

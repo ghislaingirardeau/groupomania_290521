@@ -1,6 +1,6 @@
 <template>
 
-  <article class="row mt-5 d-flex justify-content-center">
+  <article class="row mt-5 d-flex justify-content-center comment__view--colors">
 
     <h2 class="col-12 mb-4">Ajouter un commentaire</h2>
 

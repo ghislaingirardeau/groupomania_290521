@@ -1,5 +1,5 @@
 <template>
-    <div id="DeleteComment" class="row mt-5 d-flex justify-content-center">
+    <div id="DeleteComment" class="row mt-5 d-flex justify-content-center comment__view--colors">
 
       <h2 class="col-12 mb-4">Supprimer mon commentaire</h2>
 
