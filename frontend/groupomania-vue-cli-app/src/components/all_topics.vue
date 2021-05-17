@@ -10,7 +10,7 @@
           <h3 class="pt-5 pb-5 border-bottom border-secondary">{{item.topic}}</h3>
           <p class="font-italic text-left">Créé par {{item.username}} <br>Dernier commentaire fait <br>{{item.Date}}</p>
         </a>
-      </article>
+      </article> 
     </div>
 
     <div class="col-12 col-lg-5 mt-5 mt-lg-0" id="all_topic">
