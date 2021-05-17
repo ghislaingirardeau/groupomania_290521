@@ -10,7 +10,7 @@
       <input for="signup" type="text" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
       <label for="signup" class="col-12 mt-4">Mon adresse email</label>
-      <input for="signup" type="email" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
+      <input for="signup" type="email" placeholder="exemple@mail.com" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
       <label for="signup" class="col-12 mt-4">Mot de passe (minimum 6 caractères)</label>
       <input for="signup" type="password" class="col-12 col-md-6" minlength="6" required v-model="post.password"> <!-- copie les données dans le data post  -->
