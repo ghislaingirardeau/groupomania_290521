@@ -1,20 +1,22 @@
 <template>
 
-    <article>
+    <article class="row, mt-5">
 
-      <h2>Supprimer mon compte</h2>
+      <h2 class="col-12 mb-4">La suppression de votre compte est définitive et supprimera tous les sujets et commentaires liés à ce compte !</h2>
 
-      <label for="delete">Username</label>
-      <input for="delete" type="text" v-model="post.username"> 
+      <label for="delete" class="col-12 mt-4">Username</label>
+      <input for="delete" type="text" class="col-12 col-md-6" required v-model="post.username"> 
         
-      <label for="delete">email</label>
-      <input for="delete" type="email" v-model="post.email"> 
+      <label for="delete" class="col-12 mt-4">email</label>
+      <input for="delete" type="email" class="col-12 col-md-6" required v-model="post.email"> 
         
-      <label for="delete">Password</label>
-      <input for="delete" type="password" v-model="post.password"> 
-      
-      <button @click="deleteAccount">Supprimer !</button>
-      <p>{{serverMessage}}</p>
+      <label for="delete" class="col-12 mt-4">Password</label>
+      <input for="delete" type="password" class="col-12 col-md-6" required v-model="post.password"> 
+
+      <div class="col-12">
+      <button class="btn btn-primary btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
+      <p class="message__serveur">{{serverMessage}}</p>
+      </div> 
 
     </article>
 
@@ -56,7 +58,6 @@ export default {
             window.open('/', '_self')
             })
           } else { /* sinon j'envoie une erreur */
-            console.log({message: "Erreur lors de la suppression du compte"})
             this.serverMessage = "Erreur lors de la suppression du compte"
           }
         })

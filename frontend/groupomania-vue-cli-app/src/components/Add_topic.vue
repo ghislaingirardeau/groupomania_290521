@@ -1,14 +1,18 @@
 <template>
 
-    <article class="row, mt-5">
+    <article class="row mt-5">
 
       <h2 class="col-12 mb-4">Ajouter ici le sujet de discussion de votre choix:</h2>
-      <p>Le texte du sujet ne doit pas faire plus de 100 caractères !</p>
-      <label for="topic" class="col-12"></label>
-      <input for="topic" type="text" class="col-12 col-md-6" maxlength="100" v-model="post.topic" required>
       
-      <button class="btn btn-primary btn-lg mt-4" @click="postSubject">Publier</button>
-      <p>{{serverMessage}}</p>
+      <form action="/Accueil" class="col-12">
+        <label for="topic" class="col-12"></label>
+        <input for="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
+        placeholder="Le sujet doit contenir moins de 100 caractères !" v-model="post.topic" required>
+      <div class="col-12">
+        <input type="submit" value="Publier" class="btn btn-primary btn-lg mt-4" @click="postSubject">
+        <p class="message__serveur">{{serverMessage}}</p>
+      </div>
+      </form>
 
     </article>
 
@@ -45,7 +49,6 @@ export default {
           res.json()
           .then (data => {
           this.serverMessage = data.message
-          window.open('/Accueil', '_self')
           })
         } else { /* sinon j'envoie une erreur */
           this.serverMessage = "Ajout du sujet impossible"
