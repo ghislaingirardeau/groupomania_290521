@@ -43,12 +43,12 @@
   color: rgb(214, 37, 37);
 }
 
-input{
+input, textarea{
   border: 2px solid #2f353a;
   border-radius: 5px 5px;
 }
 
-input:focus{
+input:focus, textarea:focus{
   box-shadow: #0d4883 1px 1px 7px 1px;
   border-radius: 5px 5px;
   outline: unset;

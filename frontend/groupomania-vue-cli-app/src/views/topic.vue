@@ -29,7 +29,7 @@
       </article>
     </div>
 
-    <aside class="row d-flex justify-content-around mt-5"> 
+    <aside> 
     <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
     </aside>
 

@@ -1,10 +1,10 @@
 <template>
-    <div id="ManageComment">
+    <div id="DeleteComment" class="row mt-5 d-flex justify-content-center">
 
-      <h2>Supprimer mon commentaire</h2>
+      <h2 class="col-12 mb-4">Supprimer mon commentaire</h2>
 
-      <button @click="deleteComment">Supprimer</button>
-      <p>{{deleteMessage}}</p>
+      <button class="btn btn-danger btn-lg mt-4" @click="deleteComment">Supprimer</button>
+      <p class="message__serveur">{{deleteMessage}}</p>
 
     </div>
     
@@ -13,7 +13,7 @@
 <script>
 export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en front??  */
   
-  name: "ManageComment",
+  name: "DeleteComment",
   data () {
       return {
         update: {

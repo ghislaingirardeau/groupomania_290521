@@ -1,13 +1,13 @@
 <template>
-    <div id="ManageComment">
+    <div id="UpdateComment" class="row mt-5 d-flex justify-content-center">
 
-      <h2>Modifer mon commentaire</h2>
+      <h2 class="col-12 mb-4">Gérer mon commentaire</h2>
 
-      <label for="comment">Nouveau commentaire</label>
-      <input for="comment" type="text" v-model="update.comment">
+      <label for="update_comment" class="col-12">Changer ci-dessous votre commentaire :</label>
+      <textarea name="update_comment" id="update_comment" v-model="update.comment" class="col-12 col-xl-6" cols="30" rows="5"></textarea>
 
-      <button @click="modifyComment">Modifier</button>
-      <p>{{serverMessage}}</p>
+      <button class="btn btn-primary btn-lg mt-4" @click="modifyComment">Modifier</button>
+      <p class="message__serveur">{{serverMessage}}</p>
 
     </div>
     
@@ -16,7 +16,7 @@
 <script>
 export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en front??  */
   
-  name: "ManageComment",
+  name: "UpdateComment",
   data () {
       return {
         update: {

@@ -8,7 +8,7 @@
 
       <updatecomment :topicid="topicid" :commentId="commentId" /> <!-- Envoie les props dans le composant -->      
 
-      <deletecomment :topicid="topicid" :commentId="commentId" />
+      <deletecomment :topicid="topicid" :commentId="commentId" class="border-top border-danger pt-4"/>
 
     </div>
     

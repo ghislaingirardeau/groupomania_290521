@@ -1,14 +1,14 @@
 <template>
 
-  <article>
+  <article class="row mt-5 d-flex justify-content-center">
 
-    <h2>Ajouter un commentaire</h2>
+    <h2 class="col-12 mb-4">Ajouter un commentaire</h2>
 
-    <label for="Comment">Nouveau commentaire</label>
-    <input for="Comment" type="text" v-model="post.comment">
+    <label for="Comment" class="col-12">Saisser votre commentaire ci-dessous:</label>
+    <textarea name="Comment" id="Comment" v-model="post.comment" class="col-12 col-xl-6" cols="30" rows="5"></textarea>
     
-    <button @click="postComment">Publier</button>
-    <p>{{serverMessage}}</p>
+    <button class="btn btn-primary btn-lg mt-4" @click="postComment">Publier</button>
+    <p class="message__serveur">{{serverMessage}}</p>
 
   </article>
 
