@@ -22,7 +22,7 @@ exports.signup = (req, res, next) => {
                 res.status(400).json({message: 'Ce pseudo existe deja'})
             }
             else if(results){
-                const sql = `CALL signup_user(@username, @email, @password);`;
+                const sql = `CALL sign_user(@username, @email, @password);`;
                 connection.query(sql, (error, result, fields) => {
 
                     if (error) {
@@ -31,7 +31,8 @@ exports.signup = (req, res, next) => {
                     else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
                         let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
                         res.status(200).json({
-                        userId: userSelect[0].id,
+                            username: userSelect[0].username,
+                            userId: userSelect[0].id,
                             token: jwt.sign(
                             {userId: userSelect[0].id}, `${process.env.CLE}`,
                             { expiresIn: '24h'})  
