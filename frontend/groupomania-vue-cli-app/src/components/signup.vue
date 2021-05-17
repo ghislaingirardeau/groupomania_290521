@@ -4,19 +4,22 @@
 
       <h2 class="col-12 mb-2">Remplissez le formulaire pour vous insrcire :</h2>
 
+      <form action="/Accueil">
+
       <label for="signup" class="col-12 mt-4">Mon pseudo</label>
-      <input for="signup" type="text" class="col-12 col-md-6" required v-model="post.username" > <!-- copie les données dans le data post  -->
+      <input for="signup" type="text" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
       <label for="signup" class="col-12 mt-4">Mon adresse email</label>
       <input for="signup" type="email" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
-      <label for="signup" class="col-12 mt-4">Mot de passe (minimum 8 caractères)</label>
-      <input for="signup" type="password" class="col-12 col-md-6" minlength="8" required v-model="post.password"> <!-- copie les données dans le data post  -->
+      <label for="signup" class="col-12 mt-4">Mot de passe (minimum 6 caractères)</label>
+      <input for="signup" type="password" class="col-12 col-md-6" minlength="6" required v-model="post.password"> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
-      <button class="btn btn-primary btn-lg mt-4" @click="postSignup">Envoyer</button>
+      <input type="submit" value="Envoyer" class="btn btn-primary btn-lg mt-4" @click="postSignup">
       <p class="message__serveur">{{errorMessage}}</p>
       </div> 
+      </form>
 
     </div>
 
@@ -52,7 +55,6 @@ export default {
             /* envoie le token et le id dans la session storage pour recup sur la page home */  
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('userId', data.userId)
-            window.open('/Accueil', '_self')
             })
           } else { /* sinon j'envoie une erreur */
             res.json()
