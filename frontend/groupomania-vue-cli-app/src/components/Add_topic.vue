@@ -1,13 +1,13 @@
 <template>
 
-    <article>
+    <article class="row, mt-5">
 
-      <h2>Créer un sujet</h2>
-
-      <label for="topic">Nouveau sujet</label>
-      <input for="topic" type="text" v-model="post.topic">
+      <h2 class="col-12 mb-4">Ajouter ici le sujet de discussion de votre choix:</h2>
+      <p>Le texte du sujet ne doit pas faire plus de 100 caractères !</p>
+      <label for="topic" class="col-12"></label>
+      <input for="topic" type="text" class="col-12 col-md-6" maxlength="100" v-model="post.topic" required>
       
-      <button @click="postSubject">Publier</button>
+      <button class="btn btn-primary btn-lg mt-4" @click="postSubject">Publier</button>
       <p>{{serverMessage}}</p>
 
     </article>

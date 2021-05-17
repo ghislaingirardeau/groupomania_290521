@@ -39,7 +39,11 @@
   border-radius: 10px 10px;
   box-shadow: #2f353a 5px 5px 5px;
 }
-h2{
+#last_topic h2{
+  color: white;
+  font-weight: bold;
+}
+#all_topic h2{
   color: white;
   font-weight: bold;
 }
