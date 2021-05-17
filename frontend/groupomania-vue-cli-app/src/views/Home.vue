@@ -9,7 +9,7 @@
     </header>
 
     <nav class="row d-flex justify-content-around mt-3">
-      <router-link :to="{name: 'topics'}" class="nav_link_display">Accueil</router-link>  
+      <router-link :to="{name: 'topics'}" class="nav_link_display">Liste des sujets</router-link>  
       <router-link :to="{name: 'Addtopic'}" class="nav_link_display">Créer un sujet</router-link> <!-- Masquer les sujets au click avec v-show -->
       <router-link :to="{name: 'account'}" class="nav_link_display">Mon compte</router-link> <!-- Masquer les sujets au click avec v-show --> 
     </nav>
@@ -37,21 +37,3 @@ export default {
 }
 </script>
 
-<style>
-/* .header_home{
-  border: 2px solid green;
-  height: 300px;
-  overflow: hidden;
-  position: relative;
-}
-
-#logo_home{
-z-index: -1;
-position: absolute;
-left: 25%;
-right: 25%;
-object-fit: cover;
-width: 100%;
-border: 2px solid green;
-} */
-</style>

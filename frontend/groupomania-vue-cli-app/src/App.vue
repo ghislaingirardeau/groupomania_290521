@@ -6,7 +6,7 @@
 
 </template>
 
-<style >
+<style > /* mise en forme des tous les elements communes a chaque view: body, nav, input et message serveur  */
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -54,5 +54,9 @@ input:focus, textarea:focus{
   outline: unset;
 }
 
-
+nav {
+    border-bottom: 3px solid rgb(212, 89, 89);
+    border-top: 3px solid rgb(212, 89, 89);
+    padding: 10px;
+}
 </style>

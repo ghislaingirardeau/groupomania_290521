@@ -19,7 +19,7 @@
 
     <div class="row d-flex justify-content-around mt-4 comment--layout">
 
-      <p class="pt-3" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+      <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article class="col-11 row d-flex justify-content-between mt-3 mb-3 text-left pt-4" v-for="item in Topic.comments" :key="item.commentId" id="comment">
         <p class="col-12 comment--layout--font">{{item.user_comment}}</p>
@@ -38,7 +38,7 @@
 
 </template>
 
-<style>
+<style> /* style propre aux comments */
 .comment__view--colors{
   color: #2f353a;
 }
@@ -63,6 +63,9 @@
   background-color: white;
   border-radius: 10px 10px;
   box-shadow: #2f353a 5px 5px 5px;
+}
+.nocomment--bold{
+  font-weight: bold;
 }
 </style>
 

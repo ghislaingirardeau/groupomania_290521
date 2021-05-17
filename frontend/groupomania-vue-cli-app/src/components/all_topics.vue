@@ -28,7 +28,7 @@
 
 </template>
 
-<style>
+<style> /* style propre au topic */
 #last_topic {
   background-color: rgb(240, 90, 30);
   border-radius: 10px 10px;

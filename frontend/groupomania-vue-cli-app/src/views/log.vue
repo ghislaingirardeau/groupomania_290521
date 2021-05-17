@@ -14,13 +14,3 @@
 
 </template>
 
-<style>
-
-
-nav {
-    border-bottom: 3px solid rgb(212, 89, 89);
-    border-top: 3px solid rgb(212, 89, 89);
-    padding: 10px;
-}
-
-</style>

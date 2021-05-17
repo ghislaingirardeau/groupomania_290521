@@ -4,13 +4,13 @@
 
       <h2 class="col-12 mb-4">La suppression de votre compte est définitive et supprimera tous les sujets et commentaires liés à ce compte !</h2>
 
-      <label for="delete" class="col-12 mt-4">Username</label>
+      <label for="delete" class="col-12 mt-4">Votre pseudo</label>
       <input for="delete" type="text" class="col-12 col-md-6" required v-model="post.username"> 
         
-      <label for="delete" class="col-12 mt-4">email</label>
+      <label for="delete" class="col-12 mt-4">Votre adresse email</label>
       <input for="delete" type="email" class="col-12 col-md-6" required v-model="post.email"> 
         
-      <label for="delete" class="col-12 mt-4">Password</label>
+      <label for="delete" class="col-12 mt-4">Votre mot de passe</label>
       <input for="delete" type="password" class="col-12 col-md-6" required v-model="post.password"> 
 
       <div class="col-12">

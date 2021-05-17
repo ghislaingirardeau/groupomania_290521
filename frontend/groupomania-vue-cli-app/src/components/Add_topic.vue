@@ -9,7 +9,7 @@
         <input for="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
         placeholder="Le sujet doit contenir moins de 100 caractères !" v-model="post.topic" required>
       <div class="col-12">
-        <input type="submit" value="Publier" class="btn btn-primary btn-lg mt-4" @click="postSubject">
+        <input type="submit" value="Publier ce sujet" class="btn btn-primary btn-lg mt-4" @click="postSubject">
         <p class="message__serveur">{{serverMessage}}</p>
       </div>
       </form>
