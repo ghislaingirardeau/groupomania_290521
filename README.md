@@ -1,11 +1,23 @@
-mysql:
--u admin
+Moderateur:
+-u moderator
 -p groupomania
 
 A FAIRE 
-masker id moderator via env.
-controle password longueur et email @
+masquer id moderator via env.
 
-backend npm run server ou npm run dev
+--COPY REPOSITORY Groupomania--
 
-frontend/groupomania-vue-cli-app/  npm run serve
+--LANCEMENT BACKEND--
+
+cd backend 
+npm run server ou npm run dev
+
+--LANCEMENT FRONTEND--
+
+cd frontend
+cd groupomania-vue-cli-app
+npm run serve
+
+--Fichier DATABASE--
+
+dans le dossier backend/node-mysql
