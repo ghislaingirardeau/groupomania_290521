@@ -7,7 +7,7 @@
 
     <article v-for="item in Topics.lastTopicComment" :key="item.topicId" id="last_topic--layout" class="col-12 topic--layout"> <!-- Envoyer l'id en parametre url au click -->
       <a :href="'sujet/' + item.topicId">
-        <h3 class="pt-5 pb-5">{{item.topic}}</h3>
+        <h3 class="pt-5 pb-5 border-bottom border-secondary">{{item.topic}}</h3>
         <p class="font-italic text-left">Créé par {{item.username}} <br>Dernier commentaire fait <br>{{item.Date}}</p>
       </a>
     </article>
@@ -18,7 +18,7 @@
 
     <article v-for="item in Topics.AllTopic" :key="item.topicId" class="col-12 topic--layout"> <!-- Envoyer l'id en parametre url au click -->
       <a :href="'sujet/' + item.topicId">
-        <h3 class="pt-5 pb-5">{{item.topic}}</h3>
+        <h3 class="pt-5 pb-5 border-bottom border-secondary">{{item.topic}}</h3>
         <p class="font-italic text-left">Sujet créé par {{item.username}} <br> {{item.Date}}</p>
       </a>
     </article>
