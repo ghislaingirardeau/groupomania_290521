@@ -6,7 +6,6 @@ import Home from '../views/Home.vue'
 import allTopics from '../components/all_topics.vue'
 import Topic from '../views/topic.vue'
 import addTopic from '../components/Add_topic.vue'
-import Comment from '../views/comment.vue'
 import account from '../views/account.vue'
 
 const routes = [ /* au clic affichera les vues et composant correspondant, par default renvoie Login(log) et Topics(home) */
@@ -56,16 +55,6 @@ const routes = [ /* au clic affichera les vues et composant correspondant, par d
     props: (route) => {
       const topicid = Number.parseInt(route.params.topicid); /* je t'envoie en params un nombre et ce nombre sera stocké dans la props topicid */
       return { topicid }
-    },
-  },
-  {
-    path: '/sujet/:topicid(\\d+)/:commentId(\\d+)',
-    name: 'Comment',
-    component: Comment,
-    props: (route) => {
-      const topicid = Number.parseInt(route.params.topicid);
-      const commentId = Number.parseInt(route.params.commentId);
-      return { topicid, commentId }
     },
   },
 ]
