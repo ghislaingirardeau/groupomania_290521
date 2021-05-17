@@ -17,7 +17,7 @@
       
         <div class="col-12">
           <input type="submit" value="Envoyer" class="btn btn-primary btn-lg mt-4" @click="postSignup">
-          <p class="message__serveur">{{errorMessage}}</p>
+          <p class="message__serveur col-12">{{errorMessage}}</p>
         </div> 
       </form>
 
@@ -55,6 +55,7 @@ export default {
             /* envoie le token et le id dans la session storage pour recup sur la page home */  
             sessionStorage.setItem('token', data.token)
             sessionStorage.setItem('userId', data.userId)
+            sessionStorage.setItem('username', data.username)
             })
           } else { /* sinon j'envoie une erreur */
             res.json()

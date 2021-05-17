@@ -4,7 +4,7 @@
       <h2 class="col-12 mb-4">Supprimer mon commentaire</h2>
 
       <button class="btn btn-danger btn-lg mt-4" @click="deleteComment">Supprimer</button>
-      <p class="message__serveur">{{deleteMessage}}</p>
+      <p class="message__serveur col-12">{{deleteMessage}}</p>
 
     </div>
     

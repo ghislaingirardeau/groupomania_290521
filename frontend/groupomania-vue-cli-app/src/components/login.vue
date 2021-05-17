@@ -12,7 +12,7 @@
       
       <div class="col-12">
       <button class="btn btn-primary btn-lg mt-4" @click="postLogin">Envoyer</button>
-      <p class="message__serveur">{{errorMessage}}</p>
+      <p class="message__serveur col-12">{{errorMessage}}</p>
       </div>
       <p>Si vous n'avez pas de compte cliquer sur "s'inscrire"</p>
 

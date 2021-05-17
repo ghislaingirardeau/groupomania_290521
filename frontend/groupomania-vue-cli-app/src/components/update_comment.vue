@@ -7,7 +7,7 @@
       <textarea name="update_comment" id="update_comment" v-model="update.comment" class="col-12" cols="30" rows="5"></textarea>
 
       <button class="btn btn-primary btn-lg mt-4" @click="modifyComment">Modifier</button>
-      <p class="message__serveur">{{serverMessage}}</p>
+      <p class="message__serveur col-12">{{serverMessage}}</p>
 
     </div>
     

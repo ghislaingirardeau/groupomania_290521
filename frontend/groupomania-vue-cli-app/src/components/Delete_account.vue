@@ -15,7 +15,7 @@
 
       <div class="col-12">
       <button class="btn btn-primary btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
-      <p class="message__serveur">{{serverMessage}}</p>
+      <p class="message__serveur col-12">{{serverMessage}}</p>
       </div> 
 
     </article>
