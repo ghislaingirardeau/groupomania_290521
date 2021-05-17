@@ -11,17 +11,13 @@
       <input for="login" type="password" class="col-12 col-md-6" v-model="post.password" required> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
-      <button class="btn btn-primary btn-lg mt-4" @click="postLogin">Envoyer</button>
+      <button class="btn btn-orange btn-lg mt-4" @click="postLogin">Envoyer</button>
       <p class="message__serveur col-12">{{errorMessage}}</p>
       </div>
       <p>Si vous n'avez pas de compte cliquer sur "s'inscrire"</p>
 
     </div>
 </template>
-
-<style>
-
-</style>
 
 <script>
 export default {

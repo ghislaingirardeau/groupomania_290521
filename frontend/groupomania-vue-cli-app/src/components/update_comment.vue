@@ -6,7 +6,7 @@
       <label for="update_comment" class="col-12">Changer ci-dessous votre commentaire :</label>
       <textarea name="update_comment" id="update_comment" v-model="update.comment" class="col-12" cols="30" rows="5"></textarea>
 
-      <button class="btn btn-primary btn-lg mt-4" @click="modifyComment">Modifier</button>
+      <button class="btn btn-orange btn-lg mt-4" @click="modifyComment">Modifier</button>
       <p class="message__serveur col-12">{{serverMessage}}</p>
 
     </div>
@@ -14,7 +14,7 @@
 </template> 
 
 <script>
-export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en front??  */
+export default ({ 
   
   name: "UpdateComment",
   data () {
@@ -59,7 +59,6 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
           window.open('/sujet/' + this.topicid, '_self')
           })
         } else { /* sinon j'envoie une erreur */
-          console.log({message: "modification du commentaire impossible"})
           this.serverMessage = "Vous n'avez pas les droits pour modifier ce commentaire"
         }
       })

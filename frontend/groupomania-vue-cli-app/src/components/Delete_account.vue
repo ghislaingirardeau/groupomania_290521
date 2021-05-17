@@ -14,7 +14,7 @@
       <input for="delete" type="password" class="col-12 col-md-6" required v-model="post.password"> 
 
       <div class="col-12">
-      <button class="btn btn-primary btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
+      <button class="btn btn-orange btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
       <p class="message__serveur col-12">{{serverMessage}}</p>
       </div> 
 

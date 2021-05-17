@@ -59,4 +59,10 @@ nav {
     border-top: 3px solid rgb(212, 89, 89);
     padding: 10px;
 }
+
+.btn-orange{
+background-color: rgb(240, 90, 30);
+border: 2px solid #2f353a;
+color: white;
+}
 </style>

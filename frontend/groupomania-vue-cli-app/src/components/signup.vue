@@ -16,7 +16,7 @@
         <input for="signup" type="password" class="col-12 col-md-6" minlength="6" required v-model="post.password"> <!-- copie les données dans le data post  -->
       
         <div class="col-12">
-          <input type="submit" value="Envoyer" class="btn btn-primary btn-lg mt-4" @click="postSignup">
+          <input type="submit" value="Envoyer" class="btn btn-orange btn-lg mt-4" @click="postSignup">
           <p class="message__serveur col-12">{{errorMessage}}</p>
         </div> 
       </form>
