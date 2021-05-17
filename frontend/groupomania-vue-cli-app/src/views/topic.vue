@@ -21,12 +21,16 @@
 
       <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
-      <article class="col-11 row d-flex justify-content-between mt-3 mb-3 text-left pt-4" v-for="item in Topic.comments" :key="item.commentId" id="comment">
+      <article class="col-11 row d-flex justify-content-between mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
         <p class="col-12 comment--layout--font">{{item.user_comment}}</p>
         <p class="col-9 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
-        <a v-if="user_id === item.user_id || user_id === moderator_id" :href="'/sujet/' + Subject.topicId + '/' + item.commentId" 
-        class="col-3 text-center">Modifier</a>
+        
+        <button v-if="user_id === item.user_id || user_id === moderator_id" class="col-3 text-center" @click="manageComment">Modifier</button>
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
+        <div v-show="manageShow">
+          <button class="btn btn-danger btn-lg mt-4" @click="deleteComment">Supprimer</button>
+          <p class="message__serveur col-12">{{deleteMessage}}</p>
+        </div> <!-- :href="'/sujet/' + Subject.topicId + '/' + item.commentId"  -->
       </article>
     </div>
 
@@ -45,17 +49,21 @@ export default {
   name: 'Topic',
   data () {
     return {
-      Topic: {},
+      Comments: {},
       Subject: {},
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
       user_id: Number,
-      moderator_id: 38 /* A MASQUER ENV. */
+      moderator_id: 38, /* A MASQUER ENV. */
+      manageShow: false
     }
   },
   methods: {
     disconnect(){
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('userId')
+    },
+    manageComment(){
+      this.manageShow = true
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */
@@ -80,7 +88,7 @@ export default {
     })
     .then (res => res.json())
     .then(data => {
-      this.Topic = data
+      this.Comments = data
       this.Subject = data.subject[0] /* recupere seulement la partie du sujet */
       this.commentLength = data.comments.length /* renvoie un template specifique si pas encore de commentaires */
       })
