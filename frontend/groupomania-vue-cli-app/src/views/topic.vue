@@ -9,7 +9,7 @@
     </header>
 
     <nav class="row d-flex justify-content-around mt-3">
-      <router-link :to="{name: 'Home'}" class="nav_link_display">Accueil</router-link>
+      <router-link :to="{name: 'topics'}" class="nav_link_display">Accueil</router-link>
     </nav>
 
     <div class="col-12 mt-3 pt-3 row comment__view--colors">
@@ -81,6 +81,12 @@ export default {
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
       user_id: Number,
       moderator_id: 38 /* A MASQUER ENV. */
+    }
+  },
+  methods: {
+    disconnect(){
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('userId')
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */

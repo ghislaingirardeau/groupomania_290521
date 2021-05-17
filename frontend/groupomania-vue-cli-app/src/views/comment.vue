@@ -32,6 +32,12 @@ export default ({ /* AJOUTER UN SECURITE POUR LE CONTROLE DE USERID MATCH en fro
     deletecomment,
     updatecomment
   },
+  methods: {
+    disconnect(){
+      sessionStorage.removeItem('token')
+      sessionStorage.removeItem('userId')
+    }
+  },
   props: { /* recupere les props soient les parametres de la route defini dans la route de index */
     topicid: {
     type: Number,

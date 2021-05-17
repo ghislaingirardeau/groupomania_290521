@@ -33,7 +33,7 @@ const routes = [ /* au clic affichera les vues et composant correspondant, par d
     component: Home,
     children: [
       {
-        path: '',
+        path: '', 
         name: 'topics',
         component: allTopics
       },
@@ -59,7 +59,7 @@ const routes = [ /* au clic affichera les vues et composant correspondant, par d
     },
   },
   {
-    path: '/sujet/:topicid/:commentId(\\d+)',
+    path: '/sujet/:topicid(\\d+)/:commentId(\\d+)',
     name: 'Comment',
     component: Comment,
     props: (route) => {
