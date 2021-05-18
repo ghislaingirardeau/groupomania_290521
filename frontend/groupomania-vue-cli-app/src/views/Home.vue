@@ -9,9 +9,9 @@
     </header>
 
     <nav class="row d-flex justify-content-around mt-3">
-      <router-link :to="{name: 'topics'}" class="nav_link_display">Liste des sujets</router-link>  
-      <router-link :to="{name: 'Addtopic'}" class="nav_link_display">Créer un sujet</router-link> <!-- Masquer les sujets au click avec v-show -->
-      <router-link :to="{name: 'account'}" class="nav_link_display">Mon compte</router-link> <!-- Masquer les sujets au click avec v-show --> 
+      <router-link :to="{name: 'topics'}" class="col-12 col-md-4 nav_link_display">Liste des sujets</router-link>  
+      <router-link :to="{name: 'Addtopic'}" class="col-12 col-md-4 nav_link_display">Créer un sujet</router-link> <!-- Masquer les sujets au click avec v-show -->
+      <router-link :to="{name: 'account'}" class="col-12 col-md-4 nav_link_display">Mon compte</router-link> <!-- Masquer les sujets au click avec v-show --> 
     </nav>
     <router-view></router-view> 
     
