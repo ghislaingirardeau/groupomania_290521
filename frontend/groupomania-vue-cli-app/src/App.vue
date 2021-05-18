@@ -65,4 +65,7 @@ background-color: rgb(240, 90, 30);
 border: 2px solid #2f353a;
 color: white;
 }
+.btn-border{
+border: 2px solid #2f353a;
+}
 </style>
