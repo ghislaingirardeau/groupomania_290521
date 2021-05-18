@@ -16,7 +16,7 @@
       
       <header class="col-11 mt-3 pt-3 row comment__view--colors">
         <h1 class="col-12 col-lg-8 text-lg-left">Thématique : {{Subject.topic}}</h1>
-        <p class="col-12 col-lg-3 pt-3 text-lg-right">créé par {{Subject.username}}</p>
+        <p class="col-12 col-lg-3 pt-3 text-lg-right\">créé par {{Subject.username}}</p>
       </header>
 
       <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
