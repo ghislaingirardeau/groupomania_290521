@@ -3,8 +3,8 @@
   <section id="Home" class="container">
     
     <header class="header_home">
-      <img src="@/assets/Logo/icon-left-font.svg" alt="logo_groupomania" id="logo_home" class="mt-n5 mb-n4 w-25"/>
-      <h1 class="col-12 mt-lg-n5">{{username}}, bienvenue sur notre forum</h1>
+      <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
+      <h1 class="col-12">{{username}}, bienvenue sur notre forum</h1>
       <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
     </header>
 

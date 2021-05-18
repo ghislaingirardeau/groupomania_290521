@@ -16,9 +16,6 @@
   font-size: 1.2rem;
 }
 
-#body {
-  padding: 30px;
-}
 
 #body nav a {
   font-weight: bold;

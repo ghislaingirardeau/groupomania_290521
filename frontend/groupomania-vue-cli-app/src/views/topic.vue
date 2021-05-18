@@ -3,8 +3,8 @@
   <section id="Topic" class="container">
 
     <header>
-      <img src="@/assets/Logo/icon-left-font.svg" alt="logo_groupomania" id="logo_home" class="mt-n5 mb-n5 w-25"/>
-      <h1 class="col-12 mt-lg-n5">Bienvenue sur notre forum</h1>
+      <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
+      <h1 class="col-12">Bienvenue sur notre forum</h1>
       <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
     </header>
 
@@ -15,7 +15,8 @@
     <section class="row d-flex justify-content-around mt-4 comment--layout">
       
       <header class="col-11 mt-3 pt-3 row comment__view--colors">
-        <h1 class="col-9 text-left">{{Subject.topic}}</h1>
+        <h1 class="col-8 text-left">{{Subject.topic}}</h1>
+        <h2></h2>
         <p class="col-3 pt-3">créé par {{Subject.username}}</p>
       </header>
 
