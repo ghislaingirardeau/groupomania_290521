@@ -25,7 +25,7 @@
         <p class="col-12 comment--layout--font">{{item.user_comment}}</p>
         <p class="col-9 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         
-        <button v-if="user_id === item.user_id || user_id === moderator_id" class="col-3 text-center" @click="manageComment">Modifier</button>
+        <button v-if="user_id === item.user_id || userRole === 'admin'" class="col-3 text-center" @click="manageComment">Modifier</button>
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
         
         <!-- COMMENT MANAGEMENT -->
@@ -60,7 +60,7 @@ export default {
       Subject: {},
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
       user_id: Number,
-      moderator_id: 38, /* A MASQUER ENV. */
+      userRole: sessionStorage.getItem('role'),
       manageShow: false,
     }
   },
@@ -68,6 +68,8 @@ export default {
     disconnect(){
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('userId')
+      sessionStorage.removeItem('username')
+      sessionStorage.removeItem('role')
     },
     manageComment(){
       this.manageShow = true

@@ -33,6 +33,8 @@ export default {
     disconnect(){
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('userId')
+      sessionStorage.removeItem('username')
+      sessionStorage.removeItem('role')
     }
   }
   

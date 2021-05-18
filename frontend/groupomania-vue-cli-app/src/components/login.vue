@@ -48,6 +48,7 @@ export default {
           sessionStorage.setItem('token', data.token)
           sessionStorage.setItem('userId', data.userId)
           sessionStorage.setItem('username', data.username)
+          sessionStorage.setItem('role', data.role)
           window.open('/Accueil', '_self')
           })
         } else { /* sinon j'envoie une erreur */
