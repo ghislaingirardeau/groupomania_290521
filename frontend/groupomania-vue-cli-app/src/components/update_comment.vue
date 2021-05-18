@@ -3,10 +3,10 @@
 
       <label for="update_comment" class="col-12 comment--layout--by">Changer ci-dessous votre commentaire :</label>
       <textarea id="update_comment" name="update_comment" v-model="update.comment" :placeholder="user_comment" 
-      class="col-7" rows="2" ></textarea>
-      <button class="col-2 btn btn-success btn-lg mb-5" @click="modifyComment">Valider</button>
+      class="col-12 col-lg-7" rows="2" ></textarea>
+      <button class="col-8 col-lg-2 btn btn-success btn-lg mt-3 mb-lg-5" @click="modifyComment">Valider</button>
 
-      <button class="col-2 btn btn-danger btn-lg mb-5" @click="deleteComment">Supprimer</button>
+      <button class="col-8 col-lg-2 btn btn-danger btn-lg mt-3 mb-lg-5" @click="deleteComment">Supprimer</button>
 
       <p class="message__serveur col-12">{{serverMessage}}</p>
 
