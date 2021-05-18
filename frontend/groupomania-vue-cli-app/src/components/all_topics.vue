@@ -28,47 +28,6 @@
 
 </template>
 
-<style> /* style propre au topic */
-#last_topic {
-  background-color: rgb(240, 90, 30);
-  border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
-}
-#all_topic {
-  background-color: #0d4883;
-  border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
-}
-#last_topic h2{
-  color: white;
-  font-weight: bold;
-}
-#all_topic h2{
-  color: white;
-  font-weight: bold;
-}
-.topic--layout {
-  background-color: white;
-  border: 2px solid #2f353a;
-  border-radius: 10px 10px;
-  margin-bottom: 20px;
-}
-.topic--layout:hover{
-  box-shadow: #2f353a 5px 5px 5px;
-}
-.topic--layout h3{
-  font-style: initial;
-  color: #2f353a;
-}
-.topic--layout p{
-  font-weight: 600;
-  color: #2f353a;
-  font-size: 1rem;
-}
-
-
-</style>
-
 <script>
 
 export default {
