@@ -4,7 +4,7 @@
     
     <header class="header_home">
       <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
-      <h1 class="col-12">{{username}}, bienvenue sur notre forum</h1>
+      <h1 class="col-12">Bienvenue, {{username}}</h1>
       <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
     </header>
 
