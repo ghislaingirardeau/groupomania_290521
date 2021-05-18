@@ -28,7 +28,7 @@ export default {
       }
   },
   props: {
-    user: Number,
+    user: null,
     topicid: { /* recupere id du topic qui est dans l'url */
       type: Number,
       required: true,
