@@ -19,7 +19,7 @@ exports.signup = (req, res, next) => {
         connection.query(sql, (error, results, fields) => {
 
             if (error) {
-                res.status(400).json({message: 'Ce pseudo existe deja'})
+                res.status(400).json({message: 'erreur de variable'})
             }
             else if(results){
                 const sql = `CALL sign_user(@username, @email, @password);`;
@@ -33,9 +33,10 @@ exports.signup = (req, res, next) => {
                         res.status(200).json({
                             username: userSelect[0].username,
                             userId: userSelect[0].id,
-                            token: jwt.sign(
-                            {userId: userSelect[0].id}, `${process.env.CLE}`,
-                            { expiresIn: '24h'})  
+                            token: jwt.sign({
+                                userId: userSelect[0].id}, `${process.env.CLE}`,
+                                { expiresIn: '24h'}),
+                            role: userSelect[0].Roles
                         })
                     }
                 });
@@ -54,7 +55,7 @@ exports.login = (req, res, next) => {
         }
         else if(results){
 
-            const sql = `SELECT id, password, username FROM Users WHERE username=@username`;
+            const sql = `SELECT id, password, username, roles FROM Users WHERE username=@username`;
             connection.query(sql, (error, results, fields) => {
 
                 if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
@@ -72,7 +73,8 @@ exports.login = (req, res, next) => {
                         userId: results[0].id,
                             token: jwt.sign(
                             {userId: results[0].id}, `${process.env.CLE}`,
-                            { expiresIn: '24h'})  
+                            { expiresIn: '24h'}),
+                        role: results[0].roles
                         })
                     })
                     .catch(() => res.status(500).json({message: "erreur login"}))
