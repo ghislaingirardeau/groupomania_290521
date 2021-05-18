@@ -12,12 +12,12 @@
       <router-link :to="{name: 'topics'}" class="nav_link_display">Accueil</router-link>
     </nav>
 
-    <div class="col-12 mt-3 pt-3 row comment__view--colors">
-      <h1 class="col-9 text-left">{{Subject.topic}}</h1>
-      <p class="col-3 pt-3">créé par {{Subject.username}}</p>
-    </div>
-
-    <div class="row d-flex justify-content-around mt-4 comment--layout">
+    <section class="row d-flex justify-content-around mt-4 comment--layout">
+      
+      <header class="col-11 mt-3 pt-3 row comment__view--colors">
+        <h1 class="col-9 text-left">{{Subject.topic}}</h1>
+        <p class="col-3 pt-3">créé par {{Subject.username}}</p>
+      </header>
 
       <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
@@ -36,7 +36,7 @@
         </div> <!--   -->
 
       </article>
-    </div>
+    </section>
 
     <aside> 
     <Addcomment :user='user_id' :topicid="topicid"/> <!-- composant pour l'ajout de sujet -->
@@ -70,7 +70,7 @@ export default {
       sessionStorage.removeItem('role')
     },
     manageComment(){
-      this.showModification = true
+      this.showModification = !this.showModification
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */
@@ -108,12 +108,19 @@ export default {
 
 <style> /* style propre aux comments */
 .comment__view--colors{
-  color: #2f353a;
+  color: white;
 }
 .comment--layout {
-  background-color: rgb(248, 152, 114);
+  background-color: rgb(240, 90, 30);
   border-radius: 10px 10px;
   box-shadow: #2f353a 5px 5px 5px;
+}
+.addcomment--layout{
+  background-color: #0d4883;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+.comment__font--colors{
   color: #2f353a;
 }
 .comment--layout--font {
@@ -135,4 +142,5 @@ export default {
 .nocomment--bold{
   font-weight: bold;
 }
+
 </style>
