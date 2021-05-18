@@ -54,14 +54,14 @@ exports.removeComment = (req, res, next) => {
                 res.status(500).json({message: 'erreur database'})
             } else if (results) {
 
-            const sql = `CALL remove_comment(@comment, @user_id);` 
+            const sql = `CALL delete_comment(@comment, @user_id);` 
             /* Reduire les risques d'injections avec une procedure stocké ajoutant un type INT a req.params.comment_id */
             connection.query(sql, (error, results, fields) => {
 
                 let response = results[0] /* je recupere ma reponse et je l'envoie comme condition */
-                if (response[0].response == "vous n'avez pas les droits" || response[0].response == "Cet id n'existe pas" || error) { 
+                if (response[0].status == "Error" ||  error) { 
                     res.status(400).json({message: response[0].response})
-                } else if (response[0].response == "Votre commentaire a bien été supprimé") {
+                } else if (response[0].status == "Done") {
                     res.status(200).json({message: response[0].response})
                 }
             })
@@ -84,10 +84,11 @@ exports.modifyComment = (req, res, next) => {
                 connection.query(sql, (error, results, fields) => {
 
                     let response = results[0] /* je recupere ma reponse et je l'envoie comme condition */
-                    if(response[0].response == "Cet id n'existe pas" || response[0].response == "vous n'avez pas les droits" || error) {
+                    
+                    if(response[0].status == "Error" || error) {
                         res.status(400).json({message: response[0].response})
                     }
-                    else if (response[0].response == "Commentaire modifié" || response[0].response == "Commentaire modifié par le modérateur") {
+                    else if (response[0].status == "Done") {
                         res.status(200).json({message: response[0].response})
                     }
                 })
