@@ -23,16 +23,15 @@
 
       <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
         <p class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</p>
-        <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange btn-lg col-4 col-md-2" @click="manageComment">Modifier</button>
+        <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange btn-lg col-4 col-md-2" @click="manageComment(item.commentId)">Modifier</button>
         <p class="col-12 col-md-12 mt-3 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
         
-        <!-- COMMENT: option modify and delete au click si le userid correspond -->
-        <div class="col-12" v-show="showModification && (user_id === item.user_id || userRole === 'admin')">
-        
+        <!-- COMMENT: option modify and delete au click, charge le composant ci dessous. -->
+        <!-- condition affichage: si showModification true, si userid correspond a utilisateur ou a l'admin et ouvre seulement celui dont le commentid correspond -->
+        <div class="col-12" v-show="showModification && (user_id === item.user_id || userRole === 'admin') && commentId === item.commentId"> <!-- Debug ouverture des tous les commentaires -->
           <updatecomment :topicid="topicid" :commentId="item.commentId" :user_comment="item.user_comment" />     
-
         </div> <!--   -->
 
       </article>
@@ -60,6 +59,7 @@ export default {
       user_id: Number,
       userRole: sessionStorage.getItem('role'),
       showModification: false,
+      commentId: Number
     }
   },
   methods: {
@@ -69,8 +69,9 @@ export default {
       sessionStorage.removeItem('username')
       sessionStorage.removeItem('role')
     },
-    manageComment(){
+    manageComment(commentId){ /* passe en parametre id du comment que j'ai cliqué pour ne pas tous les ouvrir */
       this.showModification = !this.showModification
+      this.commentId = commentId
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */
@@ -141,6 +142,7 @@ export default {
 }
 .nocomment--bold{
   font-weight: bold;
+  color: white;
 }
 
 </style>
