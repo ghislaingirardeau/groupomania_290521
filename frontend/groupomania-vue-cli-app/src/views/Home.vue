@@ -30,7 +30,7 @@ export default {
       }
   },
   methods: {
-    disconnect(){
+    disconnect(){ /* au click de la deconnection, on nettoie la session storage */
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('userId')
       sessionStorage.removeItem('username')

@@ -4,7 +4,7 @@
 
     <h2 class="col-12 mb-4">Ajouter un commentaire</h2>
 
-    <label for="Comment" class="col-12">Saisser votre commentaire ci-dessous:</label>
+    <label for="Comment" class="col-12">Publier votre commentaire ci-dessous:</label>
     <textarea name="Comment" id="Comment" v-model="post.comment" class="col-12" cols="30" rows="5"></textarea>
     
     <button class="btn btn-orange btn-lg mt-4" @click="postComment">Publier</button>

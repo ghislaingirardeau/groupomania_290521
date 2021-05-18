@@ -1,10 +1,13 @@
 <template>
-    <div id="UpdateComment">
+    <div id="UpdateComment" class="row d-flex justify-content-between border-top pt-2">
 
       <label for="update_comment" class="col-12">Changer ci-dessous votre commentaire :</label>
       <textarea id="update_comment" name="update_comment" v-model="update.comment" :placeholder="user_comment" 
-      class="col-12" cols="10" rows="3" ></textarea>
-      <button class="btn btn-orange btn-lg mt-4" @click="modifyComment">Changer</button>
+      class="col-7" rows="2" ></textarea>
+      <button class="col-2 btn btn-success btn-lg mb-5" @click="modifyComment">Valider</button>
+
+      <button class="col-2 btn btn-danger btn-lg mb-5" @click="deleteComment">Supprimer</button>
+
       <p class="message__serveur col-12">{{serverMessage}}</p>
 
     </div>
@@ -66,6 +69,34 @@ export default ({
       })
       .catch(() => {console.log({message: "modification du commentaire impossible"})})
     },
+
+    deleteComment() { 
+      var token = sessionStorage.getItem('token') /* recupere le token envoyé lors du login  */
+      this.update.user_id = sessionStorage.getItem('userId')
+       /* envoie le userid dans le delete */
+       
+      fetch("http://localhost:3000/api/sujet/" + this.topicid + "/" + this.commentId, {
+        method: 'DELETE',
+        headers: {
+          "content-type": "application/json",
+          "Authorization": 'Bearer ' + token
+        },
+        body: JSON.stringify({user_id: this.update.user_id})
+      })
+      .then (res => {
+        if(res.ok) { /* si reponse est ok, je recupere le data */
+          res.json()
+          .then (data => {
+          this.serverMessage = data.message
+          window.open('/sujet/' + this.topicid, '_self')
+          })
+        } else { /* sinon j'envoie une erreur */
+          console.log({message: "supprimer du commentaire impossible"})
+          this.serverMessage = "Vous n'avez pas les droits pour supprimer ce commentaire"
+        }
+      })
+      .catch(() => console.log({message: "suppression du commentaire impossible"}))
+    }
   },
 })
 </script>

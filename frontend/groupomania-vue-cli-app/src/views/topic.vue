@@ -21,19 +21,18 @@
 
       <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
 
-      <article class="col-11 row d-flex justify-content-between mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
-        <p class="col-12 comment--layout--font">{{item.user_comment}}</p>
-        <p class="col-9 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
+      <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
+        <p class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</p>
+        <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange btn-lg col-4 col-md-2" @click="manageComment">Modifier</button>
+        <p class="col-12 col-md-12 mt-3 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         
-        <button v-if="user_id === item.user_id || userRole === 'admin'" class="col-3 text-center" @click="manageComment">Modifier</button>
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
         
-        <!-- COMMENT MANAGEMENT -->
-        <div v-show="manageShow && user_id === item.user_id">
-          <!-- MODIF BOUTON -->
+        <!-- COMMENT: option modify and delete au click si le userid correspond -->
+        <div class="col-12" v-show="showModification && (user_id === item.user_id || userRole === 'admin')">
+        
           <updatecomment :topicid="topicid" :commentId="item.commentId" :user_comment="item.user_comment" />     
-          <!-- DELETE BOUTON -->
-          <deletecomment :topicid="topicid" :commentId="item.commentId"/>
+
         </div> <!--   -->
 
       </article>
@@ -49,7 +48,6 @@
 
 <script>
 import Addcomment from '../components/Add_comment.vue'
-import deletecomment from '../components/delete_comment.vue'
 import updatecomment from '../components/update_comment.vue'
 
 export default {
@@ -61,18 +59,18 @@ export default {
       commentLength: null,  /* renvoie un template specifique si pas de commentaire */
       user_id: Number,
       userRole: sessionStorage.getItem('role'),
-      manageShow: false,
+      showModification: false,
     }
   },
   methods: {
-    disconnect(){
+    disconnect(){ /* au click de la deconnection, on nettoie la session storage */
       sessionStorage.removeItem('token')
       sessionStorage.removeItem('userId')
       sessionStorage.removeItem('username')
       sessionStorage.removeItem('role')
     },
     manageComment(){
-      this.manageShow = true
+      this.showModification = true
     }
   },
   props: { /* Recuperer l'id du topic envoyer en parametre de l'url */
@@ -83,7 +81,6 @@ export default {
   },
   components: {
     Addcomment,
-    deletecomment,
     updatecomment
   },
   mounted () {
