@@ -1,6 +1,6 @@
 <template>
 
-  <section id="Topic" class="container">
+  <section id="Comment" class="container">
 
     <header>
       <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
@@ -52,7 +52,7 @@ import Addcomment from '../components/Add_comment.vue'
 import updatecomment from '../components/update_comment.vue'
 
 export default {
-  name: 'Topic',
+  name: 'Comment',
   data () {
     return {
       Comments: {},
