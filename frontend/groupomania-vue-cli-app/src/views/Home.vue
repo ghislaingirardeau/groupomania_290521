@@ -5,7 +5,7 @@
     <header class="header_home">
       <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
       <h1 class="col-12">Bienvenue, {{username}}</h1>
-      <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
+      <deconnexion/>
     </header>
 
     <nav class="row d-flex justify-content-around mt-3">
@@ -20,6 +20,7 @@
 </template>
 
 <script>
+import deconnexion from '../components/deconnexion.vue'
 
 export default {
   name: 'Home',
@@ -28,15 +29,9 @@ export default {
       username: sessionStorage.getItem('username'),
       }
   },
-  methods: {
-    disconnect(){ /* au click de la deconnection, on nettoie la session storage */
-      sessionStorage.removeItem('token')
-      sessionStorage.removeItem('userId')
-      sessionStorage.removeItem('username')
-      sessionStorage.removeItem('role')
-    }
-  }
-  
+  components: {
+    deconnexion
+  },
 }
 </script>
 

@@ -1,4 +1,4 @@
-/* connect a mysql */
+/* connect to mysql */
 
 let config = {
     host: 'localhost',

@@ -5,7 +5,7 @@
     <header>
       <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
       <h1 class="col-12">Bienvenue sur notre forum</h1>
-      <a href="/" @click="disconnect" class="nav_link_display">Se déconnecter</a>
+      <deconnexion/>
     </header>
 
     <nav class="row d-flex justify-content-around mt-3">
@@ -50,6 +50,8 @@
 <script>
 import Addcomment from '../components/Add_comment.vue'
 import updatecomment from '../components/update_comment.vue'
+import deconnexion from '../components/deconnexion.vue'
+
 
 export default {
   name: 'Comment',
@@ -65,12 +67,6 @@ export default {
     }
   },
   methods: {
-    disconnect(){ /* au click de la deconnection, on nettoie la session storage */
-      sessionStorage.removeItem('token')
-      sessionStorage.removeItem('userId')
-      sessionStorage.removeItem('username')
-      sessionStorage.removeItem('role')
-    },
     manageComment(commentId){ /* passe en parametre id du comment que j'ai cliqué pour ne pas tous les ouvrir */
       this.showModification = !this.showModification
       this.commentId = commentId
@@ -84,7 +80,8 @@ export default {
   },
   components: {
     Addcomment,
-    updatecomment
+    updatecomment,
+    deconnexion
   },
   mounted () {
     var token = sessionStorage.getItem('token')
