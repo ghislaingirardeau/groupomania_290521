@@ -5,7 +5,7 @@ const authentification = (req, res, next) => {
         const token = req.headers.authorization.split(' ')[1] 
         const decodedToken = jwt.verify(token, `${process.env.CLE}`)
         const tokenUserId = decodedToken.userId
-        if (req.body.userId && req.body.userId != tokenUserId) {
+        if (req.body.user_id && req.body.user_id != tokenUserId) {
             res.status(404).json({error :"Cet Id n'existe pas !"})
         }
         else {
