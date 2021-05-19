@@ -2,8 +2,9 @@
     <div id="UpdateComment" class="row d-flex justify-content-between border-top pt-2">
 
       <label for="update_comment" class="col-12 comment--layout--by">Changer ci-dessous votre commentaire :</label>
-      <textarea id="update_comment" name="update_comment" v-model="update.comment" :placeholder="user_comment" 
+      <textarea id="update_comment" name="update_comment" v-model="update.comment" 
       class="col-12 col-lg-7" rows="2" ></textarea>
+      
       <button class="col-8 col-lg-2 btn btn-success btn-lg mt-3 mb-lg-5 btn-border" @click="modifyComment">Valider</button>
 
       <button class="col-8 col-lg-2 btn btn-danger btn-lg mt-3 mb-lg-5 btn-border" @click="deleteComment">Supprimer</button>
@@ -22,7 +23,7 @@ export default ({
       return {
         update: {
           user_id: null,
-          comment: null
+          comment: this.user_comment
         },
         serverMessage: null,
       }
