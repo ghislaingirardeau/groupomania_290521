@@ -5,13 +5,16 @@
       <h2 class="col-12 mb-4">Ajouter ici le sujet de discussion de votre choix:</h2>
       
       <form action="/Accueil" class="col-12">
-        <label for="topic" class="col-12"></label>
-        <input for="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
-        placeholder="Le sujet doit contenir moins de 100 caractères !" v-model="post.topic" required>
-      <div class="col-12">
-        <input type="submit" value="Publier ce sujet" class="btn btn-orange btn-lg mt-4" @click="postSubject">
-        <p class="message__serveur col-12">{{serverMessage}}</p>
-      </div>
+      
+        <label for="topic" class="col-12">Le sujet doit contenir moins de 100 caractères !</label>
+        <input for="topic" id="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
+        v-model="post.topic" required>
+      
+        <div class="col-12">
+          <input type="submit" value="Publier ce sujet" class="btn btn-orange btn-lg mt-4" @click="postSubject">
+          <p class="message__serveur col-12">{{serverMessage}}</p>
+        </div>
+
       </form>
 
     </article>

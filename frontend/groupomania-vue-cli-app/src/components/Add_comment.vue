@@ -1,14 +1,16 @@
 <template>
 
-  <article class="row mt-5 d-flex justify-content-center comment__view--colors">
+  <article class="row mt-5 mb-4 pt-4 d-flex justify-content-center comment__view--colors addcomment--layout">
 
-    <h2 class="col-12 mb-4">Ajouter un commentaire</h2>
+    <h2 class="col-12 mb-4 comment__view--colors">Ajouter un commentaire</h2>
 
-    <label for="Comment" class="col-12">Saisser votre commentaire ci-dessous:</label>
-    <textarea name="Comment" id="Comment" v-model="post.comment" class="col-12" cols="30" rows="5"></textarea>
+    <label for="Comment" class="col-12">Publier votre commentaire ci-dessous:</label>
+    <textarea name="Comment" id="Comment" v-model="post.comment" placeholder="Taper votre commentaire ici..." class="col-11 col-lg-8" rows="5"></textarea>
     
-    <button class="btn btn-orange btn-lg mt-4" @click="postComment">Publier</button>
-    <p class="message__serveur col-12">{{serverMessage}}</p>
+    <div class="col-12">
+      <button class="btn btn-orange btn-lg mt-4" @click="postComment">Publier</button>
+      <p class="message__serveur col-12">{{serverMessage}}</p>
+    </div>
 
   </article>
 
@@ -27,7 +29,7 @@ export default {
       }
   },
   props: {
-    user: Number,
+    user: null,
     topicid: { /* recupere id du topic qui est dans l'url */
       type: Number,
       required: true,
@@ -51,8 +53,8 @@ export default {
         if(res.ok) { /* si reponse est ok, je recupere le data */
           res.json()
           .then (data => {
-          this.serverMessage = data.message
-          window.open('/sujet/' + this.topicid, '_self')
+            this.serverMessage = data.message
+            window.open('/sujet/' + this.topicid, '_self')
           })
         } else { /* sinon j'envoie une erreur */
           console.log({message: "Ajout du commentaire impossible"})
