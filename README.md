@@ -1,9 +1,3 @@
-Moderateur:
--u moderator
--p groupomania
-
-A FAIRE 
-masquer id moderator via env.
 
 --COPY REPOSITORY Groupomania--
 
@@ -21,3 +15,4 @@ npm run serve
 --Fichier DATABASE--
 
 dans le dossier backend/node-mysql
+groupomania_sauvegarde.sql
