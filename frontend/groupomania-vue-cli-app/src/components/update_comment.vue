@@ -28,7 +28,7 @@ export default ({
         serverMessage: null,
       }
   },
-  props: { /* recupere les props soient les parametres de la route defini dans la route de index */
+  props: { /* recupere les props, les parametres de la route defini dans la route (index.js) */
     topicid: {
     type: Number,
     required: true,
@@ -61,8 +61,8 @@ export default ({
         if(res.ok) { /* si reponse est ok, je recupere le data */
           res.json()
           .then (data => {
-          this.serverMessage = data.message
-          window.open('/sujet/' + this.topicid, '_self')
+            this.serverMessage = data.message
+            window.open('/sujet/' + this.topicid, '_self')
           })
         } else { /* sinon j'envoie une erreur */
           this.serverMessage = "Vous n'avez pas les droits pour modifier ce commentaire"
@@ -88,8 +88,8 @@ export default ({
         if(res.ok) { /* si reponse est ok, je recupere le data */
           res.json()
           .then (data => {
-          this.serverMessage = data.message
-          window.open('/sujet/' + this.topicid, '_self')
+            this.serverMessage = data.message
+            window.open('/sujet/' + this.topicid, '_self')
           })
         } else { /* sinon j'envoie une erreur */
           console.log({message: "supprimer du commentaire impossible"})

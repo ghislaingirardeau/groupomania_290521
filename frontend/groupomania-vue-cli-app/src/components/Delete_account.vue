@@ -14,8 +14,8 @@
       <input for="delete" type="password" class="col-12 col-md-6" required v-model="post.password"> 
 
       <div class="col-12">
-      <button class="btn btn-orange btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
-      <p class="message__serveur col-12">{{serverMessage}}</p>
+        <button class="btn btn-orange btn-lg mt-4" @click="deleteAccount">Supprimer !</button>
+        <p class="message__serveur col-12">{{serverMessage}}</p>
       </div> 
 
     </article>
@@ -54,8 +54,8 @@ export default {
           if(res.ok) { /* si reponse est ok, je recupere le data */
             res.json()
             .then (data => {
-            this.serverMessage = data.message
-            window.open('/', '_self')
+              this.serverMessage = data.message
+              window.open('/', '_self')
             })
           } else { /* sinon j'envoie une erreur */
             this.serverMessage = "Erreur lors de la suppression du compte"

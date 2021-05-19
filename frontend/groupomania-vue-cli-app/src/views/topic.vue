@@ -19,7 +19,9 @@
         <p class="col-12 col-lg-3 pt-3 text-lg-right\">créé par {{Subject.username}}</p>
       </header>
 
-      <p class="pt-3 nocomment--bold" v-if="commentLength === 0">Il n'y a pas encore de commentaires faits sur ce sujet</p> <!-- renvoie un template specifique si pas de commentaire -->
+      <p class="pt-3 nocomment--bold" v-if="commentLength === 0">
+        Il n'y a pas encore de commentaires faits sur ce sujet
+      </p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
         <p class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</p>
@@ -100,8 +102,7 @@ export default {
       this.Comments = data
       this.Subject = data.subject[0] /* recupere seulement la partie du sujet */
       this.commentLength = data.comments.length /* renvoie un template specifique si pas encore de commentaires */
-      })
-    
+    })
     .catch(() => console.log({message: "connexion impossible"}))
   },
 }
