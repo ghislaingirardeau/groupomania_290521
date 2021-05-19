@@ -6,9 +6,9 @@
       
       <form action="/Accueil" class="col-12">
       
-        <label for="topic" class="col-12"></label>
-        <input for="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
-        placeholder="Le sujet doit contenir moins de 100 caractères !" v-model="post.topic" required>
+        <label for="topic" class="col-12">Le sujet doit contenir moins de 100 caractères !</label>
+        <input for="topic" id="topic" type="text" class="col-12 col-xl-6" maxlength="100" 
+        v-model="post.topic" required>
       
         <div class="col-12">
           <input type="submit" value="Publier ce sujet" class="btn btn-orange btn-lg mt-4" @click="postSubject">

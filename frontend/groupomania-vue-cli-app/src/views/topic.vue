@@ -15,8 +15,8 @@
     <section class="row d-flex justify-content-around mt-4 comment--layout">
       
       <header class="col-11 mt-3 pt-3 row comment__view--colors">
-        <h1 class="col-12 col-lg-8 text-lg-left">Thématique : {{Subject.topic}}</h1>
-        <p class="col-12 col-lg-3 pt-3 text-lg-right\">créé par {{Subject.username}}</p>
+        <h2 class="col-12 col-lg-8 text-lg-left">Thématique : {{Subject.topic}}</h2>
+        <p class="col-12 col-lg-3 text-lg-right nocomment--bold">créé par {{Subject.username}}</p>
       </header>
 
       <p class="pt-3 nocomment--bold" v-if="commentLength === 0">
@@ -24,7 +24,7 @@
       </p> <!-- renvoie un template specifique si pas de commentaire -->
 
       <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
-        <p class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</p>
+        <h3 class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</h3>
         <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange btn-lg col-5 col-md-2" @click="manageComment(item.commentId)">Modifier</button>
         <p class="col-12 col-md-12 mt-3 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         

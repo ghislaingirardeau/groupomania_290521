@@ -6,14 +6,14 @@
 
     <form action="/Accueil">
 
-      <label for="signup" class="col-12 mt-4">Mon pseudo</label>
-      <input for="signup" type="text" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
+      <label for="pseudo" class="col-12 mt-4">Mon pseudo</label>
+      <input for="pseudo" type="text" id="pseudo" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
-      <label for="signup" class="col-12 mt-4">Mon adresse email</label>
-      <input for="signup" type="email" placeholder="exemple@mail.com" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
+      <label for="email" class="col-12 mt-4">Mon adresse email</label>
+      <input for="email" type="email" id="email" placeholder="exemple@mail.com" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
-      <label for="signup" class="col-12 mt-4">Mot de passe (minimum 6 caractères)</label>
-      <input for="signup" type="password" class="col-12 col-md-6" minlength="6" required v-model="post.password"> <!-- copie les données dans le data post  -->
+      <label for="password" class="col-12 mt-4">Mot de passe (minimum 6 caractères)</label>
+      <input for="password" type="password" id="password" class="col-12 col-md-6" minlength="6" required v-model="post.password"> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
         <input type="submit" value="Envoyer" class="btn btn-orange btn-lg mt-4" @click="postSignup">

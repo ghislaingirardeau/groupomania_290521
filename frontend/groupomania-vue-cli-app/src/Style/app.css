@@ -35,14 +35,16 @@ input:focus, textarea:focus{
   outline: unset;
 }
 nav {
-    border-bottom: 3px solid rgb(212, 89, 89);
-    border-top: 3px solid rgb(212, 89, 89);
-    padding: 10px;
+  border-bottom: 3px solid rgb(212, 89, 89);
+  border-top: 3px solid rgb(212, 89, 89);
+  padding: 10px;
 }
 .btn-orange{
-background-color: rgb(240, 90, 30);
+background-color: rgb(240, 72, 30);
 border: 2px solid #2f353a;
 color: white;
+font-size: 1.4rem;
+font-weight: bold;
 }
 .btn-border{
 border: 2px solid #2f353a;
