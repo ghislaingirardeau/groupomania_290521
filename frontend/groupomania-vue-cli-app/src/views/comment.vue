@@ -25,7 +25,7 @@
 
       <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
         <h3 class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</h3>
-        <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange btn-lg col-5 col-md-2" @click="manageComment(item.commentId)">Modifier</button>
+        <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange col-5 col-md-2" @click="manageComment(item.commentId)">Modifier</button>
         <p class="col-12 col-md-12 mt-3 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
