@@ -5,7 +5,6 @@ $colors-alert: rgb(214, 37, 37);
 $colors-bg-bright-border: #2f353a;
 $colors-text-bg-dark: white;
 $colors-bg-text: white;
-$size: 10px;
 
 @mixin layout_article($color) {
   background-color: $color;
@@ -29,7 +28,7 @@ $size: 10px;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: $colors-secondary;
-  font-size: 1.2rem;
+  font-size: 1.1rem;
   & a {
     font-style: italic;
     font-weight: bold;
@@ -68,7 +67,7 @@ input, textarea{
 nav {
   border-bottom: 3px solid $colors-border-nav;
   border-top: 3px solid $colors-border-nav;
-  padding: $size;
+  padding: 10px;
 }
 
 #last_topic, .comment--layout {
