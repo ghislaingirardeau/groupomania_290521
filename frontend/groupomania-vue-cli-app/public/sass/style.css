@@ -4,16 +4,14 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #0d4883;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
-
 #app a {
   font-style: italic;
   font-weight: bold;
   color: #0d4883;
   font-size: 1.4rem;
 }
-
 #app a.router-link-exact-active {
   color: #f05a1e;
 }
@@ -23,7 +21,6 @@
   font-weight: bold;
   color: #d62525;
 }
-
 .message__serveur--blanc {
   padding-top: 10px;
   font-weight: bold;
@@ -34,10 +31,8 @@ input, textarea {
   border: 2px solid #2f353a;
   border-radius: 5px 5px;
 }
-
 input:focus, textarea:focus {
-  -webkit-box-shadow: #0d4883 1px 1px 7px 1px;
-          box-shadow: #0d4883 1px 1px 7px 1px;
+  box-shadow: #0d4883 1px 1px 7px 1px;
   border-radius: 5px 5px;
   outline: unset;
 }
@@ -63,15 +58,13 @@ nav {
 #last_topic, .comment--layout {
   background-color: #f05a1e;
   border-radius: 10px 10px;
-  -webkit-box-shadow: #2f353a 5px 5px 5px;
-          box-shadow: #2f353a 5px 5px 5px;
+  box-shadow: #2f353a 5px 5px 5px;
 }
 
 #all_topic, .addcomment__layout {
   background-color: #0d4883;
   border-radius: 10px 10px;
-  -webkit-box-shadow: #2f353a 5px 5px 5px;
-          box-shadow: #2f353a 5px 5px 5px;
+  box-shadow: #2f353a 5px 5px 5px;
 }
 
 #last_topic h2, .nocomment--bold, #all_topic h2 {
@@ -85,17 +78,13 @@ nav {
   border-radius: 10px 10px;
   margin-bottom: 20px;
 }
-
 .topic--layout:hover {
-  -webkit-box-shadow: #2f353a 5px 5px 5px;
-          box-shadow: #2f353a 5px 5px 5px;
+  box-shadow: #2f353a 5px 5px 5px;
 }
-
 .topic--layout h3 {
   font-style: initial;
   color: #2f353a;
 }
-
 .topic--layout p {
   font-weight: 600;
   color: #2f353a;
@@ -105,23 +94,19 @@ nav {
 .comment__layout {
   background-color: white;
   border-radius: 10px 10px;
-  -webkit-box-shadow: #2f353a 5px 5px 5px;
-          box-shadow: #2f353a 5px 5px 5px;
+  box-shadow: #2f353a 5px 5px 5px;
 }
-
 .comment__layout--by {
   font-weight: 600;
   color: #2f353a;
   font-size: 1rem;
   font-style: italic;
 }
-
 .comment__layout--font {
   font-weight: 600;
   color: #2f353a;
   font-size: 1.2rem;
 }
-
 .comment__layout--grey {
   color: #2f353a;
 }
@@ -129,4 +114,5 @@ nav {
 .resume__topic--white, .addcomment__title--white {
   color: white;
 }
+
 /*# sourceMappingURL=style.css.map */
