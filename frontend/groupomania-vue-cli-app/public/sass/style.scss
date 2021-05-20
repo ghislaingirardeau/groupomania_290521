@@ -1,9 +1,10 @@
-$colors-primary: rgb(212, 89, 89);
+$colors-border-nav: rgb(212, 89, 89);
+$colors-primary: rgb(240, 90, 30);
 $colors-secondary: #0d4883;
-$colors-topic: rgb(240, 90, 30);
 $colors-alert: rgb(214, 37, 37);
 $colors-bg-bright-border: #2f353a;
-$colors-bg-dark: white;
+$colors-text-bg-dark: white;
+$colors-bg-text: white;
 $size: 10px;
 
 @mixin layout_article($color) {
@@ -16,20 +17,73 @@ $size: 10px;
   color: $colors-bg-bright-border;
   font-size: $size;
 }
+@mixin message__serveur($color) {
+  padding-top: 10px;
+  font-weight: bold;
+  color: $color;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: $colors-secondary;
+  font-size: 1.2rem;
+  & a {
+    font-style: italic;
+    font-weight: bold;
+    color: $colors-secondary;
+    font-size: 1.4rem;
+    &.router-link-exact-active {
+      color: $colors-primary;
+    }
+  }
+}
+.message__serveur{
+  @include message__serveur($colors-alert);
+  &--blanc{
+    @include message__serveur($colors-text-bg-dark);
+  }
+}
+input, textarea{
+  border: 2px solid #2f353a;
+  border-radius: 5px 5px;
+  &:focus{
+    box-shadow: $colors-secondary 1px 1px 7px 1px;
+    border-radius: 5px 5px;
+    outline: unset;
+  }
+}
+.btn-orange{
+  background-color: $colors-primary;
+  border: 2px solid #2f353a;
+  color: $colors-text-bg-dark;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+.btn-border{
+  border: 2px solid #2f353a;
+}
+nav {
+  border-bottom: 3px solid $colors-border-nav;
+  border-top: 3px solid $colors-border-nav;
+  padding: $size;
+}
 
 #last_topic, .comment--layout {
-  @include layout_article($colors-topic);
+  @include layout_article($colors-primary);
 }
 #all_topic, .addcomment__layout {
   @include layout_article($colors-secondary);
 }
 #last_topic h2, .nocomment--bold, #all_topic h2{
-  color: $colors-bg-dark;
+  color: $colors-text-bg-dark;
   font-weight: bold;
 }
 
 .topic--layout {
-  background-color: white;
+  background-color: $colors-bg-text;
   border: 2px solid #2f353a;
   border-radius: 10px 10px;
   margin-bottom: 20px;
@@ -46,7 +100,7 @@ $size: 10px;
 }
 
 .comment__layout{
-  background-color: white;
+  background-color: $colors-bg-text;
   border-radius: 10px 10px;
   box-shadow: #2f353a 5px 5px 5px;
   &--by {
@@ -56,14 +110,12 @@ $size: 10px;
   &--font {
     @include write_font(1.2rem);
   }
+  &--grey {
+    color: $colors-bg-bright-border;
+  }
 } 
 .resume__topic--white, .addcomment__title--white{
-  color: white;
+  color: $colors-text-bg-dark;
 }
 
 
-nav {
-    border-bottom: 3px solid $colors-primary;
-    border-top: 3px solid $colors-primary;
-    padding: $size;
-  }

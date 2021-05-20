@@ -1,3 +1,65 @@
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #0d4883;
+  font-size: 1.2rem;
+}
+
+#app a {
+  font-style: italic;
+  font-weight: bold;
+  color: #0d4883;
+  font-size: 1.4rem;
+}
+
+#app a.router-link-exact-active {
+  color: #f05a1e;
+}
+
+.message__serveur {
+  padding-top: 10px;
+  font-weight: bold;
+  color: #d62525;
+}
+
+.message__serveur--blanc {
+  padding-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+input, textarea {
+  border: 2px solid #2f353a;
+  border-radius: 5px 5px;
+}
+
+input:focus, textarea:focus {
+  -webkit-box-shadow: #0d4883 1px 1px 7px 1px;
+          box-shadow: #0d4883 1px 1px 7px 1px;
+  border-radius: 5px 5px;
+  outline: unset;
+}
+
+.btn-orange {
+  background-color: #f05a1e;
+  border: 2px solid #2f353a;
+  color: white;
+  font-size: 1.4rem;
+  font-weight: bold;
+}
+
+.btn-border {
+  border: 2px solid #2f353a;
+}
+
+nav {
+  border-bottom: 3px solid #d45959;
+  border-top: 3px solid #d45959;
+  padding: 10px;
+}
+
 #last_topic, .comment--layout {
   background-color: #f05a1e;
   border-radius: 10px 10px;
@@ -60,13 +122,11 @@
   font-size: 1.2rem;
 }
 
-.resume__topic--white, .addcomment__title--white {
-  color: white;
+.comment__layout--grey {
+  color: #2f353a;
 }
 
-nav {
-  border-bottom: 3px solid #d45959;
-  border-top: 3px solid #d45959;
-  padding: 10px;
+.resume__topic--white, .addcomment__title--white {
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */
