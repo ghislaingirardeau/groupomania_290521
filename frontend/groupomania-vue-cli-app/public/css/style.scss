@@ -1,0 +1,8 @@
+$colors: rgb(212, 89, 89);
+$size: 10px;
+
+nav {
+    border-bottom: 3px solid $colors;
+    border-top: 3px solid $colors;
+    padding: $size;
+  }

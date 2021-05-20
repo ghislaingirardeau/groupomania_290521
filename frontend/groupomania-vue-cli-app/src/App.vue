@@ -11,5 +11,6 @@
 @import url(Style/app.css);
 @import url(Style/topic.css);
 @import url(Style/comment.css);
+@import url(../public/css/style.css);
 
 </style>
