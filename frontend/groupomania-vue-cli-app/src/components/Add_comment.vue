@@ -9,7 +9,7 @@
     
     <div class="col-12">
       <button class="btn btn-orange btn-lg mt-4" @click="postComment">Publier</button>
-      <p class="message__serveur col-12">{{serverMessage}}</p>
+      <p class="message__serveur--blanc col-12">{{serverMessage}}</p>
     </div>
 
   </article>

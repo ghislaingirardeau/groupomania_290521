@@ -25,6 +25,11 @@
   font-weight: bold;
   color: rgb(214, 37, 37);
 }
+.message__serveur--blanc{
+  padding-top: 10px;
+  font-weight: bold;
+  color: white;
+}
 input, textarea{
   border: 2px solid #2f353a;
   border-radius: 5px 5px;
