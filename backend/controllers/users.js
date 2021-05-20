@@ -22,14 +22,15 @@ exports.signup = (req, res, next) => {
                 res.status(400).json({message: 'erreur de variable'})
             }
             else if(results){
-                const sql = `CALL sign_user(@username, @email, @password);`;
+                const sql = `CALL signup_user(@username, @email, @password);`;
                 connection.query(sql, (error, result, fields) => {
-
-                    if (error) {
-                        res.status(400).json({message: 'Ce pseudo ou cette email existe deja'})
+                    let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+                    
+                    if (error || userSelect[0].Status === "Error") {
+                        res.status(400).json({message: userSelect[0].Response})
                     }
                     else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
-                        let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+                        
                         res.status(200).json({
                             username: userSelect[0].username,
                             userId: userSelect[0].id,

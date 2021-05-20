@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "sass": "sass --watch ./public/sass/style.scss ./public/sass/style.css"
+    "sass": "sass --watch ./public/sass/style.scss ./public/css/style.css"
   },
   "dependencies": {
     "core-js": "^3.6.5",

@@ -19,3 +19,7 @@ lance le projet sur http://localhost:8080/
 
 dans le dossier backend/node-mysql
 groupomania_sauvegarde.sql
+
+--fichier env--
+expliquer les parametres du fichier
+env.dev.

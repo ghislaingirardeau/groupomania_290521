@@ -8,6 +8,6 @@
 
 <style type="text/css"> /* mise en forme des tous les elements communes a chaque view: body, nav, input et message serveur  */
 
-@import url(../public/sass/style.css);
+@import url(../public/css/style.css);
 
 </style>

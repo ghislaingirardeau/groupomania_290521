@@ -4,7 +4,7 @@
 
     <h2 class="col-12 mb-2">Remplissez le formulaire pour vous insrcire :</h2>
 
-    <form action="/Accueil">
+    <form>
 
       <label for="pseudo" class="col-12 mt-4">Mon pseudo</label>
       <input for="pseudo" type="text" id="pseudo" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
@@ -49,6 +49,7 @@ export default {
           body: JSON.stringify(this.post)
         })
         .then (res => {
+          console.log(res)
           if(res.ok) { /* si reponse est ok, je recupere le data */
             res.json()
             .then (data => {
@@ -57,11 +58,12 @@ export default {
               sessionStorage.setItem('userId', data.userId)
               sessionStorage.setItem('username', data.username)
               sessionStorage.setItem('role', data.role)
+              window.open('/Accueil', '_self')
             })
           } else { /* sinon j'envoie une erreur */
             res.json()
-            .then(data => {
-              this.errorMessage = data.message /* renvoie error du backend sur le frontend */
+            .then(() => {
+              this.errorMessage = "Ce pseudo ou cet email est déja utilisé" /* renvoie error du backend sur le frontend */
             })
           }
         })
