@@ -1,7 +1,7 @@
 <template>
     <div id="UpdateComment" class="row d-flex justify-content-between border-top pt-2">
 
-      <label :for="'update_comment' + commentId" class="col-12 comment--layout--by">Changer ci-dessous votre commentaire :</label>
+      <label :for="'update_comment' + commentId" class="col-12 comment__layout--by">Changer ci-dessous votre commentaire :</label>
       <textarea :id="'update_comment' + commentId" name="update_comment" v-model="update.comment" 
       class="col-12 col-lg-7" rows="2" ></textarea>
       

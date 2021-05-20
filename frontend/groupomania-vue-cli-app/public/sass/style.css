@@ -1,13 +1,15 @@
 #last_topic, .comment--layout {
   background-color: #f05a1e;
   border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
+  -webkit-box-shadow: #2f353a 5px 5px 5px;
+          box-shadow: #2f353a 5px 5px 5px;
 }
 
 #all_topic, .addcomment__layout {
   background-color: #0d4883;
   border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
+  -webkit-box-shadow: #2f353a 5px 5px 5px;
+          box-shadow: #2f353a 5px 5px 5px;
 }
 
 #last_topic h2, .nocomment--bold, #all_topic h2 {
@@ -21,13 +23,17 @@
   border-radius: 10px 10px;
   margin-bottom: 20px;
 }
+
 .topic--layout:hover {
-  box-shadow: #2f353a 5px 5px 5px;
+  -webkit-box-shadow: #2f353a 5px 5px 5px;
+          box-shadow: #2f353a 5px 5px 5px;
 }
+
 .topic--layout h3 {
   font-style: initial;
   color: #2f353a;
 }
+
 .topic--layout p {
   font-weight: 600;
   color: #2f353a;
@@ -37,14 +43,17 @@
 .comment__layout {
   background-color: white;
   border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
+  -webkit-box-shadow: #2f353a 5px 5px 5px;
+          box-shadow: #2f353a 5px 5px 5px;
 }
+
 .comment__layout--by {
   font-weight: 600;
   color: #2f353a;
   font-size: 1rem;
   font-style: italic;
 }
+
 .comment__layout--font {
   font-weight: 600;
   color: #2f353a;
@@ -60,5 +69,4 @@ nav {
   border-top: 3px solid #d45959;
   padding: 10px;
 }
-
 /*# sourceMappingURL=style.css.map */

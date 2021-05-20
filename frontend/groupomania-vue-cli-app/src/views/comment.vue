@@ -1,6 +1,6 @@
 <template>
 
-  <section id="Comment" class="container">
+  <section id="Comment" class="container comment_view">
 
     <header>
       <img src="@/assets/Logo/icon-left.png" alt="logo_groupomania" class="img-fluid"/>
@@ -14,7 +14,7 @@
 
     <section class="row d-flex justify-content-around mt-4 comment--layout">
       
-      <header class="col-11 mt-3 pt-3 row comment__view--colors">
+      <header class="col-11 mt-3 pt-3 row resume__topic--white">
         <h2 class="col-12 col-lg-8 text-lg-left">Thématique : {{Subject.topic}}</h2>
         <p class="col-12 col-lg-3 text-lg-right nocomment--bold">créé par {{Subject.username}}</p>
       </header>
@@ -23,10 +23,10 @@
         Il n'y a pas encore de commentaires faits sur ce sujet
       </p> <!-- renvoie un template specifique si pas de commentaire -->
 
-      <article class="col-11 row mt-3 mb-3 text-left pt-4" v-for="item in Comments.comments" :key="item.commentId" id="comment">
-        <h3 class="col-12 col-md-9 comment--layout--font">{{item.user_comment}}</h3>
+      <article class="col-11 row mt-3 mb-3 text-left pt-4 comment__layout" v-for="item in Comments.comments" :key="item.commentId">
+        <h3 class="col-12 col-md-9 comment__layout--font">{{item.user_comment}}</h3>
         <button v-if="user_id === item.user_id || userRole === 'admin'" class="btn btn-orange col-5 col-md-2" @click="manageComment(item.commentId)">Modifier</button>
-        <p class="col-12 col-md-12 mt-3 comment--layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
+        <p class="col-12 col-md-12 mt-3 comment__layout--by">Envoyé par {{item.username}} {{item.Date}}</p>
         
         <!-- Je verifie le userid pour faire correspondre si celui-ci a les droit ou non, envoie le topicId et commentId dans le router pour la modif du commentaire -->
         

@@ -1,0 +1,69 @@
+$colors-primary: rgb(212, 89, 89);
+$colors-secondary: #0d4883;
+$colors-topic: rgb(240, 90, 30);
+$colors-alert: rgb(214, 37, 37);
+$colors-bg-bright-border: #2f353a;
+$colors-bg-dark: white;
+$size: 10px;
+
+@mixin layout_article($color) {
+  background-color: $color;
+  border-radius: 10px 10px;
+  box-shadow: $colors-bg-bright-border 5px 5px 5px;
+}
+@mixin write_font($size) {
+  font-weight: 600;
+  color: $colors-bg-bright-border;
+  font-size: $size;
+}
+
+#last_topic, .comment--layout {
+  @include layout_article($colors-topic);
+}
+#all_topic, .addcomment__layout {
+  @include layout_article($colors-secondary);
+}
+#last_topic h2, .nocomment--bold, #all_topic h2{
+  color: $colors-bg-dark;
+  font-weight: bold;
+}
+
+.topic--layout {
+  background-color: white;
+  border: 2px solid #2f353a;
+  border-radius: 10px 10px;
+  margin-bottom: 20px;
+  &:hover{
+    box-shadow: #2f353a 5px 5px 5px;
+  }
+  h3 {
+    font-style: initial;
+    color: #2f353a;
+  }
+  p{
+    @include write_font(1rem);
+  }
+}
+
+.comment__layout{
+  background-color: white;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+  &--by {
+    @include write_font(1rem);
+    font-style: italic;
+  }
+  &--font {
+    @include write_font(1.2rem);
+  }
+} 
+.resume__topic--white, .addcomment__title--white{
+  color: white;
+}
+
+
+nav {
+    border-bottom: 3px solid $colors-primary;
+    border-top: 3px solid $colors-primary;
+    padding: $size;
+  }
