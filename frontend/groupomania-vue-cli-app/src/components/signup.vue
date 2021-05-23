@@ -54,7 +54,7 @@ export default {
           body: JSON.stringify(this.post)
         })
         .then (res => {
-          console.log(res)
+         
           if(res.ok) { /* si reponse est ok, je recupere le data */
           
             res.json()
@@ -69,8 +69,7 @@ export default {
           } else { /* sinon j'envoie une erreur */
             res.json()
             .then(data => {
-              this.errorMessage = data.message /* renvoie error du backend sur le frontend */
-              console.log(data)
+              this.errorMessage = data.message /* renvoie error du backend sur le frontend, "pseudo ou email existe deja" */
             })
           }
         })
