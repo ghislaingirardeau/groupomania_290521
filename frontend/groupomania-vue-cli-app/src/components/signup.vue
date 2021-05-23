@@ -4,8 +4,8 @@
 
     <h2 class="col-12 mb-2">Remplissez le formulaire pour vous insrcire :</h2>
 
-
     <form>
+
       <label for="pseudo" class="col-12 mt-4">Mon pseudo</label>
       <input for="pseudo" type="text" id="pseudo" class="col-12 col-md-6" maxlength="40" required v-model="post.username" > <!-- copie les données dans le data post  -->
         
@@ -14,12 +14,13 @@
         
       <label for="password" class="col-12 mt-4">Mot de passe (minimum 6 caractères dont 1 lettre)</label>
       <input for="password" type="password" id="password" pattern="/^.*(?=.{6,})(?=.*[a-zA-Z]).*$/" 
-      title="mot de passe incorrect" class="col-12 col-md-6" required v-model="post.password"> <!-- copie les données dans le data post  -->
+      title="mot de passe incorrect: minimum 6 caractères dont 1 lettre" class="col-12 col-md-6" required v-model="post.password"> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
         <input type="submit" value="Envoyer" class="btn btn-orange btn-lg mt-4" @click="postSignup">
         <p class="message__serveur col-12">{{errorMessage}}</p>
       </div> 
+      
     </form>
 
   </div>
