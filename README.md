@@ -21,14 +21,14 @@ lance le projet sur http://localhost:8080/
 dans le dossier backend/node-mysql
 groupomania_DB.sql
 
--- fichier .env /backend/.env.dev --
+-- fichier .env = /backend/.env.dev --
 
-AJOUTER LE FICHIER .env.dev DANS /BACKEND avant le lancement du serveur
+AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur
+
+Notice fichier .env:
 
 User: nom utilisateur MYSQL
 password: mot de passe
 database: nom de la base de donnée
-
 cle: mot de passe associé a la cle TOKEN
-
 Encodage: encodage utilisé pour la convertion de l'email en buffer
