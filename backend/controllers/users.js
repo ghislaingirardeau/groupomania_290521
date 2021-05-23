@@ -10,41 +10,49 @@ const salt = 10
 
 exports.signup = (req, res, next) => {
 
-    var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
+    const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
+    const regexPassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre et 1 chiffre */
 
-    bcrypt.hash(req.body.password, salt)
-    .then(hash => {
+    if (regexEmail.test(req.body.email) === true && regexPassword.test(req.body.password) === true) {
+        
+        var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
 
-        const sql = `SET @username="${req.body.username}", @email="${buffer}", @password="${hash}";`
-        connection.query(sql, (error, results, fields) => {
+        bcrypt.hash(req.body.password, salt)
+        .then(hash => {
 
-            if (error) {
-                res.status(400).json({message: 'erreur de variable'})
-            }
-            else if(results){
-                const sql = `CALL signup_user(@username, @email, @password);`;
-                connection.query(sql, (error, result, fields) => {
-                    let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
+            const sql = `SET @username="${req.body.username}", @email="${buffer}", @password="${hash}";`
+            connection.query(sql, (error, results, fields) => {
+
+                if (error) {
+                    res.status(400).json({message: 'erreur de variable'})
+                }
+                else if(results){
+                    const sql = `CALL signup_user(@username, @email, @password);`;
+                    connection.query(sql, (error, result, fields) => {
+                        let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
                     
-                    if (error || userSelect[0].Status === "Error") {
-                        res.status(400).json({message: userSelect[0].Response})
-                    }
-                    else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
+                        if (error || userSelect[0].Status === "Error") {
+                            res.status(400).json({message: userSelect[0].Response})
+                        }
+                        else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
                         
-                        res.status(200).json({
-                            username: userSelect[0].username,
-                            userId: userSelect[0].id,
-                            token: jwt.sign({
-                                userId: userSelect[0].id}, `${process.env.CLE}`,
-                                { expiresIn: '24h'}),
-                            role: userSelect[0].Roles
-                        })
-                    }
-                });
-            }
-        });
-    })
-    .catch(() => res.status(400).json({message: 'Echec'}))
+                            res.status(200).json({
+                                username: userSelect[0].username,
+                                userId: userSelect[0].id,
+                                token: jwt.sign({
+                                    userId: userSelect[0].id}, `${process.env.CLE}`,
+                                    { expiresIn: '24h'}),
+                                role: userSelect[0].Roles
+                            })
+                        }
+                    });
+                }
+            });
+        })
+        .catch(() => res.status(400).json({message: 'Echec'}))
+    } else {
+        res.status(401).json({message: 'Le format de donnée ne correspond pas !'})
+    }
 }
 
 exports.login = (req, res, next) => { 
