@@ -11,9 +11,9 @@ const salt = 10
 exports.signup = (req, res, next) => {
 
     const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-    const regexPassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre et 1 chiffre */
+    const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre */
 
-    if (regexEmail.test(req.body.email) === true && regexPassword.test(req.body.password) === true) {
+    if (regexEmail.test(req.body.email) === true && regexPassword.test(req.body.password) === true) { /* verifie la saiise des entrées */
         
         var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
 
