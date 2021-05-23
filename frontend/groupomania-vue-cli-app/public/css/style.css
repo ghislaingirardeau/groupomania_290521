@@ -1,32 +1,3 @@
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #0d4883;
-  font-size: 1.2rem;
-}
-#app a {
-  font-style: italic;
-  font-weight: bold;
-  color: #0d4883;
-  font-size: 1.4rem;
-}
-#app a.router-link-exact-active {
-  color: #f05a1e;
-}
-
-.message__serveur {
-  padding-top: 10px;
-  font-weight: bold;
-  color: #d62525;
-}
-.message__serveur--blanc {
-  padding-top: 10px;
-  font-weight: bold;
-  color: white;
-}
-
 input, textarea {
   border: 2px solid #2f353a;
   border-radius: 5px 5px;
@@ -49,27 +20,40 @@ input:focus, textarea:focus {
   border: 2px solid #2f353a;
 }
 
+.message__serveur {
+  /* message au clic bouton */
+  padding-top: 10px;
+  font-weight: bold;
+  color: #d62525;
+}
+.message__serveur--blanc {
+  padding-top: 10px;
+  font-weight: bold;
+  color: white;
+}
+
+#app {
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #0d4883;
+  font-size: 1.2rem;
+}
+#app a {
+  font-style: italic;
+  font-weight: bold;
+  color: #0d4883;
+  font-size: 1.4rem;
+}
+#app a.router-link-exact-active {
+  color: #f05a1e;
+}
+
 nav {
   border-bottom: 3px solid #d45959;
   border-top: 3px solid #d45959;
   padding: 10px;
-}
-
-#last_topic, .comment--layout {
-  background-color: #f05a1e;
-  border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
-}
-
-#all_topic, .addcomment__layout {
-  background-color: #0d4883;
-  border-radius: 10px 10px;
-  box-shadow: #2f353a 5px 5px 5px;
-}
-
-#last_topic h2, .nocomment--bold, #all_topic h2 {
-  color: white;
-  font-weight: bold;
 }
 
 .topic--layout {
@@ -89,6 +73,27 @@ nav {
   font-weight: 600;
   color: #2f353a;
   font-size: 1rem;
+}
+
+#last_topic {
+  background-color: #f05a1e;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+
+#all_topic {
+  background-color: #0d4883;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+
+#last_topic h2, #all_topic h2 {
+  color: white;
+  font-weight: bold;
+}
+
+.resume__topic--white {
+  color: white;
 }
 
 .comment__layout {
@@ -111,7 +116,24 @@ nav {
   color: #2f353a;
 }
 
-.resume__topic--white, .addcomment__title--white {
+.comment--layout {
+  background-color: #f05a1e;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+
+.addcomment__layout {
+  background-color: #0d4883;
+  border-radius: 10px 10px;
+  box-shadow: #2f353a 5px 5px 5px;
+}
+
+.nocomment--bold {
+  color: white;
+  font-weight: bold;
+}
+
+.addcomment__title--white {
   color: white;
 }
 

@@ -1,0 +1,31 @@
+.topic--layout {
+    background-color: $colors-bg-text;
+    border: 2px solid #2f353a;
+    border-radius: 10px 10px;
+    margin-bottom: 20px;
+    &:hover{
+      box-shadow: #2f353a 5px 5px 5px;
+    }
+    h3 {
+      font-style: initial;
+      color: #2f353a;
+    }
+    p{
+      @include write_font(1rem);
+    }
+}
+
+#last_topic {
+    @include layout_article($colors-primary);
+}
+#all_topic {
+    @include layout_article($colors-secondary);
+}
+#last_topic h2, #all_topic h2{
+    color: $colors-text-bg-dark;
+    font-weight: bold;
+}
+  
+.resume__topic--white{
+    color: $colors-text-bg-dark;
+}

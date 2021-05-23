@@ -1,0 +1,30 @@
+.comment__layout{
+    background-color: $colors-bg-text;
+    border-radius: 10px 10px;
+    box-shadow: #2f353a 5px 5px 5px;
+    &--by {
+      @include write_font(1rem);
+      font-style: italic;
+    }
+    &--font {
+      @include write_font(1.2rem);
+    }
+    &--grey {
+      color: $colors-bg-bright-border;
+    }
+} 
+
+ .comment--layout {
+    @include layout_article($colors-primary);
+}
+.addcomment__layout {
+    @include layout_article($colors-secondary);
+}
+.nocomment--bold{
+    color: $colors-text-bg-dark;
+    font-weight: bold;
+}
+  
+.addcomment__title--white{
+    color: $colors-text-bg-dark;
+}

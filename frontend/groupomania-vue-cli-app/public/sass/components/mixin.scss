@@ -1,0 +1,15 @@
+@mixin layout_article($color) {
+    background-color: $color;
+    border-radius: 10px 10px;
+    box-shadow: $colors-bg-bright-border 5px 5px 5px;
+  }
+  @mixin write_font($size) {
+    font-weight: 600;
+    color: $colors-bg-bright-border;
+    font-size: $size;
+  }
+  @mixin message__serveur($color) {
+    padding-top: 10px;
+    font-weight: bold;
+    color: $color;
+  }
