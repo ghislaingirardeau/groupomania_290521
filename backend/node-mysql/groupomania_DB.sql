@@ -34,7 +34,7 @@ CREATE TABLE `comment` (
   CONSTRAINT `fk_comment_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_pseudo_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
   CONSTRAINT `fk_topic_id` FOREIGN KEY (`topic_id`) REFERENCES `subject` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=96 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=103 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -43,7 +43,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (81,36,61,'2021-05-19 13:05:49','C\'est pour ce mois ci !'),(87,32,23,'2021-05-17 18:01:15','date'),(89,37,119,'2021-05-18 12:44:58','vivement les vacances'),(91,36,119,'2021-05-19 13:36:06','il y a du retard ce mois !'),(95,36,23,'2021-05-19 13:42:16','nouvelle modif !');
+INSERT INTO `comment` VALUES (89,37,119,'2021-05-18 12:44:58','vivement les vacances'),(96,37,61,'2021-05-19 15:30:29','C\'est pour bientot'),(97,37,61,'2021-05-20 15:09:10','Enfin !'),(98,42,121,'2021-05-20 09:24:41','Qui sera présent lors de cette assemblé ?'),(99,37,121,'2021-05-20 09:25:29','Comment cela se passe pour poser des jours ?'),(102,37,154,'2021-05-20 15:59:57','etst');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -97,7 +97,7 @@ CREATE TABLE `subject` (
   PRIMARY KEY (`id`),
   KEY `fk_user_id` (`user_id`),
   CONSTRAINT `fk_user_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -106,7 +106,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (32,'sujet de seb',61,'2021-05-11 09:49:14','2021-05-17 20:01:15'),(36,'conge paye',23,'2021-05-12 14:38:14','2021-05-19 15:42:16'),(37,'Sujet des vacances',61,'2021-05-17 10:27:50','2021-05-18 14:44:58'),(38,'test tutoring',23,'2021-05-17 14:08:45','2021-05-17 20:01:57');
+INSERT INTO `subject` VALUES (32,'sujet de seb',61,'2021-05-11 09:49:14','2021-05-17 20:01:15'),(37,'Sujet des vacances',61,'2021-05-17 10:27:50','2021-05-20 17:59:57'),(41,'Reunion de juin',121,'2021-05-20 09:22:00',NULL),(42,'Assemblé générale 2021',119,'2021-05-20 09:22:39','2021-05-20 11:29:34');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -128,7 +128,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
   KEY `ind_users_id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=135 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=157 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +137,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (23,'paul','XXX','$2b$10$.YZSVXrNSDXXi4npTP7OWeL0vzBx9qRGURQ6kTZbRMD7B20v8bFtq',NULL),(61,'seb','��','$2b$10$q1bPsUHFj.YE8v4nOETS9u0OdPHE05P/5Z5Y3jB5YYEmxo2pdFxNm',NULL),(119,'pierre','�\'��隊W(','$2b$10$bQuyYmm7fBqJLwoigCOsjOYbb3Pi4vRe0LBJdFeENjD95QuLlbiou',NULL),(120,'test1','��-�f���\'','$2b$10$ffDW13zOPIOUbeq8uCyxdutrVmDw2TqfQQWERB7XGOpKwnifOk01W',NULL),(121,'leo','���j)�','$2b$10$Q2L5uTt.QR8yWz9m137nWuS0P20PfgJcVP5LiXDoY/8ZjRN/ctm7S',NULL),(131,'administrateur','i٢�f���&','$2b$10$Z.yoDW4QM565P7bluQOtsO9BRiOiGZleSGuXPeP9PkFzrmjPCfDVy','admin');
+INSERT INTO `users` VALUES (61,'seb','��','$2b$10$q1bPsUHFj.YE8v4nOETS9u0OdPHE05P/5Z5Y3jB5YYEmxo2pdFxNm',NULL),(119,'pierre','�\'��隊W(','$2b$10$bQuyYmm7fBqJLwoigCOsjOYbb3Pi4vRe0LBJdFeENjD95QuLlbiou',NULL),(121,'leo','���j)�','$2b$10$Q2L5uTt.QR8yWz9m137nWuS0P20PfgJcVP5LiXDoY/8ZjRN/ctm7S',NULL),(131,'administrateur','i٢�f���&','$2b$10$Z.yoDW4QM565P7bluQOtsO9BRiOiGZleSGuXPeP9PkFzrmjPCfDVy','admin'),(154,'Ghislain','�������-r�','$2b$10$vMRRvUCulDD8jtIK/f3P5OOolrn21XisiCJhI9/T.11zwaMHMICCO',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -150,4 +150,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-19 15:52:51
+-- Dump completed on 2021-05-23 11:18:02
