@@ -20,7 +20,7 @@ exports.signup = (req, res, next) => {
         bcrypt.hash(req.body.password, salt)
         .then(hash => {
 
-            const sql = `SET @username="${req.body.username}", @email="${buffer}", @password="${hash}";`
+            const sql = `SET @username="${req.body.username}", @email='${buffer}', @password="${hash}";`
             connection.query(sql, (error, results, fields) => {
 
                 if (error) {
@@ -97,7 +97,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
    
     var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
     
-    const sql = `SET @email="${buffer}", @username="${req.body.username}"`;
+    const sql = `SET @email='${buffer}', @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
 
         if (error) {
