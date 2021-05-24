@@ -16,19 +16,33 @@ cd groupomania-vue-cli-app
 npm run serve
 lance le projet sur http://localhost:8080/
 
--- Fichier DATABASE --
+-- Connection DATABASE --
 
+En local : 
+Installer le fichier groupomania_save.sql dans mysql qui se trouve
 dans le dossier backend/node-mysql
-groupomania_DB.sql
+
+Fichier /Backend/config.js, exporter la variable 'config'
+
+En ligne (par defaut):
+
+Fichier /Backend/config.js, exporter la variable 'configWeb'
 
 -- fichier .env = /backend/.env.dev --
 
-AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur
+!! AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur !!
 
 Notice fichier .env:
 
-User: nom utilisateur MYSQL
-password: mot de passe
-database: nom de la base de donnée
-cle: mot de passe associé a la cle TOKEN
-Encodage: encodage utilisé pour la convertion de l'email en buffer
+    #Connection mysql en local :
+        USER: nom utilisateur MYSQL
+        PASSWORD: mot de passe
+        DATABASE: nom de la base de donnée
+
+    #Connection mysql en ligne :
+        USER_DB: nom utilisateur MYSQL
+        PASSWORD_DB: mot de passe
+        DATABASE_DB: nom de la base de donnée
+
+    #cle: mot de passe associé a la cle TOKEN
+    #Encodage: encodage utilisé pour la convertion de l'email en buffer

@@ -64,7 +64,7 @@ exports.login = (req, res, next) => {
         }
         else if(results){
 
-            const sql = `SELECT id, password, username, roles FROM Users WHERE username=@username`;
+            const sql = `SELECT id, password, username, roles FROM users WHERE username=@username`;
             connection.query(sql, (error, results, fields) => {
 
                 if (results.length == 0 || error) { /* Si utilisateur n'existe pas, renvoie un tableau vide */
