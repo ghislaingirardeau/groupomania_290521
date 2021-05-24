@@ -46,7 +46,7 @@ export default {
       const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
       const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre */
 
-      if (this.post.username != '' && regexEmail.test(this.post.email) === true && regexPassword.test(this.post.password) === true) { /* verifie la saiise des entrées */
+      if (this.post.username != '' && regexEmail.test(this.post.email) === true && regexPassword.test(this.post.password) === true) { /* verifie la saisie des entrées: double controle coté front et API */
         fetch("http://localhost:3000/api/compte/signup", {
           method: 'POST',
           headers: {
