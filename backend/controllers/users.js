@@ -15,18 +15,17 @@ exports.signup = (req, res, next) => {
 
     if (regexEmail.test(req.body.email) === true && regexPassword.test(req.body.password) === true) { /* verifie la saiise des entrées */
         
-        var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
-
         bcrypt.hash(req.body.password, salt)
         .then(hash => {
 
-            const sql = `SET @username="${req.body.username}", @email='${buffer}', @password="${hash}";`
-            connection.query(sql, (error, results, fields) => {
+            const sql = `SET @username="${req.body.username}", @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @password="${hash}";`
+            connection.query(sql, (error, results, fields) => { /* ENCRYPT email */
 
                 if (error) {
                     res.status(400).json({message: 'erreur de variable'})
                 }
                 else if(results){
+
                     const sql = `CALL signup_user(@username, @email, @password);`;
                     connection.query(sql, (error, result, fields) => {
                         let userSelect = result[0] /* extrait l'array correspondant a la selection dans le array de resultat car renvoie array(insert) et array(select) */                                               
@@ -35,7 +34,6 @@ exports.signup = (req, res, next) => {
                             res.status(400).json({message: userSelect[0].Response})
                         }
                         else if(result){ /* Au succes du signup, renvoie ID au frontend pour une connection immediate a l'accueil */
-                        
                             res.status(200).json({
                                 username: userSelect[0].username,
                                 userId: userSelect[0].id,
@@ -94,10 +92,8 @@ exports.login = (req, res, next) => {
 }
 
 exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lies au compte */
-   
-    var buffer = Buffer.from(req.body.email, `${process.env.ENCODAGE}`);
-    
-    const sql = `SET @email='${buffer}', @username="${req.body.username}"`;
+       
+    const sql = `SET @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
 
         if (error) {
@@ -105,7 +101,7 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
         } 
         else if(results) {
             
-            const sql = `CALL delete_user(@username, @email);`;
+            const sql = `CALL password_delete_user(@username, @email);`;
             connection.query(sql, (error, results, fields) => {
 
                 if (results[0].length == 0 || error) { /* Si le tableau ne renvoie aucun resultat (id n'existe pas), la longueur du 1er array est donc vide */
@@ -136,4 +132,3 @@ exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASC
         }  
     });
 }
-
