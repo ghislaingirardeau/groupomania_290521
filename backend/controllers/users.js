@@ -18,7 +18,7 @@ exports.signup = (req, res, next) => {
         bcrypt.hash(req.body.password, salt)
         .then(hash => {
 
-            const sql = `SET @username="${req.body.username}", @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @password="${hash}";`
+            const sql = `SET @username="${req.body.username}", @email=AES_ENCRYPT('${req.body.email}','${process.env.ENCODAGE}'), @password="${hash}";`
             connection.query(sql, (error, results, fields) => { /* ENCRYPT email */
 
                 if (error) {
@@ -93,7 +93,7 @@ exports.login = (req, res, next) => {
 
 exports.deleteAccount= (req, res, next) => { /* A SUPPR DU COMPTE ON DELETE CASCADE supprime les sujets et commentaires lies au compte */
        
-    const sql = `SET @email=AES_ENCRYPT('${req.body.email}','clesecrete'), @username="${req.body.username}"`;
+    const sql = `SET @email=AES_ENCRYPT('${req.body.email}','${process.env.ENCODAGE}'), @username="${req.body.username}"`;
     connection.query(sql, (error, results, fields) => {
 
         if (error) {
