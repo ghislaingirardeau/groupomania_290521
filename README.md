@@ -3,12 +3,12 @@ LANCEMENT MVP Projet 7 Groupomania
 --COPY REPOSITORY Groupomania--
 
 --LANCEMENT BACKEND--
-!! AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur !
+
 Terminal : 
         cd backend 
         npm run server (actualisation en live du server si modification) 
         ou npm run dev
-lance API sur http://localhost:3000/
+        lance API sur http://localhost:3000/
 
 -- LANCEMENT FRONTEND --
 
@@ -29,9 +29,10 @@ Terminal :
     #En ligne (config par defaut):
     Dans le fichier /Backend/config.js, exporter la variable 'configWeb'
 
--- fichier .env = /backend/.env.dev --
+-- fichier .env --
 
-!! AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur !!
+!! Pour une plus présentation plus efficace, 
+le fichier .env est intégré exceptionnellement au repository !!
 
 Notice fichier .env:
 
@@ -46,4 +47,4 @@ Notice fichier .env:
         DATABASE_DB: nom de la base de donnée sur PHPmyadmin
 
     #cle: mot de passe associé a la cle TOKEN
-    #Encodage: encodage utilisé pour la convertion de l'email en buffer
+    #Encodage: encodage utilisé pour la convertion de l'email
