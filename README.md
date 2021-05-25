@@ -31,7 +31,7 @@ Terminal :
 
 -- fichier .env --
 
-!! Pour une plus présentation plus efficace, 
+!! Pour une présentation plus efficace, 
 le fichier .env est intégré exceptionnellement au repository !!
 
 Notice fichier .env:
