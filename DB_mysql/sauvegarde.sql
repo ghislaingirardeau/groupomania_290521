@@ -43,7 +43,7 @@ CREATE TABLE `comment` (
 
 LOCK TABLES `comment` WRITE;
 /*!40000 ALTER TABLE `comment` DISABLE KEYS */;
-INSERT INTO `comment` VALUES (89,37,119,'2021-05-18 12:44:58','vivement les vacances'),(96,37,61,'2021-05-19 15:30:29','C\'est pour bientot'),(97,37,61,'2021-05-20 15:09:10','Enfin !'),(98,42,121,'2021-05-20 09:24:41','Qui sera présent lors de cette assemblé ?'),(99,37,121,'2021-05-20 09:25:29','Comment cela se passe pour poser des jours ?'),(102,37,154,'2021-05-24 10:19:51','test');
+INSERT INTO `comment` VALUES (89,37,119,'2021-05-18 12:44:58','vivement les vacances'),(96,37,61,'2021-05-19 15:30:29','C\'est pour bientot'),(97,37,61,'2021-05-20 15:09:10','Enfin !'),(98,42,121,'2021-05-20 09:24:41','Qui sera présent lors de cette assemblé ?'),(99,37,121,'2021-05-20 09:25:29','Comment cela se passe pour poser des jours ?'),(102,37,154,'2021-05-24 16:41:18','test !');
 /*!40000 ALTER TABLE `comment` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
@@ -106,7 +106,7 @@ CREATE TABLE `subject` (
 
 LOCK TABLES `subject` WRITE;
 /*!40000 ALTER TABLE `subject` DISABLE KEYS */;
-INSERT INTO `subject` VALUES (32,'sujet de seb',61,'2021-05-11 09:49:14','2021-05-17 20:01:15'),(37,'Sujet des vacances',61,'2021-05-17 10:27:50','2021-05-24 12:19:51'),(41,'Reunion de juin',121,'2021-05-20 09:22:00',NULL),(42,'Assemblé générale 2021',119,'2021-05-20 09:22:39','2021-05-20 11:29:34');
+INSERT INTO `subject` VALUES (32,'sujet de seb',61,'2021-05-11 09:49:14','2021-05-17 20:01:15'),(37,'Sujet des vacances',61,'2021-05-17 10:27:50','2021-05-24 18:41:18'),(41,'Reunion de juin',121,'2021-05-20 09:22:00',NULL),(42,'Assemblé générale 2021',119,'2021-05-20 09:22:39','2021-05-20 11:29:34');
 /*!40000 ALTER TABLE `subject` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,15 +120,16 @@ DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` smallint unsigned NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
-  `email` varchar(50) NOT NULL,
+  `email` varbinary(50) NOT NULL,
   `password` varchar(150) NOT NULL,
   `Roles` tinytext,
   PRIMARY KEY (`id`),
   UNIQUE KEY `pseudo` (`username`),
   UNIQUE KEY `email` (`email`),
   UNIQUE KEY `username` (`username`),
+  UNIQUE KEY `email_2` (`email`),
   KEY `ind_users_id` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=167 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -137,7 +138,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (61,'seb','��','$2b$10$q1bPsUHFj.YE8v4nOETS9u0OdPHE05P/5Z5Y3jB5YYEmxo2pdFxNm',NULL),(119,'pierre','�\'��隊W(','$2b$10$bQuyYmm7fBqJLwoigCOsjOYbb3Pi4vRe0LBJdFeENjD95QuLlbiou',NULL),(121,'leo','���j)�','$2b$10$Q2L5uTt.QR8yWz9m137nWuS0P20PfgJcVP5LiXDoY/8ZjRN/ctm7S',NULL),(131,'administrateur','i٢�f���&','$2b$10$Z.yoDW4QM565P7bluQOtsO9BRiOiGZleSGuXPeP9PkFzrmjPCfDVy','admin'),(154,'Ghislain','�������-r�','$2b$10$vMRRvUCulDD8jtIK/f3P5OOolrn21XisiCJhI9/T.11zwaMHMICCO',NULL);
+INSERT INTO `users` VALUES (61,'seb',_binary '��','$2b$10$q1bPsUHFj.YE8v4nOETS9u0OdPHE05P/5Z5Y3jB5YYEmxo2pdFxNm',NULL),(119,'pierre',_binary '�\'��隊W(','$2b$10$bQuyYmm7fBqJLwoigCOsjOYbb3Pi4vRe0LBJdFeENjD95QuLlbiou',NULL),(121,'leo',_binary '���j)�','$2b$10$Q2L5uTt.QR8yWz9m137nWuS0P20PfgJcVP5LiXDoY/8ZjRN/ctm7S',NULL),(131,'administrateur',_binary 'i٢�f���&','$2b$10$Z.yoDW4QM565P7bluQOtsO9BRiOiGZleSGuXPeP9PkFzrmjPCfDVy','admin'),(154,'Ghislain',_binary '�������-r�','$2b$10$vMRRvUCulDD8jtIK/f3P5OOolrn21XisiCJhI9/T.11zwaMHMICCO',NULL);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -293,6 +294,25 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `password_delete_user` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `password_delete_user`(IN p_username varchar(50), IN p_email varbinary(50))
+BEGIN
+SELECT password FROM Users WHERE email=p_email AND username=p_username;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `post_topic` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -359,29 +379,6 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `signup_test` */;
-/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
-/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
-/*!50003 SET @saved_col_connection = @@collation_connection */ ;
-/*!50003 SET character_set_client  = utf8mb4 */ ;
-/*!50003 SET character_set_results = utf8mb4 */ ;
-/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
-/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
-/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
-DELIMITER ;;
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `signup_test`(IN p_username VARCHAR(50), IN p_id INT)
-BEGIN
-DECLARE v_username VARCHAR(50) DEFAULT 'null';
-SELECT username INTO v_username FROM users WHERE username=p_username OR id=p_id;
-if (v_username='null') THEN SELECT 'pas trouver';
-ELSE SELECT 'exist';
-END IF;
-END ;;
-DELIMITER ;
-/*!50003 SET sql_mode              = @saved_sql_mode */ ;
-/*!50003 SET character_set_client  = @saved_cs_client */ ;
-/*!50003 SET character_set_results = @saved_cs_results */ ;
-/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `signup_user` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -426,7 +423,7 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
-/*!50003 DROP PROCEDURE IF EXISTS `Test` */;
+/*!50003 DROP PROCEDURE IF EXISTS `test` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
 /*!50003 SET @saved_col_connection = @@collation_connection */ ;
@@ -436,13 +433,11 @@ DELIMITER ;
 /*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
 /*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
 DELIMITER ;;
-CREATE DEFINER=`admin`@`localhost` PROCEDURE `Test`(IN p_test INT)
-BEGIN
-DECLARE v_user VARCHAR(50) DEFAULT 'null';
-DECLARE v_roles VARCHAR(50) DEFAULT 'null';
-SELECT id, Roles INTO v_user, v_roles FROM users WHERE id=p_test;
-IF (v_Roles='admin') THEN SELECT 'je suis admin';
-ELSEIF (v_user='23') THEN SELECT 'je suis user';
+CREATE DEFINER=`admin`@`localhost` PROCEDURE `test`(IN p_username VARCHAR(50), IN p_email VARBINARY(40))
+begin
+DECLARE v_username VARCHAR(50) DEFAULT 'null';
+SELECT username INTO v_username FROM users WHERE username=p_username OR email=p_email;
+if (v_username='null') THEN SELECT p_email;
 END IF;
 END ;;
 DELIMITER ;
@@ -480,4 +475,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-05-24 13:09:42
+-- Dump completed on 2021-05-25 17:16:32

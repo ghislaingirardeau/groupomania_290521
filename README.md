@@ -3,28 +3,30 @@ LANCEMENT MVP Projet 7 Groupomania
 --COPY REPOSITORY Groupomania--
 
 --LANCEMENT BACKEND--
-!! AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur !ID de c
-cd backend 
-npm run server (actualisation en live du server si modification) 
-ou npm run dev
+!! AJOUTER LE FICHIER .env.dev DANS LE DOSSIER /BACKEND avant le lancement du serveur !
+Terminal : 
+        cd backend 
+        npm run server (actualisation en live du server si modification) 
+        ou npm run dev
 lance API sur http://localhost:3000/
 
 -- LANCEMENT FRONTEND --
 
-cd frontend
-cd groupomania-vue-cli-app
-npm run serve
-lance le projet sur http://localhost:8080/
+Terminal : 
+        cd frontend
+        cd groupomania-vue-cli-app
+        npm run serve
+        lance le projet sur http://localhost:8080/
 
 -- Connection DATABASE --
 
-    #En local : 
-    Importer le fichier groupomania_save.sql dans mysql qui se trouve
-    dans le dossier backend/node-mysql
+    #Installation en local : 
+    Importer le fichier sauvegarde.sql dans mysql qui se trouve
+    dans le dossier DB_mysql
 
     Dans le fichier /Backend/config.js, exporter la variable 'config'
 
-    #En ligne (par defaut):
+    #En ligne (config par defaut):
     Dans le fichier /Backend/config.js, exporter la variable 'configWeb'
 
 -- fichier .env = /backend/.env.dev --
