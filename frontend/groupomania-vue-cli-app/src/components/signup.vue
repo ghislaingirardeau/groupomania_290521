@@ -12,9 +12,9 @@
       <label for="email" class="col-12 mt-4">Mon adresse email</label>
       <input for="email" type="email" id="email" placeholder="exemple@mail.com" class="col-12 col-md-6" required v-model="post.email"> <!-- copie les données dans le data post  -->
         
-      <label for="password" class="col-12 mt-4">Mot de passe (minimum 6 caractères dont 1 lettre)</label>
-      <input for="password" type="password" id="password" pattern="/^.*(?=.{6,})(?=.*[a-zA-Z]).*$/" 
-      title="mot de passe incorrect: minimum 6 caractères dont 1 lettre" class="col-12 col-md-6" required v-model="post.password"> <!-- copie les données dans le data post  -->
+      <label for="password" class="col-12 mt-4">Mot de passe (minimum 6 caractères dont 1 lettre et 1 chiffre)</label>
+      <input for="password" type="password" id="password" pattern="/^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/" 
+      title="mot de passe incorrect: minimum 6 caractères dont 1 lettre et 1 chiffre" class="col-12 col-md-6" required v-model="post.password"> <!-- copie les données dans le data post  -->
       
       <div class="col-12">
         <input type="submit" value="Envoyer" class="btn btn-orange btn-lg mt-4" @click="postSignup">
@@ -44,7 +44,7 @@ export default {
     postSignup() {
 
       const regexEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
-      const regexPassword = /^.*(?=.{6,})(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre */
+      const regexPassword = /^.*(?=.{6,})(?=.*\d)(?=.*[a-zA-Z]).*$/ /* Minimum 6 caracteres dont 1 lettre et une chiffre */
 
       if (this.post.username != '' && regexEmail.test(this.post.email) === true && regexPassword.test(this.post.password) === true) { /* verifie la saisie des entrées: double controle coté front et API */
         fetch("http://localhost:3000/api/compte/signup", {
