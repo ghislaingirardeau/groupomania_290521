@@ -3,7 +3,7 @@ input, textarea {
   border-radius: 5px 5px;
 }
 input:focus, textarea:focus {
-  box-shadow: #0d4883 1px 1px 7px 1px;
+  box-shadow: #0d4883 2px 2px 7px 1px;
   border-radius: 5px 5px;
   outline: unset;
 }
@@ -14,6 +14,10 @@ input:focus, textarea:focus {
   color: white;
   font-size: 1.4rem;
   font-weight: bold;
+}
+.btn-orange:focus {
+  color: #2f353a;
+  box-shadow: #2f353a 2px 2px 7px 1px;
 }
 
 .btn-border {

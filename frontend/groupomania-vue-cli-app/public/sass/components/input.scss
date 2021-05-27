@@ -2,7 +2,7 @@ input, textarea{
     border: 2px solid #2f353a;
     border-radius: 5px 5px;
     &:focus{
-      box-shadow: $colors-secondary 1px 1px 7px 1px;
+      box-shadow: $colors-secondary 2px 2px 7px 1px;
       border-radius: 5px 5px;
       outline: unset;
     }
@@ -13,6 +13,10 @@ input, textarea{
     color: $colors-text-bg-dark;
     font-size: 1.4rem;
     font-weight: bold;
+    &:focus {
+      color: $colors-bg-bright-border;
+      box-shadow: $colors-bg-bright-border 2px 2px 7px 1px;
+    }
 }
 .btn-border{
     border: 2px solid #2f353a;
