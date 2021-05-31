@@ -17,4 +17,4 @@ let config = {
     database: `${process.env.DATABASE}`
 }
 
-module.exports = configWeb; /* Changer ici le choix de la connection */
+module.exports = config; /* Changer ici le choix de la connection */
