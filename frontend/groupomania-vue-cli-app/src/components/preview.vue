@@ -23,7 +23,7 @@
       </form>
     </div>
     
-    <div class="col-md-5">
+    <!-- <div class="col-md-5">
       <h5>2. multiple file</h5>
       <form>
         <div class="form-group">
@@ -42,7 +42,7 @@
           </div>
         </div>
       </form>
-    </div>
+    </div> -->
     
     <div class="w-100"></div>
     <div class="col-12 mt-3 text-center">
@@ -61,23 +61,25 @@ export default {
     return {
       preview: null,
       image: null,
-      preview_list: [],
-      image_list: []
+      /* preview_list: [],
+      image_list: [] */
     };
   },
   methods: {
-    previewImage: function(event) {
-      var input = event.target;
+    previewImage: function(event) { /* ecoute evenement au change */
+      var input = event.target; /* recupere la cible lors de event, soit le file dans input */
+     
       if (input.files) {
-        var reader = new FileReader();
+        var reader = new FileReader(); /* constructeur pour lire le fichier */
+         console.log(reader)
         reader.onload = (e) => {
-          this.preview = e.target.result;
+          this.preview = e.target.result; /* scr renvoyer dans la balise image */
         }
-        this.image=input.files[0];
+        this.image=input.files[0]; /* donnée lié au fichier: name, size... */
         reader.readAsDataURL(input.files[0]);
       }
     },
-    previewMultiImage: function(event) {
+    /* previewMultiImage: function(event) {
       var input = event.target;
       var count = input.files.length;
       var index = 0;
@@ -92,7 +94,7 @@ export default {
           index ++;
         }
       }
-    },
+    }, */
     reset: function() {
       this.image = null;
       this.preview = null;
