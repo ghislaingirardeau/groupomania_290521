@@ -42,11 +42,11 @@ const storage = multer.diskStorage({
     }
 })
 
-app.post('/upload', multer({storage}).single('image'),function(req, res, event) {
+app.post('/upload', multer({storage}).single('image'),function(req, res) {
 
-  console.log(req.file);
+  console.log(req.body);
   res.send(req.file)
-  
+
 });
 
 /* FORM: EN UTILISANT NPM FILEUPLOAD */
