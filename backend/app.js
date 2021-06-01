@@ -5,7 +5,7 @@ const usersRoute = require('./routes/users')
 const topicRoutes = require('./routes/topic')
 
 const app = express()
-app.use(fileUpload());
+
 
 /* Configuration du header */
 app.use((req, res, next) => {
@@ -20,7 +20,47 @@ app.use(express.json())
 app.use('/api/compte', usersRoute)
 app.use('/api/sujet', topicRoutes)
 
-app.post('/upload', function(req, res) {
+/* FORM: EN UTILISANT MULTER */
+
+var multer = require("multer");
+
+const MIME_TYPE = { /* POUR DEFINIR LE TYPE D'IMAGE QUE NOUS RECEVRONS */
+    'image/jpg': 'jpg',
+    'image/jpeg': 'jpg',
+    'image/png': 'png'
+  };
+
+const storage = multer.diskStorage({
+    destination: function (req, file, event) {
+        event(null, "images")
+    },
+    filename: function (req, file, event) {
+        const name = file.originalname.split(' ').join("_")
+        const extension = MIME_TYPE[file.mimetype]
+        const newName = name.slice(0, -4) /* POUR SUPPR EXTENSION NAME ORIGINALE */
+        event(null, newName + Date.now() + "." + extension)
+    }
+})
+
+app.post('/upload', multer({storage}).single('image'),function(req, res, event) {
+
+  console.log(req.file);
+  res.send(req.file)
+  
+});
+
+/* FORM: EN UTILISANT NPM FILEUPLOAD */
+
+app.use(fileUpload());
+
+app.post('/uploadtest2', function(req, res) {
+  console.log(req.files.foo); // the uploaded file object
+  res.send('File uploaded!');
+});
+
+/* FORM: EN UTILISANT REQ.FILES POUR ENREGISTRER LE FICHIER COTE SERVEUR */
+
+app.post('/uploadtest1', function(req, res) {
   let sampleFile;
   let uploadPath;
 
