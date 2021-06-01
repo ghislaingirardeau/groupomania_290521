@@ -7,6 +7,8 @@ import allTopics from '../components/all_topics.vue'
 import comment from '../views/comment.vue'
 import addTopic from '../components/Add_topic.vue'
 import account from '../views/account.vue'
+import Preview from '../components/preview.vue'
+import UploadTuto from '../components/upload tuto.vue'
 
 const routes = [ /* au clic affichera les vues et composant correspondant, par default renvoie Login(log) et Topics(home) */
   {
@@ -23,6 +25,16 @@ const routes = [ /* au clic affichera les vues et composant correspondant, par d
         path: 'Signup',
         name: 'Signup',
         component: Signup
+      },
+      {
+        path: 'preview',
+        name: 'preview',
+        component: Preview
+      },
+      {
+        path: 'upload',
+        name: 'upload',
+        component: UploadTuto
       },
     ],
   },

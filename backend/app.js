@@ -1,8 +1,8 @@
 const express = require('express')
 const fileUpload = require('express-fileupload');
-
 const usersRoute = require('./routes/users')
 const topicRoutes = require('./routes/topic')
+const uploadRoutes = require('./routes/upload')
 
 const app = express()
 
@@ -16,69 +16,12 @@ app.use((req, res, next) => {
 })    
 
 app.use(express.json())
+app.use(fileUpload());
 
 app.use('/api/compte', usersRoute)
 app.use('/api/sujet', topicRoutes)
+app.use('', uploadRoutes)
 
-/* FORM: EN UTILISANT MULTER */
 
-var multer = require("multer");
-
-const MIME_TYPE = { /* POUR DEFINIR LE TYPE D'IMAGE QUE NOUS RECEVRONS */
-    'image/jpg': 'jpg',
-    'image/jpeg': 'jpg',
-    'image/png': 'png'
-  };
-
-const storage = multer.diskStorage({
-    destination: function (req, file, event) {
-        event(null, "images")
-    },
-    filename: function (req, file, event) {
-        const name = file.originalname.split(' ').join("_")
-        const extension = MIME_TYPE[file.mimetype]
-        const newName = name.slice(0, -4) /* POUR SUPPR EXTENSION NAME ORIGINALE */
-        event(null, newName + Date.now() + "." + extension)
-    }
-})
-
-app.post('/upload', multer({storage}).single('image'),function(req, res) {
-
-  console.log(req.body);
-  res.send(req.file)
-
-});
-
-/* FORM: EN UTILISANT NPM FILEUPLOAD */
-
-app.use(fileUpload());
-
-app.post('/uploadtest2', function(req, res) {
-  console.log(req.files.foo); // the uploaded file object
-  res.send('File uploaded!');
-});
-
-/* FORM: EN UTILISANT REQ.FILES POUR ENREGISTRER LE FICHIER COTE SERVEUR */
-
-app.post('/uploadtest1', function(req, res) {
-  let sampleFile;
-  let uploadPath;
-
-  if (!req.files || Object.keys(req.files).length === 0) {
-    return res.status(400).send('No files were uploaded.');
-  }
-
-  // The name of the input field (i.e. "sampleFile") is used to retrieve the uploaded file
-  sampleFile = req.files.sampleFile;
-  uploadPath = __dirname + '/images/' + sampleFile.name;
-
-  // Use the mv() method to place the file somewhere on your server
-  sampleFile.mv(uploadPath, function(err) {
-    if (err)
-      return res.status(500).send(err);
-
-    res.send('File uploaded!');
-  });
-});
 
 module.exports = app
