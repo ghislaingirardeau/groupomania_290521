@@ -10,6 +10,15 @@
             <router-link :to="{name: 'Signup'}" class="col-5">S'inscrire</router-link>    
         </nav>
         <router-view></router-view> 
+
+        <form ref='uploadForm' 
+      id='uploadForm' 
+      action='http://localhost:3000/upload' 
+      method='post' 
+      encType="multipart/form-data">
+        <input type="file" name="sampleFile" />
+        <input type='submit' value='Upload!' />
+    </form> 
     </div>
 
 </template>
