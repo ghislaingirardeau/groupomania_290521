@@ -23,7 +23,7 @@ const storage = multer.diskStorage({
     }
 })
 
-router.post('/uploadtes', multer({storage}).single('image'),function(req, res) {
+router.post('/upload', multer({storage}).single('image'),function(req, res) {
     /* mettre la route qui correspond entre backend et frontend '/upload' */
   console.log(req.body);
   res.send(req.file)
@@ -32,7 +32,7 @@ router.post('/uploadtes', multer({storage}).single('image'),function(req, res) {
 
 /* FORM: EN UTILISANT NPM FILEUPLOAD */
 
-router.post('/upload', function(req, res) {
+router.post('/uploadtest', function(req, res) {
   console.log(req.files.image); // the uploaded file object
   res.send('File uploaded!');
 });

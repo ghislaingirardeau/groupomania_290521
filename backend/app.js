@@ -1,5 +1,5 @@
 const express = require('express')
-const fileUpload = require('express-fileupload');
+/* const fileUpload = require('express-fileupload'); */
 const usersRoute = require('./routes/users')
 const topicRoutes = require('./routes/topic')
 const uploadRoutes = require('./routes/upload')
@@ -16,11 +16,11 @@ app.use((req, res, next) => {
 })    
 
 app.use(express.json())
-app.use(fileUpload());
+/* app.use(fileUpload()); */
 
 app.use('/api/compte', usersRoute)
 app.use('/api/sujet', topicRoutes)
-app.use('', uploadRoutes)
+/* app.use('', uploadRoutes) */
 
 
 
